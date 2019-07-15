@@ -1,0 +1,55 @@
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  position: static;
+  margin: 1% auto;
+}
+
+.myAccountWrap {
+  position: relative;
+  left: 16%;
+  top: 100px;
+  .myAccountIcon {
+    display: inline-block;
+    position: relative;
+    top: 4%;
+    width: 35px;
+    height: 35px;
+    background-image: url("https://previews.123rf.com/images/alekseyvanin/alekseyvanin1709/alekseyvanin170901431/86082022-baby-socks-line-icon-outline-vector-sign-linear-style-pictogram-isolated-on-white-symbol-illustratio.jpg");
+    background-size: 200%;
+    background-position: center;
+  }
+  .myAccountBtn {
+    font-size: 22px;
+  }
+}
+
+.cartWrap {
+  display: inline-block;
+  position: relative;
+  right: 16%;
+  top: 100px;
+  .cartIcon {
+    display: inline-block;
+    position: relative;
+    top: 5%;
+    width: 50px;
+    height: 40px;
+    background-color: none;
+    background-image: url("https://cdn4.iconfinder.com/data/icons/shopping-21/64/shopping-01-512.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .cartBtn {
+    font-size: 22px;
+  }
+}
+
+.logo {
+  background-image: url("https://scontent-gmp1-1.xx.fbcdn.net/v/t1.0-9/66787849_10219333026337312_3926642711855104000_o.jpg?_nc_cat=106&_nc_oc=AQnItBgC66XpRLrzxPCeiXx6gurOOUnYbwAL16m7jlEf0BFDUqThsm3xn2oFu5cYc_M&_nc_ht=scontent-gmp1-1.xx&oh=9a4b8979e863a3e2dfa9cd09b68599d1&oe=5DB0985C");
+  width: 200px;
+  height: 200px;
+  background-position: center;
+  background-size: 160%;
+}

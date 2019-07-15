@@ -1,0 +1,35 @@
+.mainSquare {
+  width: 100%;
+  max-width: 750px;
+  min-width: 380px;
+  height: 400px;
+
+  margin: 20px auto;
+
+  background-position: bottom;
+  background-size: cover;
+
+  text-align: center;
+
+  cursor: pointer;
+  transition: 
+
+  &:last-child {
+    background-position: center;
+  }
+}
+
+.squareTitle {
+  color: white;
+  font-size: 45px;
+  font-weight: 700;
+}
+
+.moreSpan {
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  padding: 10px 33px;
+  margin: 14px;
+  border-color: transparent;
+}

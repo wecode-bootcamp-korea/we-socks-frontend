@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import InputBox from "../../Components/InputBox/InputBox";
-import Button from "../../Components/Button/Button";
+import InputBox from "Components/InputBox";
+import Button from "Components/Button";
 import "./Signup.scss";
 
 class Signup extends Component {

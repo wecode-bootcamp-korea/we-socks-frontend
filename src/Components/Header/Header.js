@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <Header className="pageHeader">
+    <header className="pageHeader">
       <span className="myAccountWrap">
         <span className="myAccountIcon"></span>
         <Link to="/mypage">
@@ -17,7 +17,7 @@ const Header = () => {
         <span className="cartIcon"></span>
         <Button className="cartBtn" text="Cart" />
       </span>
-    </Header>
+    </header>
   );
 };
 

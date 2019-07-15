@@ -1,5 +1,5 @@
 import React from "react";
-import Main from "./Main";
+import MyPage from "Pages/MyPage";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -8,7 +8,7 @@ class Routes extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" component={Main} />
+          <Route exact path="/mypage" component={MyPage} />
         </Switch>
       </Router>
     );

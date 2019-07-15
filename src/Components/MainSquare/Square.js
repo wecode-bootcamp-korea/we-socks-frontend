@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../Button";
 import "./square.scss";
 
 const Square = ({ image_url, title }) => {

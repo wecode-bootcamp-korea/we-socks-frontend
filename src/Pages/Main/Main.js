@@ -1,10 +1,10 @@
 import React from "react";
-import Square from "../../Components/MainSquare";
+import Square from "Components/MainSquare";
 import "./main.scss";
-import casualImg from "../../assets/images/casual.jpg";
-import kidsImg from "../../assets/images/kids.jpg";
-import dressedImg from "../../assets/images/dressed.jpg";
-import athletic from "../../assets/images/athletic2.jpg";
+import casualImg from "assets/images/casual.jpg";
+import kidsImg from "assets/images/kids.jpg";
+import dressedImg from "assets/images/dressed.jpg";
+import athletic from "assets/images/athletic2.jpg";
 
 const Main = () => {
   return (

@@ -1,4 +1,4 @@
-.signupContainer {
+.loginContainer {
   padding-top: 20px;
   padding-bottom: 20px;
   width: 100%;
@@ -6,7 +6,7 @@
   background-color: #f3f3f3;
 }
 
-.signupContents {
+.loginContents {
   width: 365px;
   margin: 20px auto;
   & p {
@@ -30,14 +30,14 @@
   }
 }
 
-.signupHeadText {
+.loginHeadText {
   text-align: center;
   & h2 {
     font-size: 30px;
   }
 }
 
-.signupBtn {
+.loginBtn {
   font-size: 1.0625em;
   height: 46px;
   margin-bottom: 18px;
@@ -55,7 +55,7 @@
   margin: 0;
 }
 
-.signupInputArea {
+.loginInputArea {
   & p {
     margin: 2px 0;
   }

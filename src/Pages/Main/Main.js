@@ -14,28 +14,40 @@ const Main = () => {
       <Header />
       <div className="mainItems">
         <Link
-          to="/items"
+          to={{
+            pathname: "/itemlist",
+            query: { kind: "kids" }
+          }}
           className="move-btn"
           style={{ textDecoration: "none" }}
         >
           <Square image_url={kidsImg} title="KIDS" />
         </Link>
         <Link
-          to="/items"
+          to={{
+            pathname: "/itemlist",
+            query: { kind: "casual" }
+          }}
           className="move-btn"
           style={{ textDecoration: "none" }}
         >
           <Square image_url={casualImg} title="CASUAL" />
         </Link>
         <Link
-          to="/items"
+          to={{
+            pathname: "/itemlist",
+            query: { kind: "dressed" }
+          }}
           className="move-btn"
           style={{ textDecoration: "none" }}
         >
           <Square image_url={dressedImg} title="DRESSED" />
         </Link>
         <Link
-          to="/items"
+          to={{
+            pathname: "/itemlist",
+            query: { kind: "athletic" }
+          }}
           className="move-btn"
           style={{ textDecoration: "none" }}
         >

@@ -1,0 +1,23 @@
+.mainSquare {
+  width: 100%;
+  max-width: 650px;
+  min-width: 380px;
+  height: 400px;
+
+  margin-top: 50px;
+
+  background-position: bottom;
+  background-size: cover;
+
+  text-align: center;
+
+  &:last-child {
+    background-position: center;
+  }
+}
+
+.squareTitle {
+  color: white;
+  font-size: 45px;
+  font-weight: 700;
+}

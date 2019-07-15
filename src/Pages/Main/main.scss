@@ -1,0 +1,16 @@
+.mainLogo {
+  width: 100vw;
+  height: 400px;
+
+  background: url("https://previews.123rf.com/images/goodwinx/goodwinx1504/goodwinx150400009/38946719-vector-colorful-socks-on-gray-background-are-hanging-on-rope-christmas-stocking.jpg")
+    no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.mainItems {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-between;
+}

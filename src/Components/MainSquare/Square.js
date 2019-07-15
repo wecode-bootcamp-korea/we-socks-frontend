@@ -10,7 +10,7 @@ const Square = ({ image_url, title }) => {
     >
       <div className="innerBox">
         <h2 className="squareTitle">{title}</h2>
-        <Button className="moreBtn" text="SHOP NOW" />
+        <span className="moreSpan">SHOP NOW</span>
       </div>
     </div>
   );

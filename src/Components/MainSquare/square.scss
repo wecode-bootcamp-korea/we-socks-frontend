@@ -4,12 +4,15 @@
   min-width: 380px;
   height: 400px;
 
-  margin-top: 20px;
+  margin: 20px auto;
 
   background-position: bottom;
   background-size: cover;
 
   text-align: center;
+
+  cursor: pointer;
+  transition: 
 
   &:last-child {
     background-position: center;
@@ -20,4 +23,13 @@
   color: white;
   font-size: 45px;
   font-weight: 700;
+}
+
+.moreSpan {
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  padding: 10px 33px;
+  margin: 14px;
+  border-color: transparent;
 }

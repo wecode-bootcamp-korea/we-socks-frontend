@@ -11,8 +11,10 @@ const Main = () => {
     <>
       <div className="mainLogo"></div>
       <div className="mainItems">
-        <Square image_url={casualImg} title="SOCKS" />
         <Square image_url={kidsImg} title="KIDS" />
+        <Square image_url={casualImg} title="CASUAL" />
+      </div>
+      <div className="mainItems">
         <Square image_url={dressedImg} title="DRESSED" />
         <Square image_url={athletic} title="ATHLETIC" />
       </div>

@@ -13,7 +13,12 @@ class MyPage extends React.Component {
     super();
 
     this.state = {
-      clickedClass: "orderHistory"
+<<<<<<< HEAD
+      clickedClass: "myAccount"
+=======
+      clickedClass: "wishList",
+      wishListArr: []
+>>>>>>> ece82c7... MyPage started to communicate with the server
     };
   }
 

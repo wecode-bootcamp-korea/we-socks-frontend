@@ -16,18 +16,19 @@ const PersonalInformation = props => {
         <p>당신의 정보를 최신으로 업데이트 하세요</p>
       </div>
       <div className="changeInformation">
-        <div className="changeBirthday">
-          <p>Date of Birth</p>
-          <InputBox
-            className="birthdayInput"
-            placeholder="Enter Your Birthday"
-          />
-        </div>
         <div className="changeNickname">
           <p>Nickname</p>
           <InputBox
             className="nicknameInput"
             placeholder="Enter New Nickname"
+          />
+        </div>
+        <div className="changePassword">
+          <p>Password</p>
+          <InputBox
+            className="passwordInput"
+            placeholder="Change Your Password"
+            type="password"
           />
         </div>
         <Button

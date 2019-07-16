@@ -1,6 +1,5 @@
 import React from "react";
 import "./addressBook.scss";
-import "Pages/MyPage/myPage.scss";
 import Button from "Components/Button";
 import InputBox from "Components/InputBox";
 
@@ -22,6 +21,10 @@ class AddressBook extends React.Component {
   }
 
   handleClick = e => {
+<<<<<<< HEAD
+=======
+    console.log(e.target.name);
+>>>>>>> ece82c7... MyPage started to communicate with the server
     this.setState({
       clickedBtn: e.target.name
     });

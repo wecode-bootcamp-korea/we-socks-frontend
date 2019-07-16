@@ -8,7 +8,7 @@ import kidsImg from "assets/images/kids.jpg";
 import dressedImg from "assets/images/dressed.jpg";
 import athletic from "assets/images/athletic.jpg";
 
-const Main = props => {
+const Main = () => {
   return (
     <>
       <Header />
@@ -62,82 +62,29 @@ const Main = props => {
           </h2>
           <h2>SO MUCH MORE THAN SOCKS</h2>
           <p>
-            Discover our wide selection of{" "}
-            <b>
-              <span>Limited Edition</span>
-            </b>{" "}
-            styles,
-            <b>
-              <span>Dressed</span>
-            </b>
-            ,
-            <b>
-              <span>Athletic</span>
-            </b>
-            ,
-            <b>
-              <span>underwear</span>
-            </b>
-            for men and women, gifts and Hysteria for women.
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
+            quibusdam optio laborum minus debitis libero non
           </p>
         </div>
         <div className="footerItem">
           <h2>
             <img
-              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/heart_1x.png"
+              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/card_1x.png"
               sizes="35px"
               height="35"
               alt="Smiley icon"
             />
           </h2>
           <h2>THE PERFECT GIFT</h2>
-          <span>
-            Classic
-            <b>
-              <span>dotted</span>
-            </b>{" "}
-            and{" "}
-            <b>
-              <span>striped</span>
-            </b>{" "}
-            socks for dad, birthday gifts and Christmas presents in fun colors
-            and patterns, there’s a style for every occasion.{" "}
-          </span>
-        </div>
-        <div className="footerItem">
-          <h2>
-            <img
-              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/smiley_1x.png"
-              sizes="35px"
-              height="35"
-              alt="Smiley icon"
-            />
-          </h2>
-          <h2>SO MUCH MORE THAN SOCKS</h2>
           <p>
-            Discover our wide selection of{" "}
-            <b>
-              <span>Limited Edition</span>
-            </b>{" "}
-            styles,
-            <b>
-              <span>Dressed</span>
-            </b>
-            ,
-            <b>
-              <span>Athletic</span>
-            </b>
-            ,
-            <b>
-              <span>underwear</span>
-            </b>
-            for men and women, gifts and Hysteria for women.
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
+            quibusdam optio laborum minus debitis libero non
           </p>
         </div>
         <div className="footerItem">
           <h2>
             <img
-              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/smiley_1x.png"
+              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/card_1x.png"
               sizes="35px"
               height="35"
               alt="Smiley icon"
@@ -145,23 +92,23 @@ const Main = props => {
           </h2>
           <h2>SO MUCH MORE THAN SOCKS</h2>
           <p>
-            Discover our wide selection of{" "}
-            <b>
-              <span>Limited Edition</span>
-            </b>{" "}
-            styles,
-            <b>
-              <span>Dressed</span>
-            </b>
-            ,
-            <b>
-              <span>Athletic</span>
-            </b>
-            ,
-            <b>
-              <span>underwear</span>
-            </b>
-            for men and women, gifts and Hysteria for women.
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
+            quibusdam optio laborum minus debitis libero non
+          </p>
+        </div>
+        <div className="footerItem">
+          <h2>
+            <img
+              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/truck_1x.png"
+              sizes="35px"
+              height="35"
+              alt="Smiley icon"
+            />
+          </h2>
+          <h2>SO MUCH MORE THAN SOCKS</h2>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
+            quibusdam optio laborum minus debitis libero non
           </p>
         </div>
       </div>

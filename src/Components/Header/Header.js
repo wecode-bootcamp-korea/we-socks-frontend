@@ -6,17 +6,25 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header className="pageHeader">
-      <span className="myAccountWrap">
-        <span className="myAccountIcon"></span>
-        <Link to="/mypage">
-          <Button className="myAccountBtn" text="My Account" />
-        </Link>
-      </span>
-      <span className="logo"></span>
-      <span className="cartWrap">
-        <span className="cartIcon"></span>
-        <Button className="cartBtn" text="Cart" />
-      </span>
+      <div className="headerTop">
+        <div className="myAccountWrap">
+          <div className="myAccountIcon"></div>
+          <Link to="/mypage">
+            <Button className="myAccountBtn" text="My Account" />
+          </Link>
+        </div>
+        <span className="logo"></span>
+        <div className="cartWrap">
+          <div className="cartIcon"></div>
+          <Button className="cartBtn" text="Cart" />
+        </div>
+      </div>
+      <div className="headerBottom">
+        <div className="kids">KIDS</div>
+        <div className="casual">CASUAL</div>
+        <div className="dressed">DRESSED</div>
+        <div className="athletic">ATHLETIC</div>
+      </div>
     </header>
   );
 };

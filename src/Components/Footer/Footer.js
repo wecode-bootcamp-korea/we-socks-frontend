@@ -20,7 +20,7 @@ const Footer = () => {
           </span>
           <br />
           <span>주소: 서울특별시 강남구 테헤란로 427, 위워크타워</span>
-          <br />
+          <span style={{ margin: "0 8px" }}>|</span>
           <span>전화: 010-1234-5678 (영업일 10:00~18:00)</span>
           <br />
           <br />

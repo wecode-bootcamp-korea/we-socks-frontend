@@ -57,3 +57,27 @@
 meter {
   width: 52em;
 }
+
+.myAccountExplanation {
+  background-color: black;
+  position: absolute;
+  bottom: 20%;
+  left: 5.4%;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.3);
+  padding: 1em;
+  width: 20.35em;
+  .designerWrap {
+    > p {
+      color: $myAccountExplanationColor;
+
+      &:first-child {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      &:nth-child(2) {
+        margin-top: 1em;
+      }
+    }
+  }
+}

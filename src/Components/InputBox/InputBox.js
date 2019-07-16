@@ -1,5 +1,4 @@
 import React from "react";
-import "./InputBox.scss";
 
 function InputBox(props) {
   const {

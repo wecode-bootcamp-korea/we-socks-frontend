@@ -1,0 +1,31 @@
+@import "Style/color.scss";
+
+.customRoot {
+  display: flex;
+  margin: 3em 25em;
+  border: 1px solid red;
+
+  .socksContainer {
+    width: 30em;
+    height: 30em;
+    border: 1px solid black;
+  }
+
+  .chooseWrap {
+    padding: 1.5em 0 0 1.5em;
+    > div {
+      > p {
+        font-weight: bold;
+        font-size: 20px;
+        margin: 1em 0 0.3em;
+      }
+    }
+
+    .colorPicker {
+      width: 5em;
+      height: 5em;
+      border: none;
+      margin-top: 0;
+    }
+  }
+}

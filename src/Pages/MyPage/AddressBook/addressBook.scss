@@ -55,7 +55,8 @@ ul {
   font-size: 18px;
 }
 
-.editAddress {
+.editAddress,
+.addAddress {
   background-color: $myPageBodyColor;
   width: 18em;
   padding: 1.3em 0 1.2em 1.3em;
@@ -76,7 +77,7 @@ ul {
     margin: 0.5em 0 1em 0;
   }
 
-  .editCompleteBtn {
+  button {
     background-color: $myPageBodyColor;
     font-size: 15px;
     color: $myPageSmallBtnColor;

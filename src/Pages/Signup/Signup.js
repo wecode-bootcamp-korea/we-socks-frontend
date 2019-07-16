@@ -1,13 +1,28 @@
 import React, { Component } from "react";
 import InputBox from "Components/InputBox";
 import Button from "Components/Button";
-
 import "./Signup.scss";
 
 class Signup extends Component {
-  handleOnclick = e => {};
+  state = {
+    email: "",
+    textShow: ""
+  };
+  emailCheck = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+  checkEmail = () => {
+    if (!this.emailCheck.test(this.email)) {
+      this.setState({ textShow: "textShow" });
+    } else {
+      this.setState({ textShow: "textHidden" });
+    }
+  };
+
+  handleOnchange = e => {
+    this.setState({ email: e.target.value });
+  };
 
   render() {
+    console.log(this.state.textShow);
     return (
       <div className="signupContainer">
         <div className="signupContents">
@@ -22,10 +37,12 @@ class Signup extends Component {
           <div className="signupInputArea">
             <div>
               <InputBox
-                type="text"
+                type="email"
                 classname="signup_input"
                 placeholder="ex) userid@email.com"
+                handleChange={this.checkEmail}
               />
+              <p className={this.state.textShow}>* e-mail 형식오류</p>
             </div>
             <div>
               <InputBox
@@ -47,6 +64,7 @@ class Signup extends Component {
                 classname="signup_input"
                 placeholder="Confirm password"
               />
+              <p>* 비밀번호 미일치</p>
             </div>
           </div>
           <Button

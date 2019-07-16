@@ -56,7 +56,12 @@
 }
 
 .loginInputArea {
+  & input {
+    margin-bottom: 0;
+  }
   & p {
-    margin: 2px 0;
+    visibility: hidden;
+    color: red;
+    margin-top: 0px;
   }
 }

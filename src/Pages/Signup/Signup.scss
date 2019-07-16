@@ -9,9 +9,6 @@
 .signupContents {
   width: 365px;
   margin: 20px auto;
-  & p {
-    font-size: 14px;
-  }
   & input {
     color: #4e545f;
     font-size: 0.875em;
@@ -35,6 +32,9 @@
   & h2 {
     font-size: 30px;
   }
+  & p {
+    font-size: 14px;
+  }
 }
 
 .signupBtn {
@@ -56,7 +56,19 @@
 }
 
 .signupInputArea {
-  & p {
-    margin: 2px 0;
+  & input {
+    margin-bottom: 0;
   }
+
+  .textHidden {
+    visibility: hidden;
+  }
+
+  .textShow {
+    visibility: visible;
+  }
+}
+
+.signupBtn {
+  margin-top: 20px;
 }

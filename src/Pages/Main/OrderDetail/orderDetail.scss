@@ -1,0 +1,85 @@
+@import "Style/color.scss";
+
+.orderDetailRoot {
+  margin: 6em 30em;
+
+  > p {
+    font-weight: bold;
+    font-size: 35px;
+  }
+}
+
+.entireOrder {
+  padding-top: 1.9em;
+  border-top: 1px solid black;
+  border-bottom: 3px solid black;
+}
+
+li {
+  list-style: none;
+  display: flex;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+  .itemImage {
+    width: 8em;
+    height: 8em;
+    background-image: url("https://cdn.shopify.com/s/files/1/0718/6235/products/FREAK_GREYRED_620x.jpg?v=1556559096");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .itemDetailInfo {
+    margin: 0 1.8em;
+    font-size: 17px;
+    display: flex;
+
+    .detailLeftBox {
+      > div {
+        margin-bottom: 0.4em;
+        &:first-child {
+          font-weight: bold;
+        }
+
+        &:nth-child(2) {
+          margin-bottom: 1.5em;
+        }
+      }
+    }
+
+    .detailRightBox {
+      margin-left: 13.4em;
+      display: flex;
+      flex-direction: column;
+      > div {
+        &:first-child {
+          margin-bottom: 4.7em;
+        }
+      }
+
+      .removeItemBtn {
+        font-size: 15px;
+        color: $myPageSmallBtnColor;
+      }
+    }
+  }
+}
+
+.paymentWrap {
+  display: flex;
+  margin: 0 3em;
+
+  .payRightNowBtn {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    padding: 0.4em 2.5em;
+    background-color: $myPageBtnColor;
+  }
+
+  .continueShoppingBtn {
+    color: $myPageSmallBtnColor;
+    font-size: 15px;
+    margin-left: 15em;
+  }
+}

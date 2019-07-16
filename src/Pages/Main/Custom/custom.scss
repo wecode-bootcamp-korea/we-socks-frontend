@@ -1,18 +1,63 @@
 @import "Style/color.scss";
 
 .customRoot {
-  display: flex;
-  margin: 3em 25em;
-  border: 1px solid red;
+  margin: 6em 16em;
+
+  .chooseTypesWrap {
+    margin: 0 0.9em 0.7em;
+    display: flex;
+    justify-content: space-evenly;
+    width: 21em;
+    font-size: 20px;
+    font-weight: bolder;
+  }
+  .chooseViewsWrap {
+    margin: 0 0 0.7em;
+    display: flex;
+    justify-content: space-evenly;
+    width: 21em;
+    font-size: 20px;
+    font-weight: bolder;
+  }
+  button {
+    cursor: pointer;
+    font-size: 20px;
+    color: $customBtnUnclickedColor;
+    &:hover {
+      opacity: 0.7;
+      color: $myPageHoverColor;
+      text-decoration: underline;
+    }
+  }
+  .clicked {
+    color: black;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
+  .customCenter {
+    display: flex;
+  }
 
   .socksContainer {
     width: 30em;
     height: 30em;
-    border: 1px solid black;
+
+    .sockImage {
+      position: absolute;
+      width: 30em;
+      height: 30em;
+    }
+
+    .imageMasked {
+      position: relative;
+      mix-blend-mode: multiply;
+    }
   }
 
   .chooseWrap {
-    padding: 1.5em 0 0 1.5em;
+    padding: 1.5em 0 0 2em;
+
     > div {
       > p {
         font-weight: bold;
@@ -26,6 +71,17 @@
       height: 5em;
       border: none;
       margin-top: 0;
+    }
+  }
+
+  .colorPickerContainer {
+    display: flex;
+    flex-wrap: wrap;
+
+    .colorContainer {
+      width: 2.1em;
+      height: 2.1em;
+      margin: 0.3em;
     }
   }
 }

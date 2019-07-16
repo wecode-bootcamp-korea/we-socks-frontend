@@ -9,23 +9,23 @@ class AddressBook extends React.Component {
     super(props);
 
     this.state = {
-      clickedBtn: ""
+      clickedBtn: undefined
     };
-    this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener("click", e => this.handleClick(e));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("click", e => this.handleClick(e));
   }
 
   handleClick = e => {
-    this.setState(
-      {
-        clickedBtn: e.target.name
-      },
-      () => {
-        if (this.state.clickedBtn === "addBtn") {
-        } else if (this.state.clickedBtn === "editBtn") {
-        } else {
-        }
-      }
-    );
+    console.log(e.target.name);
+    this.setState({
+      clickedBtn: e.target.name
+    });
   };
 
   render() {
@@ -47,7 +47,7 @@ class AddressBook extends React.Component {
           </div>
           <ul
             className={`addressList ${
-              this.state.clickedBtn === "" ? "showDetail" : "hidden"
+              this.state.clickedBtn === undefined ? "showDetail" : "hidden"
             }`}
           >
             <li>
@@ -80,7 +80,44 @@ class AddressBook extends React.Component {
             className={`addAddress ${
               this.state.clickedBtn === "addBtn" ? "showDtail" : "hidden"
             }`}
-          ></div>
+          >
+            <p>Edit Address</p>
+            <p>
+              Address Type
+              <InputBox
+                type="text"
+                name="addressTypeInput"
+                className="addressTypeInput"
+                placeholder="Home, Work, John's..."
+              />
+            </p>
+            <p>Address</p>
+            <InputBox
+              type="text"
+              name="addressInput"
+              className="addressInput"
+              placeholder="Enter your address here..."
+            />
+            <p>Phone Number</p>
+            <InputBox
+              type="text"
+              name="phoneNumberInput"
+              className="phoneNumberInput"
+              placeholder="Enter your phone number here..."
+            />
+            <p>Email</p>
+            <InputBox
+              type="text"
+              name="emailInput"
+              className="emailInput"
+              placeholder="Enter your email here..."
+            />
+            <Button
+              className="addCompleteBtn"
+              name="addCompleteBtn"
+              text="add complete"
+            />
+          </div>
           <div
             className={`editAddress ${
               this.state.clickedBtn === "editBtn" ? "showDtail" : "hidden"

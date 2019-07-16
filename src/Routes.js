@@ -1,6 +1,7 @@
 import React from "react";
-import MyPage from "Pages/MyPage";
-
+import Main from "./Pages/Main";
+import Signup from "./Pages/Signup";
+import Login from "./Pages/Login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class Routes extends React.Component {
@@ -8,7 +9,9 @@ class Routes extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/mypage" component={MyPage} />
+          <Route exact path="/" component={Main} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/login" component={Login} />
         </Switch>
       </Router>
     );

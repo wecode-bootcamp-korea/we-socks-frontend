@@ -3,12 +3,15 @@ import Header from "Components/Header";
 import "./itemlist.scss";
 
 const itemlist = props => {
-  console.log(props.location.query);
+  const category = props.location.query.kind;
 
   return (
-    <div>
-      <p>123</p>
-    </div>
+    <>
+      <Header />
+      <div>
+        <p>123</p>
+      </div>
+    </>
   );
 };
 

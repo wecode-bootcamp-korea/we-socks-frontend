@@ -1,5 +1,6 @@
 import React from "react";
 import Main from "./Pages/Main";
+import Itemlist from "./Pages/Itemlist";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import OrderDetail from "Pages/MyPage/OrderHistory/OrderDetail";
@@ -11,6 +12,7 @@ class Routes extends React.Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Main} />
+          <Route exact path="/itemlist" component={Itemlist} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/orderdetail" component={OrderDetail} />

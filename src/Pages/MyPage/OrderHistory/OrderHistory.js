@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "Components/Button";
+import { Link } from "react-router-dom";
 import "./orderHistory.scss";
 
 const OrderHistory = props => {
@@ -23,11 +24,13 @@ const OrderHistory = props => {
                 <div className="orderedDate">Ordered: Jun 1, 2019</div>
                 <div className="orderNumber">Order #CH15739817394</div>
               </div>
-              <Button
-                className="orderDetailBtn"
-                text="Order Detail"
-                onClick={handleClick}
-              />
+              <Link to="/orderdetail">
+                <Button
+                  className="orderDetailBtn"
+                  text="Order Detail"
+                  onClick={handleClick}
+                />
+              </Link>
             </div>
           </li>
           <li className="eachOrder">

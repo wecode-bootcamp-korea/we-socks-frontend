@@ -1,5 +1,5 @@
 import React from "react";
-import "./Select.scss";
+import "./select.scss";
 import Option from "../Option";
 
 const Select = props => {

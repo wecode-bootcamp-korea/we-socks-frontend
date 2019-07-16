@@ -5,8 +5,10 @@ import Itemlist from "./Pages/Itemlist";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import Custom from "Pages/Main/Custom";
+
 import OrderDetail from "Pages/MyPage/OrderHistory/OrderDetail";
 import ShoppingCart from "Pages/MyPage/ShoppingCart";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class Routes extends React.Component {
@@ -21,6 +23,7 @@ class Routes extends React.Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/orderdetail" component={OrderDetail} />
+
           <Route exact path="/shoppingcart" component={ShoppingCart} />
         </Switch>
       </Router>

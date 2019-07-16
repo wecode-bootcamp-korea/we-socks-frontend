@@ -3,8 +3,8 @@ import "./custom.scss";
 import Layout from "Components/Layout";
 import Button from "Components/Button";
 import Span from "Components/Span";
-import * as sockImage from "./socksImages";
-import * as patternImage from "./patternImages";
+import * as sockImage from "Components/SockItem/socksImages";
+import * as patternImage from "Components/SockItem/patternImages";
 import AddedToCartMessage from "Pages/MyPage/ShoppingCart/AddedToCartMessage";
 
 const matching = {

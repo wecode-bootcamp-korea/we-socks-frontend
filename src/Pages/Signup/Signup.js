@@ -21,23 +21,20 @@ class Signup extends Component {
           </div>
           <div className="signupInputArea">
             <div>
-              <p>* e-mail address</p>
               <InputBox
                 type="text"
                 classname="signup_input"
-                placeholder="e-mail address"
+                placeholder="ex) userid@email.com"
               />
             </div>
             <div>
-              <p>* Nickname</p>
               <InputBox
                 type="text"
                 classname="signup_input"
-                placeholder="Nickname"
+                placeholder="ex) Nickname"
               />
             </div>
             <div>
-              <p>* Password</p>
               <InputBox
                 type="password"
                 classname="signup_input"
@@ -45,7 +42,6 @@ class Signup extends Component {
               />
             </div>
             <div>
-              <p>* Confirm password</p>
               <InputBox
                 type="password"
                 classname="signup_input"

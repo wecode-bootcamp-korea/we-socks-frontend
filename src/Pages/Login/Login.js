@@ -4,7 +4,10 @@ import Button from "Components/Button";
 import "./Login.scss";
 
 class Login extends Component {
-  handleOnclick = e => {};
+  this.handleOnclick = this.handleOnclick.bind(this)
+  handleOnclick = e => {
+    
+  };
 
   render() {
     return (
@@ -15,20 +18,20 @@ class Login extends Component {
           </div>
           <div className="loginInputArea">
             <div>
-              <p>* e-mail address</p>
               <InputBox
                 type="text"
                 classname="login_input"
                 placeholder="e-mail address"
               />
+              <p>e-mail 미일치</p>
             </div>
             <div>
-              <p>* Password</p>
               <InputBox
                 type="password"
                 classname="login_input"
                 placeholder="Password"
               />
+              <p>password 미일치</p>
             </div>
           </div>
           <Button

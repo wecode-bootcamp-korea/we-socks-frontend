@@ -6,8 +6,29 @@ import Footer from "Components/Footer";
 import "./Login.scss";
 
 class Login extends Component {
-  handleOnclick = this.handleOnclick.bind(this);
+  state = {
+    email: "",
+    password: ""
+  };
+  handleInput = e => {
+    this.setState({
+      [e.target.name]: e.target.value.trim()
+    });
+  };
 
+  handleOnClick = () => {
+    console.log("안도현");
+    fetch("http://10.58.4.229:8000/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
+      })
+    });
+  };
   render() {
     return (
       <>
@@ -21,22 +42,26 @@ class Login extends Component {
               <div className="loginIdinput">
                 <InputBox
                   type="text"
+                  name="email"
                   classname="login_input"
                   placeholder="e-mail address"
+                  handleChange={this.handleInput}
                 />
               </div>
               <div className="loginPwinput">
                 <InputBox
                   type="password"
+                  name="password"
                   classname="login_input"
                   placeholder="Password"
+                  handleChange={this.handleInput}
                 />
               </div>
             </div>
             <Button
               className="loginBtn"
               text="sign in"
-              click={this.handleOnclick}
+              onClick={this.handleOnClick}
             />
           </div>
         </div>

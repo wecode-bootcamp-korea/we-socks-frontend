@@ -5,9 +5,8 @@ import InputBox from "Components/InputBox";
 import Button from "Components/Button";
 import Select from "Components/Select";
 import "./Signup.scss";
-import ImgUpLoad from "Components/ImgUpLoad";
+import ImgUp from "Components/ImgUp";
 
-const mailArr = ["@이메일 선택", "@daum.net", "@naver.com", "@gmail.com"];
 const yearArr = ["출생년도"];
 const monthArr = ["월"];
 const dayArr = ["일"];
@@ -27,8 +26,6 @@ class Signup extends Component {
     textShow: "",
     email: "",
     checkEmail: "",
-    address: "",
-    emailAdress: "",
     nickname: "",
     password: "",
     rePassword: "",
@@ -45,31 +42,25 @@ class Signup extends Component {
   };
 
   handleOnClick = () => {
-    if (this.state.month < 10) {
-      this.setState({ month: "0" + this.state.month });
-    }
-    if (this.state.day < 10) {
-      this.setState({ day: "0" + this.state.day });
-    }
-    fetch("http://10.58.6.147:8000/user", {
+    fetch("http://10.58.4.229:8000/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
         nickname: this.state.nickname,
-        email: this.state.email + this.state.address,
+        email: this.state.email,
         password: this.state.password,
         phone_number: this.state.phoneNumber,
         birthday: this.state.year + this.state.month + this.state.day
       })
     });
   };
-
   render() {
+    console.log(this.state.email);
     return (
       <div className="signupContainer">
-        <ImgUpLoad />
+        <ImgUp />
         <div className="signupContents">
           <header className="signupHeader">
             <h1>Sign up</h1>
@@ -77,9 +68,10 @@ class Signup extends Component {
           <div className="signupId">
             <InputBox
               type="email"
+              name="email"
               placeholder="e-mail address"
               classname="signupIdInput"
-              handleChange={this.handleEmailOnChange}
+              handleChange={this.handleInput}
             />
             <p
               className={`${
@@ -97,7 +89,7 @@ class Signup extends Component {
               placeholder="Password"
               type="password"
               name="password"
-              handleChange={this.handlePwOnChange}
+              handleChange={this.handleInput}
             />
             <p className="showPwText">
               비밀번호는 영문+숫자+특수문자 8자리 이상으로 설정해주세요.
@@ -109,7 +101,7 @@ class Signup extends Component {
               placeholder="Confirm password"
               classname="signupPwInput"
               name="rePassword"
-              handleChange={this.handleRePwOnChange}
+              handleChange={this.handleInput}
             />
             <p
               className={`${
@@ -127,7 +119,7 @@ class Signup extends Component {
               placeholder="Nickname"
               name="nickname"
               classname="signupNickInput"
-              handleChange={this.handleNicknameOnChange}
+              handleChange={this.handleInput}
             />
           </div>
           <div className="signupBirth">
@@ -135,17 +127,17 @@ class Signup extends Component {
               <Select
                 className="signupYearInputSelect"
                 ref_array={yearArr}
-                makeSelection={this.handleYearOnChange}
+                makeSelection={this.handleInput}
               />
               <Select
                 className="signupMonthInputSelect"
                 ref_array={monthArr}
-                makeSelection={this.handleMonthOnChange}
+                makeSelection={this.handleInput}
               />
               <Select
                 className="signupDayInputSelect"
                 ref_array={dayArr}
-                makeSelection={this.handleDayOnChange}
+                makeSelection={this.handleInput}
               />
             </div>
           </div>
@@ -155,7 +147,7 @@ class Signup extends Component {
                 type="text"
                 placeholder="PhoneNumber"
                 name="phoneNumber"
-                handleChange={this.handlePhoneNumChange}
+                handleChange={this.handleInput}
               />
             </div>
           </div>

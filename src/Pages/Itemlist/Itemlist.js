@@ -4,8 +4,6 @@ import SockItem from "Components/SockItem";
 import "./itemlist.scss";
 
 const itemlist = props => {
-  // const category = props.location.query.kind;
-
   return (
     <Layout>
       <div className="lineBox"></div>

@@ -1,8 +1,8 @@
 import React from "react";
 
 const Option = props => {
-  const { value, innerHtml } = props;
-  return <option value={value}>{props.innerHTML}</option>;
+  const { value } = props;
+  return <option value={value}>{value}</option>;
 };
 
 export default Option;

@@ -5,67 +5,65 @@ import InputBox from "Components/InputBox";
 import Button from "Components/Button";
 import * as sockImage from "./socksImages";
 
+const matching = {
+  "noShow frontView": [sockImage.noShowFront, sockImage.noShowFrontMasking],
+  "noShow backView": [sockImage.noShowBack, sockImage.noShowBackMasking],
+  "noShow sideView": [sockImage.noShowSide, sockImage.noShowSideMasking],
+  "ankle frontView": [sockImage.ankleFront, sockImage.ankleFrontMasking],
+  "ankle backView": [sockImage.ankleBack, sockImage.ankleBackMasking],
+  "ankle sideView": [sockImage.ankleSide, sockImage.ankleSideMasking],
+  "mid frontView": [sockImage.midFront, sockImage.midFrontMasking],
+  "mid backView": [sockImage.midBack, sockImage.midBackMasking],
+  "mid sideView": [sockImage.midSide, sockImage.midSideMasking],
+  "high frontView": [sockImage.highFront, sockImage.highFrontMasking],
+  "high backView": [sockImage.highBack, sockImage.highBackMasking],
+  "high sideView": [sockImage.highSide, sockImage.highSideMasking]
+};
+
+const colorArr = [
+  "#7F4145",
+  "#BD3D3A",
+  "#3F69AA",
+  "#D5AE41",
+  "#766F57",
+  "#E47A2E",
+  "#BE9EC9",
+  "#F1EA7F",
+  "#006E6D",
+  "#485167",
+  "#EAE6DA",
+  "#D1B894",
+  "#BCBCBE",
+  "#95DEE3",
+  "#ECDB54",
+  "#E94B3C",
+  "#6F9FD8",
+  "#944743",
+  "#DBB1CD",
+  "#EC9787",
+  "#00A591",
+  "#6C4F3D",
+  "#6B5B95",
+  "#EABEDB",
+  "#BC70A4",
+  "#BFD641",
+  "#2E4A62",
+  "#B4B7BA",
+  "#C0AB8E",
+  "#F0EDE5"
+];
 class Custom extends React.Component {
   constructor() {
     super();
 
     this.state = {
       pickedColor: "none",
-      chosenType: "noShow",
-      chosenView: "frontView"
+      chosenView: "frontView",
+      chosenType: "noShow"
     };
-
-    this.matching = {
-      "noShow frontView": [sockImage.noShowFront, sockImage.noShowFrontMasking],
-      "noShow backView": [sockImage.noShowBack, sockImage.noShowBackMasking],
-      "noShow sideView": [sockImage.noShowSide, sockImage.noShowSideMasking],
-      "ankle frontView": [sockImage.ankleFront, sockImage.ankleFrontMasking],
-      "ankle backView": [sockImage.ankleBack, sockImage.ankleBackMasking],
-      "ankle sideView": [sockImage.ankleSide, sockImage.ankleSideMasking],
-      "mid frontView": [sockImage.midFront, sockImage.midFrontMasking],
-      "mid backView": [sockImage.midBack, sockImage.midBackMasking],
-      "mid sideView": [sockImage.midSide, sockImage.midSideMasking],
-      "high frontView": [sockImage.highFront, sockImage.highFrontMasking],
-      "high backView": [sockImage.highBack, sockImage.highBackMasking],
-      "high sideView": [sockImage.highSide, sockImage.highSideMasking]
-    };
-
-    this.colorArr = [
-      "#7F4145",
-      "#BD3D3A",
-      "#3F69AA",
-      "#D5AE41",
-      "#766F57",
-      "#E47A2E",
-      "#BE9EC9",
-      "#F1EA7F",
-      "#006E6D",
-      "#485167",
-      "#EAE6DA",
-      "#D1B894",
-      "#BCBCBE",
-      "#95DEE3",
-      "#ECDB54",
-      "#E94B3C",
-      "#6F9FD8",
-      "#944743",
-      "#DBB1CD",
-      "#EC9787",
-      "#00A591",
-      "#6C4F3D",
-      "#6B5B95",
-      "#EABEDB",
-      "#BC70A4",
-      "#BFD641",
-      "#2E4A62",
-      "#B4B7BA",
-      "#C0AB8E",
-      "#F0EDE5"
-    ];
   }
 
   changeSocksColor(e) {
-    console.log(e.target.name);
     this.setState({
       pickedColor: e.target.name
     });
@@ -84,6 +82,7 @@ class Custom extends React.Component {
   }
 
   render() {
+    const { pickedColor, chosenView, chosenType } = this.state;
     return (
       <>
         <Header />
@@ -91,33 +90,25 @@ class Custom extends React.Component {
           <div className="chooseTypesWrap">
             Type:
             <Button
-              className={`noShow ${
-                this.state.chosenType === "noShow" ? "clicked" : ""
-              }`}
+              className={`noShow ${chosenType === "noShow" ? "clicked" : ""}`}
               name="noShow"
               text="No-Show"
               onClick={e => this.changeType(e)}
             />
             <Button
-              className={`ankle ${
-                this.state.chosenType === "ankle" ? "clicked" : ""
-              }`}
+              className={`ankle ${chosenType === "ankle" ? "clicked" : ""}`}
               name="ankle"
               text="Ankle"
               onClick={e => this.changeType(e)}
             />
             <Button
-              className={`mid ${
-                this.state.chosenType === "mid" ? "clicked" : ""
-              }`}
+              className={`mid ${chosenType === "mid" ? "clicked" : ""}`}
               name="mid"
               text="Mid"
               onClick={e => this.changeType(e)}
             />
             <Button
-              className={`high ${
-                this.state.chosenType === "high" ? "clicked" : ""
-              }`}
+              className={`high ${chosenType === "high" ? "clicked" : ""}`}
               name="high"
               text="High"
               onClick={e => this.changeType(e)}
@@ -127,7 +118,7 @@ class Custom extends React.Component {
             View:
             <Button
               className={`frontView ${
-                this.state.chosenView === "frontView" ? "clicked" : ""
+                chosenView === "frontView" ? "clicked" : ""
               }`}
               name="frontView"
               text="Front"
@@ -135,7 +126,7 @@ class Custom extends React.Component {
             />
             <Button
               className={`backView ${
-                this.state.chosenView === "backView" ? "clicked" : ""
+                chosenView === "backView" ? "clicked" : ""
               }`}
               name="backView"
               text="Back"
@@ -143,7 +134,7 @@ class Custom extends React.Component {
             />
             <Button
               className={`sideView ${
-                this.state.chosenView === "sideView" ? "clicked" : ""
+                chosenView === "sideView" ? "clicked" : ""
               }`}
               name="sideView"
               text="Sides"
@@ -154,22 +145,14 @@ class Custom extends React.Component {
             <div className="socksContainer">
               <img
                 className="sockImage imageNotMasked"
-                src={
-                  this.matching[
-                    `${this.state.chosenType} ${this.state.chosenView}`
-                  ][0]
-                }
-                alt={`${this.state.chosenType} ${this.state.chosenView}`}
+                src={matching[`${chosenType} ${chosenView}`][0]}
+                alt={`${chosenType} ${chosenView}`}
               />
               <img
                 className="sockImage imageMasked"
-                style={{ backgroundColor: this.state.pickedColor }}
-                src={
-                  this.matching[
-                    `${this.state.chosenType} ${this.state.chosenView}`
-                  ][1]
-                }
-                alt={`${this.state.chosenType} ${this.state.chosenView}`}
+                style={{ backgroundColor: pickedColor }}
+                src={matching[`${chosenType} ${chosenView}`][1]}
+                alt={`${chosenType} ${chosenView}`}
               />
             </div>
             <div className="chooseWrap">
@@ -181,7 +164,7 @@ class Custom extends React.Component {
                     className="colorPicker"
                     handleChange={e => this.changeSocksColor(e)}
                   /> */}
-                  {this.colorArr.map((el, idx) => (
+                  {colorArr.map((el, idx) => (
                     <Button
                       className="colorContainer"
                       name={el}

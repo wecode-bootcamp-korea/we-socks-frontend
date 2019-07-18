@@ -4,10 +4,8 @@ import Button from "Components/Button";
 import "./Login.scss";
 
 class Login extends Component {
-  this.handleOnclick = this.handleOnclick.bind(this)
-  handleOnclick = e => {
-    
-  };
+  // this.handleOnclick = this.handleOnclick.bind(this)
+  handleOnclick = e => {};
 
   render() {
     return (

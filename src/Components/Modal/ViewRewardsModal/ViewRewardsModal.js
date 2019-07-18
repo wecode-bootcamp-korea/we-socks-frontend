@@ -3,11 +3,7 @@ import "./viewRewardsModal.scss";
 
 const ViewRewardsModal = props => {
   return (
-    <div
-      className={`myAccountExplanation viewRewardsExplanation ${
-        this.state.clickedBtn === "viewRewards" ? "showDetail" : "hidden"
-      }`}
-    >
+    <div className="myAccountExplanation viewRewardsExplanation">
       <div className="designerLevelWrap">
         <p>당신은 Rookie Designer입니다</p>
         <p>포인트를 적립하여 다음 Level의 Designer가 되어보세요</p>

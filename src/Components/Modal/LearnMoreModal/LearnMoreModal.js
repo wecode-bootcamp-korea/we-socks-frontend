@@ -3,11 +3,7 @@ import "./learnMoreModal.scss";
 
 const LearnMoreModal = props => {
   return (
-    <div
-      className={`myAccountExplanation learnMoreExplanation ${
-        this.state.clickedBtn === "learnMore" ? "showDetail" : "hidden"
-      }`}
-    >
+    <div className="myAccountExplanation learnMoreExplanation">
       <div className="designerWrap">
         <p>Rookie Deginer</p>
         <p>

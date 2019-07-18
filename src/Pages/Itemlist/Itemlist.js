@@ -2,6 +2,10 @@ import React from "react";
 import Layout from "Components/Layout";
 import SockItem from "Components/SockItem";
 import "./itemlist.scss";
+import noShowSide from "assets/images/socks/noShow_Side.png";
+import AnkleSide from "assets/images/socks/Ankle_Side.png";
+import MidSide from "assets/images/socks/Mid_Side.png";
+import HighSide from "assets/images/socks/High_Side.png";
 
 const itemlist = props => {
   return (
@@ -12,10 +16,10 @@ const itemlist = props => {
           <h3>Choose Your Socks type</h3>
         </div>
         <div className="list">
-          <SockItem image="https://cdn.shopify.com/s/files/1/0158/7614/products/black_pedla_lightweight_sock_800x.png?v=1544163225" />
-          <SockItem image="https://cdn.shopify.com/s/files/1/0158/7614/products/black_pedla_lightweight_sock_800x.png?v=1544163225" />
-          <SockItem image="https://cdn.shopify.com/s/files/1/0158/7614/products/black_pedla_lightweight_sock_800x.png?v=1544163225" />
-          <SockItem image="https://cdn.shopify.com/s/files/1/0158/7614/products/black_pedla_lightweight_sock_800x.png?v=1544163225" />
+          <SockItem image={noShowSide} />
+          <SockItem image={AnkleSide} />
+          <SockItem image={MidSide} />
+          <SockItem image={HighSide} />
         </div>
       </div>
     </Layout>

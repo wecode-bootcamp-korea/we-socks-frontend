@@ -34,8 +34,8 @@ class Login extends Component {
               </div>
             </div>
             <Button
-              className="signupBtn"
-              text="로그인"
+              className="loginBtn"
+              text="sign in"
               click={this.handleOnclick}
             />
           </div>

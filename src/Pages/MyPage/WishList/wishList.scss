@@ -1,0 +1,53 @@
+@import "Style/color.scss";
+
+.eachWishListItem {
+  display: flex;
+  height: 12em;
+  margin-bottom: 2em;
+  border-bottom: 1px solid $myPageBorderColor;
+  .wishListImage {
+    background-image: url("https://dsjft9k463jj9.cloudfront.net/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/m/z/mz180001_11.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 12em;
+  }
+
+  .wishListExplanation {
+    display: flex;
+    .wishListSummary {
+      width: 23em;
+      padding: 1.5em 0 0 1.5em;
+      > div {
+        font-size: 20px;
+        margin-bottom: 0.7em;
+        &:first-child {
+          font-weight: bold;
+        }
+        &:nth-child(2) {
+          color: gray;
+          margin-bottom: 1.2em;
+        }
+      }
+      .removeBtn {
+        font-size: 13px;
+        padding-left: 0;
+      }
+    }
+    .whatToDo {
+      width: 15em;
+      text-align: center;
+      padding: 2.1em 0 0 1.5em;
+      > div {
+        &:nth-child(2) {
+          margin: 1em;
+        }
+      }
+      .addToBagBtn {
+        font-size: 20px;
+        border: 1px solid $myPageBorderColor;
+        padding: 0.3em 0.5em;
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+@import "Style/color.scss";
+
+.creatorsClub {
+  &:nth-child(2) {
+    color: gray;
+  }
+  &:nth-child(3) {
+    margin-top: 2em;
+  }
+
+  .creatorsClubDetail {
+    margin-top: 5em;
+    display: flex;
+    > div {
+      width: 26em;
+      height: 26em;
+    }
+    .creatorsClubIntroduction {
+      text-align: center;
+      padding-top: 1em;
+      background-color: $myPageBodyColor;
+      > p {
+        font-size: 18px;
+        &:first-child {
+          font-weight: bold;
+          font-size: 30px;
+        }
+      }
+
+      .creatorClubBtns {
+        display: flex;
+        flex-direction: column;
+
+        .viewRewardsBtn,
+        .learnMoreBtn {
+          font-size: 25px;
+          font-weight: bold;
+          margin: 0.3em auto;
+          height: 2em;
+          width: 13em;
+          color: white;
+          background-color: $myPageBtnColor;
+        }
+      }
+    }
+  }
+
+  .clubImage {
+    background-size: 160%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: -5.5em;
+    background-image: url("https://www.baldingbeards.com/wp-content/uploads/2018/05/best-socks-for-men-featured-image-1024x651.jpg");
+  }
+}
+
+meter {
+  width: 52em;
+}

@@ -8,7 +8,7 @@
 
 .loginContents {
   width: 365px;
-  margin: 20px auto;
+  margin: 10% auto;
   & p {
     font-size: 14px;
   }
@@ -16,7 +16,7 @@
     color: #4e545f;
     font-size: 0.875em;
     height: 40px;
-    margin-bottom: 11px;
+
     min-width: 257px;
     background-color: #f3f3f3;
     border-color: #4e545f;
@@ -57,11 +57,7 @@
 
 .loginInputArea {
   & input {
-    margin-bottom: 0;
-  }
-  & p {
-    visibility: hidden;
-    color: red;
-    margin-top: 0px;
+    margin-bottom: 11px;
+    margin-top: 11px;
   }
 }

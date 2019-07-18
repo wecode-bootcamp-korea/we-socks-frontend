@@ -1,5 +1,4 @@
 import React from "react";
-import "./InputBox.scss";
 
 function InputBox(props) {
   const {
@@ -13,17 +12,15 @@ function InputBox(props) {
   } = props;
 
   return (
-    <>
-      <input
-        className={className}
-        onChange={handleChange}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        list={list}
-      />
-    </>
+    <input
+      className={className}
+      onChange={handleChange}
+      name={name}
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      list={list}
+    />
   );
 }
 

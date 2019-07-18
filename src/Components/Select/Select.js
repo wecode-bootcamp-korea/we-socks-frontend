@@ -1,22 +1,22 @@
 import React from "react";
-import "./Select.scss";
-import Option from "../Option";
+import "./select.scss";
 
 const Select = props => {
   const { className, ref_array, name, placeholder, makeSelection } = props;
   return (
-    <div className="root_datalist">
-      <select
-        className={className}
-        name={name}
-        placeholder={placeholder}
-        onChange={makeSelection}
-      >
-        {ref_array.map((el, idx) => (
-          <Option innerHTML={el} key={`${name}-${idx}`} value={el} />
-        ))}
-      </select>
-    </div>
+    <select
+      className={className}
+      name={name}
+      placeholder={placeholder}
+      onChange={makeSelection}
+      value={props.value}
+    >
+      {ref_array.map((el, idx) => (
+        <option key={`${name}-${idx}`} value={el}>
+          {el}
+        </option>
+      ))}
+    </select>
   );
 };
 

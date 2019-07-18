@@ -8,16 +8,17 @@ class Modal extends React.Component {
     super();
 
     this.state = {
-      viewRewardsModalView: false,
-      learnMoreModalView: false
+      toggleViewRewardsModalView: false,
+      toggleLearnMoreModalView: false
     };
   }
 
   render() {
+    const { toggleLearnMoreModalView, toggleViewRewardsModalView } = this.state;
     return (
       <div className="modalRoot">
-        {this.state.viewRewardsModalView && <ViewRewardsModal />}
-        {this.state.learnMoreModalView && <LearnMoreModal />}
+        {toggleViewRewardsModalView && <ViewRewardsModal />}
+        {toggleLearnMoreModalView && <LearnMoreModal />}
       </div>
     );
   }

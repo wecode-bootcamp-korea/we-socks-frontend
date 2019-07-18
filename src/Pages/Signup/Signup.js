@@ -5,13 +5,24 @@ import InputBox from "Components/InputBox";
 import Button from "Components/Button";
 import Select from "Components/Select";
 import "./Signup.scss";
+import ImgUpLoad from "Components/ImgUpLoad";
+
+const mailArr = ["@이메일 선택", "@daum.net", "@naver.com", "@gmail.com"];
+const yearArr = ["출생년도"];
+const monthArr = ["월"];
+const dayArr = ["일"];
+
+for (let i = 1960; i < 2020; i++) {
+  yearArr.push(`${i + "년"}`);
+}
+for (let i = 1; i < 13; i++) {
+  monthArr.push(`${i + "월"}`);
+}
+for (let i = 1; i < 32; i++) {
+  dayArr.push(`${i + "일"}`);
+}
 
 class Signup extends Component {
-  mailArr = ["@이메일 선택", "@daum.net", "@naver.com", "@gmail.com"];
-  yearArr = ["출생년도"];
-  monthArr = ["월"];
-  dayArr = ["일"];
-
   state = {
     textShow: "",
     email: "",
@@ -27,38 +38,9 @@ class Signup extends Component {
     day: ""
   };
 
-  handleEmailOnChange = e => {
-    e.preventDefault();
-    this.setState({ email: e.target.value });
-  };
-  handleEmailAddressOnChange = e => {
-    this.setState({ address: e.target.value });
-  };
-  handleNicknameOnChange = e => {
-    this.setState({ nickname: e.target.value });
-  };
-  handlePwOnChange = e => {
-    this.setState({ password: e.target.value });
-  };
-  handleRePwOnChange = e => {
-    this.setState({ rePassword: e.target.value });
-  };
-  handlePhoneNumChange = e => {
-    this.setState({ phoneNumber: e.target.value });
-  };
-  handleYearOnChange = e => {
+  handleInput = e => {
     this.setState({
-      year: e.target.value
-    });
-  };
-  handleMonthOnChange = e => {
-    this.setState({
-      month: e.target.value
-    });
-  };
-  handleDayOnChange = e => {
-    this.setState({
-      day: e.target.value
+      [e.target.name]: e.target.value.trim()
     });
   };
 
@@ -85,19 +67,9 @@ class Signup extends Component {
   };
 
   render() {
-    console.log(this.state.password === this.state.rePassword);
-    for (let i = 1960; i < 2020; i++) {
-      this.yearArr.push(`${i + "년"}`);
-    }
-    for (let i = 1; i < 13; i++) {
-      this.monthArr.push(`${i + "월"}`);
-    }
-    for (let i = 1; i < 32; i++) {
-      this.dayArr.push(`${i + "일"}`);
-    }
-
     return (
       <div className="signupContainer">
+        <ImgUpLoad />
         <div className="signupContents">
           <header className="signupHeader">
             <h1>Sign up</h1>
@@ -124,6 +96,7 @@ class Signup extends Component {
               classname="signupPwInput"
               placeholder="Password"
               type="password"
+              name="password"
               handleChange={this.handlePwOnChange}
             />
             <p className="showPwText">
@@ -135,6 +108,7 @@ class Signup extends Component {
               type="password"
               placeholder="Confirm password"
               classname="signupPwInput"
+              name="rePassword"
               handleChange={this.handleRePwOnChange}
             />
             <p
@@ -151,6 +125,7 @@ class Signup extends Component {
             <InputBox
               type="text"
               placeholder="Nickname"
+              name="nickname"
               classname="signupNickInput"
               handleChange={this.handleNicknameOnChange}
             />
@@ -159,17 +134,17 @@ class Signup extends Component {
             <div className="signupBirthInput">
               <Select
                 className="signupYearInputSelect"
-                ref_array={this.yearArr}
+                ref_array={yearArr}
                 makeSelection={this.handleYearOnChange}
               />
               <Select
                 className="signupMonthInputSelect"
-                ref_array={this.monthArr}
+                ref_array={monthArr}
                 makeSelection={this.handleMonthOnChange}
               />
               <Select
                 className="signupDayInputSelect"
-                ref_array={this.dayArr}
+                ref_array={dayArr}
                 makeSelection={this.handleDayOnChange}
               />
             </div>
@@ -179,7 +154,7 @@ class Signup extends Component {
               <InputBox
                 type="text"
                 placeholder="PhoneNumber"
-                classname=""
+                name="phoneNumber"
                 handleChange={this.handlePhoneNumChange}
               />
             </div>

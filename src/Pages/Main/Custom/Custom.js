@@ -65,7 +65,6 @@ class Custom extends React.Component {
   }
 
   changeSocksColor(e) {
-    console.log(e.target.name);
     this.setState({
       pickedColor: e.target.name
     });

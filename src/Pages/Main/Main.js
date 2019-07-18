@@ -3,10 +3,10 @@ import Square from "Components/MainSquare";
 import Layout from "Components/Layout";
 import "./main.scss";
 import { Link } from "react-router-dom";
-import casualImg from "assets/images/casual.jpg";
-import kidsImg from "assets/images/kids.jpg";
-import dressedImg from "assets/images/dressed.jpg";
-import athletic from "assets/images/athletic.jpg";
+import casualImg from "assets/images/MainSqure/casual.jpg";
+import kidsImg from "assets/images/MainSqure/kids.jpg";
+import dressedImg from "assets/images/MainSqure/dressed.jpg";
+import athletic from "assets/images/MainSqure/athletic.jpg";
 
 const Main = () => {
   return (

@@ -1,9 +1,10 @@
 import React from "react";
 import "./custom.scss";
-import Header from "Components/Header";
-import InputBox from "Components/InputBox";
+import Layout from "Components/Layout";
 import Button from "Components/Button";
+import Span from "Components/Span";
 import * as sockImage from "./socksImages";
+import * as patternImage from "./patternImages";
 
 const matching = {
   "noShow frontView": [sockImage.noShowFront, sockImage.noShowFrontMasking],
@@ -52,6 +53,25 @@ const colorArr = [
   "#C0AB8E",
   "#F0EDE5"
 ];
+
+const patternArr = [
+  patternImage.Argyle,
+  patternImage.bear,
+  patternImage.bird,
+  patternImage.block,
+  patternImage.color_block,
+  patternImage.crown,
+  patternImage.dotted,
+  patternImage.flower,
+  patternImage.heart,
+  patternImage.raindrop,
+  patternImage.stripe,
+  patternImage.tree,
+  patternImage.hive,
+  patternImage.money,
+  patternImage.tape
+];
+
 class Custom extends React.Component {
   constructor() {
     super();
@@ -59,13 +79,20 @@ class Custom extends React.Component {
     this.state = {
       pickedColor: "none",
       chosenView: "frontView",
-      chosenType: "noShow"
+      chosenType: "noShow",
+      chosenPattern: ""
     };
   }
 
   changeSocksColor(e) {
     this.setState({
       pickedColor: e.target.name
+    });
+  }
+
+  changePattern(e, name) {
+    this.setState({
+      chosenPattern: name
     });
   }
 
@@ -82,10 +109,10 @@ class Custom extends React.Component {
   }
 
   render() {
-    const { pickedColor, chosenView, chosenType } = this.state;
+    const { pickedColor, chosenView, chosenType, chosenPattern } = this.state;
+
     return (
-      <>
-        <Header />
+      <Layout>
         <div className="customRoot">
           <div className="chooseTypesWrap">
             Type:
@@ -154,16 +181,17 @@ class Custom extends React.Component {
                 src={matching[`${chosenType} ${chosenView}`][1]}
                 alt={`${chosenType} ${chosenView}`}
               />
+              <img
+                className="sockImage patternMasked"
+                style={{ backgroundImage: `url(${patternArr[chosenPattern]})` }}
+                src={matching[`${chosenType} ${chosenView}`][1]}
+                alt={`${chosenType} ${chosenView}`}
+              />
             </div>
             <div className="chooseWrap">
               <div className="chooseColor">
                 <p>Choose Color</p>
                 <div className="colorPickerContainer">
-                  {/* <InputBox
-                    type="color"
-                    className="colorPicker"
-                    handleChange={e => this.changeSocksColor(e)}
-                  /> */}
                   {colorArr.map((el, idx) => (
                     <Button
                       className="colorContainer"
@@ -177,7 +205,18 @@ class Custom extends React.Component {
               </div>
               <div className="choosePattern">
                 <p>Choose Pattern</p>
-                <div className="patternPicker"></div>
+                <div className="patternPickerContainer">
+                  {patternArr.map((image, idx) => {
+                    return (
+                      <Span
+                        style={{ backgroundImage: `url(${image})` }}
+                        name={idx}
+                        key={`pattern-${idx}`}
+                        onClick={e => this.changePattern(e, idx)}
+                      />
+                    );
+                  })}
+                </div>
               </div>
               <div className="chooseImage">
                 <p>Choose Image</p>
@@ -186,7 +225,7 @@ class Custom extends React.Component {
             </div>
           </div>
         </div>
-      </>
+      </Layout>
     );
   }
 }

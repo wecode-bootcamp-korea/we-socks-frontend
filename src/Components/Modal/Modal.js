@@ -1,22 +1,24 @@
 import React from "react";
+import "./modal.scss";
+import ViewRewardsModal from "Components/Modal/ViewRewardsModal";
+import LearnMoreModal from "Components/Modal/LearnMoreModal";
 
 class Modal extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      modalView: false
+      viewRewardsModalView: false,
+      learnMoreModalView: false
     };
   }
+
   render() {
-    const { title, contents } = this.props;
     return (
-      <main className="modalRoot">
-        <div className="modalContainer">
-          <div className="modalTitle">{title}</div>
-          <div className="modalContents">{contents}</div>
-        </div>
-      </main>
+      <div className="modalRoot">
+        {this.state.viewRewardsModalView && <ViewRewardsModal />}
+        {this.state.learnMoreModalView && <LearnMoreModal />}
+      </div>
     );
   }
 }

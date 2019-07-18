@@ -62,80 +62,13 @@ class MyAccount extends React.Component {
                   text="VIEW YOUR REWARDS"
                   onClick={e => this.handleClick(e)}
                 />
-                <div
-                  className={`myAccountExplanation viewRewardsExplanation ${
-                    this.state.clickedBtn === "viewRewards"
-                      ? "showDetail"
-                      : "hidden"
-                  }`}
-                >
-                  <div className="designerLevelWrap">
-                    <p>당신은 Rookie Designer입니다</p>
-                    <p>포인트를 적립하여 다음 Level의 Designer가 되어보세요</p>
-                  </div>
-                  <div className="designerLevelWrap">
-                    <p>당신은 Junior Designer 입니다</p>
-                    <p>매월 5%의 할인쿠폰이 발급됩니다.</p>
-                    <p>포인트를 적립하여 다음 Level의 Designer가 되어보세요</p>
-                  </div>
-                  <div className="designerLevelWrap">
-                    <p>당신은 Senior Designer 입니다</p>
-                    <p>매월 10%의 할인쿠폰이 발급됩니다.</p>
-                    <p>포인트를 적립하여 다음 Level의 Designer가 되어보세요</p>
-                  </div>
-                  <div className="designerLevelWrap">
-                    <p>당신은 Master Designer 입니다</p>
-                    <p>매월 20%의 할인쿠폰이 발급됩니다.</p>
-                    <p>
-                      WeSocks와 함께 Statement를 만드는 당신의 삶을 응원합니다.
-                    </p>
-                  </div>
-                </div>
+
                 <Button
                   className="learnMoreBtn"
                   name="learnMore"
                   text="LEARN MORE"
                   onClick={e => this.handleClick(e)}
                 />
-                <div
-                  className={`myAccountExplanation learnMoreExplanation ${
-                    this.state.clickedBtn === "learnMore"
-                      ? "showDetail"
-                      : "hidden"
-                  }`}
-                >
-                  <div className="designerWrap">
-                    <p>Rookie Deginer</p>
-                    <p>
-                      Rookie Designer는 WeSocks CREATORS CLUB에 처음 입성한
-                      Designer입니다
-                    </p>
-                  </div>
-                  <div className="designerWrap">
-                    <p>Junior Deginer</p>
-                    <p>
-                      Junior Designer는 WeSocks CREATORS CLUB의 VIP입니다. 매월
-                      5%의 할인 쿠폰이 발급됩니다. Junior Designer의 자격 유지
-                      기간은 6개월입니다.
-                    </p>
-                  </div>
-                  <div className="designerWrap">
-                    <p>Senior Designer</p>
-                    <p>
-                      Senior Designer는 WeSocks CREATORS CLUB의 VVIP입니다. 매월
-                      10%의 할인 쿠폰이 발급됩니다. Senior Designer의 자격 유지
-                      기간은 1년입니다.
-                    </p>
-                  </div>
-                  <div className="designerWrap">
-                    <p>Master Designer</p>
-                    <p>
-                      Master Designer는 WeSocks CREATORS CLUB의 VVVIP
-                      Designer입니다. 매월 20% 할인쿠폰이 발급됩니다. Master
-                      Designer의 자격은 평생 유지됩니다.
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
             <div className="clubImage"></div>

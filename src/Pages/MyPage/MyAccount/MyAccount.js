@@ -5,13 +5,13 @@ import Modal from "react-modal";
 import ViewRewardsModal from "Components/Modal/ViewRewardsModal";
 import LearnMoreModal from "Components/Modal/LearnMoreModal";
 
-const customStyles = {
-  // content: {
-  //   top: "50%",
-  //   left: "50%",
-  //   right: "auto",
-  //   bottom: "auto"
-  // }
+const customModalStyles = {
+  content: {
+    position: "absolute",
+    top: "100%",
+    left: "40%",
+    outline: "0"
+  }
 };
 
 class MyAccount extends React.Component {
@@ -45,11 +45,17 @@ class MyAccount extends React.Component {
           <Modal
             isOpen={this.state.modalIsOpen}
             onRequestClose={this.closeModal}
-            style={customStyles}
+            className="Modal"
+            overlayClassName="Overlay"
+            style={customModalStyles}
           >
+            <Button
+              className="closeModalBtn"
+              onClick={this.closeModal}
+              text="CLOSE"
+            />
             {clickedBtn === "learnMore" && <LearnMoreModal />}
             {clickedBtn === "viewRewards" && <ViewRewardsModal />}
-            <button onClick={this.closeModal}>close</button>
           </Modal>
         </div>
         <div

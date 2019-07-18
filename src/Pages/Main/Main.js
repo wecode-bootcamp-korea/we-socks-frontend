@@ -1,6 +1,6 @@
 import React from "react";
 import Square from "Components/MainSquare";
-import Header from "Components/Header";
+import Layout from "Components/Layout";
 import "./main.scss";
 import { Link } from "react-router-dom";
 import casualImg from "assets/images/casual.jpg";
@@ -10,8 +10,7 @@ import athletic from "assets/images/athletic.jpg";
 
 const Main = () => {
   return (
-    <>
-      <Header />
+    <Layout>
       <div className="mainItems">
         <Link
           to={{
@@ -112,7 +111,7 @@ const Main = () => {
           </p>
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 

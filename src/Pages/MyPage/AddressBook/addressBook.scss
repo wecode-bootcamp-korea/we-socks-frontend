@@ -1,0 +1,84 @@
+@import "Style/color.scss";
+
+.addressWrap {
+  background-color: $myPageBodyColor;
+  width: 18em;
+  padding: 1.3em 0 1.2em 1.3em;
+  > div {
+    margin-bottom: 0.8em;
+    &:first-child {
+      font-weight: bold;
+      font-size: 25px;
+    }
+    &:nth-child(2) {
+      font-size: 20px;
+    }
+  }
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0 !important;
+}
+
+.addressBtnWrap {
+  > button {
+    color: $myPageSmallBtnColor;
+    background-color: $myPageBodyColor;
+    font-size: 15px;
+
+    &:first-child {
+      border-right: 1px solid $myPageBorderColor;
+      padding-left: 0;
+    }
+  }
+}
+
+.topSectionWrap {
+  display: flex;
+  border-bottom: 1px solid $myPageBorderColor;
+  margin-top: 2.8em;
+  > p {
+    &:first-child {
+      font-weight: bold;
+      font-size: 45px;
+      margin: 0;
+    }
+  }
+}
+
+.addBtn {
+  margin: 1.5em 0 0 20em;
+  font-size: 18px;
+}
+
+.editAddress {
+  background-color: $myPageBodyColor;
+  width: 18em;
+  padding: 1.3em 0 1.2em 1.3em;
+  margin-top: 1em;
+  > p {
+    font-weight: bold;
+    margin: 0em;
+    &:first-child {
+      font-size: 25px;
+      margin-bottom: 1em;
+    }
+  }
+
+  input {
+    width: 16em;
+    height: 2em;
+    font-size: 15px;
+    margin: 0.5em 0 1em 0;
+  }
+
+  .editCompleteBtn {
+    background-color: $myPageBodyColor;
+    font-size: 15px;
+    color: $myPageSmallBtnColor;
+  }
+}

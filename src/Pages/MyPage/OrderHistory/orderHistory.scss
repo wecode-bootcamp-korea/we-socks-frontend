@@ -1,0 +1,41 @@
+@import "style/color.scss";
+
+.eachOrder {
+  display: flex;
+  height: 12em;
+  margin: 3em 0 3em;
+  border-bottom: 1px solid $myPageBorderColor;
+  padding-bottom: 1em;
+  .productImage {
+    width: 12em;
+    background-image: url("https://cdn11.bigcommerce.com/s-80dc88lad1/images/stencil/2048x2048/products/130/1287/Rubys_Rainbow_Pride_Socks_Down_syndrome__33484.1536546296.jpg?c=2");
+    background-repeat: no-repeat;
+    background-size: 120%;
+    background-position: bottom;
+    background-position-x: 1em;
+  }
+  .orderExplanationWrap {
+    display: flex;
+    width: 40em;
+    .orderSummary {
+      font-size: 18px;
+      margin: auto 2em;
+      > div {
+        margin-bottom: 0.8em;
+        &:first-child {
+          color: gray;
+        }
+        &:nth-child(2) {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .orderDetailBtn {
+      font-size: 20px;
+      height: 2em;
+      margin: 0 0 0 10em;
+      border: 1px solid $myPageBorderColor;
+    }
+  }
+}

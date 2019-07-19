@@ -106,6 +106,7 @@ class MyAccount extends React.Component {
               </div>
               <div className="clubImage"></div>
             </div>
+            <div className="clubImage"></div>
           </div>
         </div>
       </>

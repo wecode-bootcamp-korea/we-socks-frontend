@@ -22,7 +22,6 @@ class AddressBook extends React.Component {
   }
 
   handleClick = e => {
-    console.log(e.target.name);
     this.setState({
       clickedBtn: e.target.name
     });

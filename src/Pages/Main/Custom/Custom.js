@@ -5,6 +5,7 @@ import Button from "Components/Button";
 import Span from "Components/Span";
 import * as sockImage from "./socksImages";
 import * as patternImage from "./patternImages";
+import AddedToCartMessage from "Pages/MyPage/ShoppingCart/AddedToCartMessage";
 
 const matching = {
   "noShow front": [sockImage.noShowFront, sockImage.noShowFrontMasking],
@@ -46,9 +47,9 @@ const colorArr = [
   "#BFD641",
   "#95DEE3",
   "#6F9FD8",
+  "#3F69AA",
   "#00A591",
   "#006E6D",
-  "#3F69AA",
   "#766F57",
   "#2E4A62",
   "#485167"
@@ -75,7 +76,6 @@ const patternArr = [
 
 const viewArr = ["front", "back", "side"];
 const typeArr = ["noShow", "ankle", "mid", "high"];
-const addToBtnArr = ["addToCartBtn", "addToWishListBtn"];
 
 class Custom extends React.Component {
   constructor() {
@@ -98,23 +98,34 @@ class Custom extends React.Component {
     });
   };
 
-  handleAddToBtn = (e, value) => {
-    this.setState({
-      [e.target.name]: !this.state.value
-    });
-    if (e.target.name === "addToCartBtnClicked") {
-      setTimeout(() => {
-        this.setState({
-          addToCartBtnClicked: !this.state.addToCartBtnClicked
-        });
-      }, 1000);
-    } else {
-      setTimeout(() => {
-        this.setState({
-          addToWishListBtnClicked: !this.state.addToWishListBtnClicked
-        });
-      }, 1000);
-    }
+  addToCart = e => {
+    this.setState(
+      {
+        addToCartBtnClicked: !this.state.addToCartBtnClicked
+      },
+      () => {
+        setTimeout(() => {
+          this.setState({
+            addToCartBtnClicked: !this.state.addToCartBtnClicked
+          });
+        }, 2000);
+      }
+    );
+  };
+
+  addToWishList = e => {
+    this.setState(
+      {
+        addToWishListBtnClicked: !this.state.addToWishListBtnClicked
+      },
+      () => {
+        setTimeout(() => {
+          this.setState({
+            addToWishListBtnClicked: !this.state.addToWishListBtnClicked
+          });
+        }, 2000);
+      }
+    );
   };
 
   render() {
@@ -130,21 +141,7 @@ class Custom extends React.Component {
 
     return (
       <Layout>
-        {addToCartBtnClicked && (
-          <div className="addedToCartMessage">
-            <div className="addedToCartInformation">
-              <div className="addedToCartImage"></div>
-              <div className="addedToCartCategoryAndType">Casual High</div>
-              <div className="addedToCartPrice">10,000</div>
-            </div>
-            <Button
-              className="showCartDetailBtn"
-              name="showCartDetailBtn"
-              text="SHOW CART DETAIL"
-              onClick={this.showCartDetail}
-            />
-          </div>
-        )}
+        <AddedToCartMessage showMessage={addToCartBtnClicked} />
         <div className="customRoot">
           <div className="chooseTypesWrap">
             Type:
@@ -231,18 +228,18 @@ class Custom extends React.Component {
                 </div>
                 <div className="orderWrap">
                   <div className="priceEstimation">가격: {price}</div>
-                  {addToBtnArr.map((el, idx) => (
-                    <Button
-                      className={el}
-                      name={`${el}Clicked`}
-                      text={`${
-                        el === "addToCartBtn"
-                          ? "장바구니 추가"
-                          : "위시리스트 추가"
-                      }`}
-                      onClick={e => this.handleAddToBtn(e, el)}
-                    />
-                  ))}
+                  <Button
+                    className="addToCartBtn"
+                    name="addToCartBtn"
+                    text="장바구니 추가"
+                    onClick={e => this.addToCart(e)}
+                  />
+                  <Button
+                    className="addToWishListBtn"
+                    name="addToWishListBtn"
+                    text="위시리스트 추가"
+                    onClick={e => this.addToWishList(e)}
+                  />
                 </div>
               </div>
             </div>

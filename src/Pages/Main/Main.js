@@ -17,7 +17,6 @@ const Main = () => {
             pathname: "/itemlist",
             query: { kind: "kids" }
           }}
-          className="move-btn"
           style={{ textDecoration: "none" }}
         >
           <Square image_url={kidsImg} title="KIDS" />
@@ -27,7 +26,6 @@ const Main = () => {
             pathname: "/itemlist",
             query: { kind: "casual" }
           }}
-          className="move-btn"
           style={{ textDecoration: "none" }}
         >
           <Square image_url={casualImg} title="CASUAL" />
@@ -37,7 +35,6 @@ const Main = () => {
             pathname: "/itemlist",
             query: { kind: "dressed" }
           }}
-          className="move-btn"
           style={{ textDecoration: "none" }}
         >
           <Square image_url={dressedImg} title="DRESSED" />
@@ -47,11 +44,72 @@ const Main = () => {
             pathname: "/itemlist",
             query: { kind: "athletic" }
           }}
-          className="move-btn"
           style={{ textDecoration: "none" }}
         >
           <Square image_url={athletic} title="ATHLETIC" />
         </Link>
+      </div>
+      <div className="mainFooter">
+        <div className="footerItem">
+          <h2>
+            <img
+              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/smiley_1x.png"
+              sizes="35px"
+              height="35"
+              alt="Smiley icon"
+            />
+          </h2>
+          <h2>SO MUCH MORE THAN SOCKS</h2>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
+            quibusdam optio laborum minus debitis libero non
+          </p>
+        </div>
+        <div className="footerItem">
+          <h2>
+            <img
+              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/card_1x.png"
+              sizes="35px"
+              height="35"
+              alt="Smiley icon"
+            />
+          </h2>
+          <h2>THE PERFECT GIFT</h2>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
+            quibusdam optio laborum minus debitis libero non
+          </p>
+        </div>
+        <div className="footerItem">
+          <h2>
+            <img
+              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/card_1x.png"
+              sizes="35px"
+              height="35"
+              alt="Smiley icon"
+            />
+          </h2>
+          <h2>SO MUCH MORE THAN SOCKS</h2>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
+            quibusdam optio laborum minus debitis libero non
+          </p>
+        </div>
+        <div className="footerItem">
+          <h2>
+            <img
+              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/truck_1x.png"
+              sizes="35px"
+              height="35"
+              alt="Smiley icon"
+            />
+          </h2>
+          <h2>SO MUCH MORE THAN SOCKS</h2>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
+            quibusdam optio laborum minus debitis libero non
+          </p>
+        </div>
       </div>
     </Layout>
   );

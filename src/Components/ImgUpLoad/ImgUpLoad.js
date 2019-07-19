@@ -1,20 +1,21 @@
 import React from "react";
+
 // import ImageUploader from "react-images-upload";
 
-class ImgUpLoad extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { pictures: [] };
-    this.onDrop = this.onDrop.bind(this);
-  }
+// class ImgUpLoad extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { pictures: [] };
+//     this.onDrop = this.onDrop.bind(this);
+//   }
 
-  onDrop(pictureFiles, pictureDataURLs) {
-    this.setState({
-      pictures: this.state.pictures.concat(pictureFiles)
-    });
-  }
+//   onDrop(pictureFiles, pictureDataURLs) {
+//     this.setState({
+//       pictures: this.state.pictures.concat(pictureFiles)
+//     });
+//   }
 
-  render() {
+render() {
     return (
       <></>
       // <ImageUploader
@@ -28,4 +29,5 @@ class ImgUpLoad extends React.Component {
   }
 }
 
-export default ImgUpLoad;
+
+// export default ImgUpLoad;

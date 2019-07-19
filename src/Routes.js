@@ -22,9 +22,13 @@ class Routes extends React.Component {
           <Route exact path="/" component={Main} />
           <Route exact path="/mypage" component={MyPage} />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
           <Route exact path="/itemlist" component={Itemlist} />
 >>>>>>> ece82c7... MyPage started to communicate with the server
+=======
+          <Route exact path="/itemlist" component={Itemlist} />
+>>>>>>> 8b0425ae094ff27d7ec322f76538ad8c1e19fe88
           <Route exact path="/custom" component={Custom} />
           <Route exact path="/itemlist" component={Itemlist} />
           <Route exact path="/signup" component={Signup} />

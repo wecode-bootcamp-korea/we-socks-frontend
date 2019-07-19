@@ -14,11 +14,15 @@ class MyPage extends React.Component {
 
     this.state = {
 <<<<<<< HEAD
+<<<<<<< HEAD
       clickedClass: "myAccount"
 =======
       clickedClass: "wishList",
       wishListArr: []
 >>>>>>> ece82c7... MyPage started to communicate with the server
+=======
+      clickedClass: "myAccount"
+>>>>>>> 8b0425ae094ff27d7ec322f76538ad8c1e19fe88
     };
   }
 

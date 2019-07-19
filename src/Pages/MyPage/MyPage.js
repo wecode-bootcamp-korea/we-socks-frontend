@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "Components/Header";
-import "./myPage.scss";
+import "./mypage.scss";
 import MyAccount from "Pages/MyPage/MyAccount";
 import PersonalInformation from "Pages/MyPage/PersonalInformation";
 import AddressBook from "Pages/MyPage/AddressBook";

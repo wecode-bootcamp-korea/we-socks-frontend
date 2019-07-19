@@ -5,7 +5,6 @@ import InputBox from "Components/InputBox";
 import Button from "Components/Button";
 import Select from "Components/Select";
 import "./Signup.scss";
-import ImgUp from "Components/ImgUp";
 
 const yearArr = ["출생년도"];
 const monthArr = ["월"];
@@ -60,7 +59,6 @@ class Signup extends Component {
     console.log(this.state.email);
     return (
       <div className="signupContainer">
-        <ImgUp />
         <div className="signupContents">
           <header className="signupHeader">
             <h1>Sign up</h1>

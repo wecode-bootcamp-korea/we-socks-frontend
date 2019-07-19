@@ -182,6 +182,12 @@ class Custom extends React.Component {
               <div className="chooseImage">
                 <p>Choose Image</p>
                 <div className="imagePicker"></div>
+                <InputBox
+                  type="file"
+                  name="file"
+                  className="imagePickerInput"
+                />
+                <img className="imgaePickerImg" />
               </div>
             </div>
           </div>

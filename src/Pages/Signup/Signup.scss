@@ -41,6 +41,7 @@
   font-size: 0.875em;
   margin-top: 3px;
   margin-bottom: 3px;
+  color: red;
 }
 
 .hiddenEmailText {
@@ -48,12 +49,14 @@
   font-size: 10px;
   margin-top: 3px;
   margin-bottom: 3px;
+  color: red;
 }
 
 .showPwText {
   font-size: 10px;
   margin-top: 3px;
   margin-bottom: 3px;
+  color: black;
 }
 
 .hiddenPwText {
@@ -61,6 +64,7 @@
   visibility: hidden;
   margin-top: 3px;
   margin-bottom: 3px;
+  color: red;
 }
 
 .signupBtn {
@@ -114,8 +118,8 @@
 .signupDayInputSelect {
   width: 32%;
   height: 46px;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin-top: 19px;
+  margin-bottom: 8px;
   color: #4e545f;
   font-size: 0.875em;
   border-color: #4e545f;
@@ -127,5 +131,5 @@
 
 .signupPhoneNumInput {
   margin-top: 10px;
-  margin-bottom: 3px;
+  margin-bottom: 10px;
 }

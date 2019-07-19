@@ -4,6 +4,8 @@ import Button from "Components/Button";
 import Header from "Components/Header";
 import Footer from "Components/Footer";
 import "./Login.scss";
+import { post } from "Common/api";
+import axios from "axios";
 
 class Login extends Component {
   state = {
@@ -17,16 +19,14 @@ class Login extends Component {
   };
 
   handleOnClick = () => {
-    console.log("안도현");
-    fetch("http://10.58.4.229:8000/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password
-      })
+    post({
+      path: "/user/login",
+      body: {
+        email: "admin@gmail.com",
+        password: "1234"
+      }
+    }).then(res => {
+      console.log(res.data);
     });
   };
   render() {
@@ -47,6 +47,7 @@ class Login extends Component {
                   placeholder="e-mail address"
                   handleChange={this.handleInput}
                 />
+                <p className="loginIdtext">아이디 입력 오류</p>
               </div>
               <div className="loginPwinput">
                 <InputBox

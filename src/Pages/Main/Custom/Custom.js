@@ -1,192 +1,258 @@
 import React from "react";
 import "./custom.scss";
-import Header from "Components/Header";
-import InputBox from "Components/InputBox";
+import Layout from "Components/Layout";
 import Button from "Components/Button";
+import Span from "Components/Span";
 import * as sockImage from "./socksImages";
+import * as patternImage from "./patternImages";
 
 const matching = {
-  "noShow frontView": [sockImage.noShowFront, sockImage.noShowFrontMasking],
-  "noShow backView": [sockImage.noShowBack, sockImage.noShowBackMasking],
-  "noShow sideView": [sockImage.noShowSide, sockImage.noShowSideMasking],
-  "ankle frontView": [sockImage.ankleFront, sockImage.ankleFrontMasking],
-  "ankle backView": [sockImage.ankleBack, sockImage.ankleBackMasking],
-  "ankle sideView": [sockImage.ankleSide, sockImage.ankleSideMasking],
-  "mid frontView": [sockImage.midFront, sockImage.midFrontMasking],
-  "mid backView": [sockImage.midBack, sockImage.midBackMasking],
-  "mid sideView": [sockImage.midSide, sockImage.midSideMasking],
-  "high frontView": [sockImage.highFront, sockImage.highFrontMasking],
-  "high backView": [sockImage.highBack, sockImage.highBackMasking],
-  "high sideView": [sockImage.highSide, sockImage.highSideMasking]
+  "noShow front": [sockImage.noShowFront, sockImage.noShowFrontMasking],
+  "noShow back": [sockImage.noShowBack, sockImage.noShowBackMasking],
+  "noShow side": [sockImage.noShowSide, sockImage.noShowSideMasking],
+  "ankle front": [sockImage.ankleFront, sockImage.ankleFrontMasking],
+  "ankle back": [sockImage.ankleBack, sockImage.ankleBackMasking],
+  "ankle side": [sockImage.ankleSide, sockImage.ankleSideMasking],
+  "mid front": [sockImage.midFront, sockImage.midFrontMasking],
+  "mid back": [sockImage.midBack, sockImage.midBackMasking],
+  "mid side": [sockImage.midSide, sockImage.midSideMasking],
+  "high front": [sockImage.highFront, sockImage.highFrontMasking],
+  "high back": [sockImage.highBack, sockImage.highBackMasking],
+  "high side": [sockImage.highSide, sockImage.highSideMasking]
 };
 
 const colorArr = [
-  "#7F4145",
-  "#BD3D3A",
-  "#3F69AA",
-  "#D5AE41",
-  "#766F57",
-  "#E47A2E",
-  "#BE9EC9",
-  "#F1EA7F",
-  "#006E6D",
-  "#485167",
+  "#F0EDE5",
   "#EAE6DA",
-  "#D1B894",
-  "#BCBCBE",
-  "#95DEE3",
+  "#F1EA7F",
   "#ECDB54",
-  "#E94B3C",
-  "#6F9FD8",
-  "#944743",
-  "#DBB1CD",
-  "#EC9787",
-  "#00A591",
-  "#6C4F3D",
-  "#6B5B95",
-  "#EABEDB",
-  "#BC70A4",
-  "#BFD641",
-  "#2E4A62",
-  "#B4B7BA",
+  "#D1B894",
   "#C0AB8E",
-  "#F0EDE5"
+  "#D5AE41",
+  "#E47A2E",
+  "#E94B3C",
+  "#BD3D3A",
+  "#BCBCBE",
+  "#B4B7BA",
+  "#EABEDB",
+  "#DBB1CD",
+  "#BE9EC9",
+  "#BC70A4",
+  "#6B5B95",
+  "#944743",
+  "#7F4145",
+  "#6C4F3D",
+  "#EC9787",
+  "#BFD641",
+  "#95DEE3",
+  "#6F9FD8",
+  "#00A591",
+  "#006E6D",
+  "#3F69AA",
+  "#766F57",
+  "#2E4A62",
+  "#485167"
 ];
+
+const patternArr = [
+  patternImage.Argyle,
+  patternImage.bear,
+  patternImage.bird,
+  patternImage.block,
+  patternImage.color_block,
+  patternImage.crown,
+  patternImage.dotted,
+  patternImage.flower,
+  patternImage.heart,
+  patternImage.raindrop,
+  patternImage.stripe,
+  patternImage.tree,
+  patternImage.hive,
+  patternImage.money,
+  patternImage.tape
+];
+
+const viewArr = ["front", "back", "side"];
+const typeArr = ["noShow", "ankle", "mid", "high"];
+const addToBtnArr = ["addToCartBtn", "addToWishListBtn"];
+
 class Custom extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      pickedColor: "none",
-      chosenView: "frontView",
-      chosenType: "noShow"
+      color: "none",
+      type: "noShow",
+      view: "front",
+      pattern: "",
+      price: 6000,
+      addToCartBtnClicked: false,
+      addToWishListBtnClicked: false
     };
   }
 
-  changeSocksColor(e) {
+  changeDesign = (e, value) => {
     this.setState({
-      pickedColor: e.target.name
+      [e.target.getAttribute("name")]: value
     });
-  }
+  };
 
-  changeView(e) {
+  handleAddToBtn = (e, value) => {
     this.setState({
-      chosenView: e.target.name
+      [e.target.name]: !this.state.value
     });
-  }
-
-  changeType(e) {
-    this.setState({
-      chosenType: e.target.name
-    });
-  }
+    if (e.target.name === "addToCartBtnClicked") {
+      setTimeout(() => {
+        this.setState({
+          addToCartBtnClicked: !this.state.addToCartBtnClicked
+        });
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        this.setState({
+          addToWishListBtnClicked: !this.state.addToWishListBtnClicked
+        });
+      }, 1000);
+    }
+  };
 
   render() {
-    const { pickedColor, chosenView, chosenType } = this.state;
+    const {
+      color,
+      view,
+      type,
+      price,
+      pattern,
+      addToCartBtnClicked,
+      addToWishListBtnClicked
+    } = this.state;
+
     return (
-      <>
-        <Header />
+      <Layout>
+        {addToCartBtnClicked && (
+          <div className="addedToCartMessage">
+            <div className="addedToCartInformation">
+              <div className="addedToCartImage"></div>
+              <div className="addedToCartCategoryAndType">Casual High</div>
+              <div className="addedToCartPrice">10,000</div>
+            </div>
+            <Button
+              className="showCartDetailBtn"
+              name="showCartDetailBtn"
+              text="SHOW CART DETAIL"
+              onClick={this.showCartDetail}
+            />
+          </div>
+        )}
         <div className="customRoot">
           <div className="chooseTypesWrap">
             Type:
-            <Button
-              className={`noShow ${chosenType === "noShow" ? "clicked" : ""}`}
-              name="noShow"
-              text="No-Show"
-              onClick={e => this.changeType(e)}
-            />
-            <Button
-              className={`ankle ${chosenType === "ankle" ? "clicked" : ""}`}
-              name="ankle"
-              text="Ankle"
-              onClick={e => this.changeType(e)}
-            />
-            <Button
-              className={`mid ${chosenType === "mid" ? "clicked" : ""}`}
-              name="mid"
-              text="Mid"
-              onClick={e => this.changeType(e)}
-            />
-            <Button
-              className={`high ${chosenType === "high" ? "clicked" : ""}`}
-              name="high"
-              text="High"
-              onClick={e => this.changeType(e)}
-            />
+            {typeArr.map((el, idx) => (
+              <Button
+                key={`type-${idx}`}
+                className={`type ${type === el ? `${el} clicked` : ""}`}
+                name="type"
+                text={`${
+                  el === "noShow"
+                    ? "No-Show"
+                    : el[0].toUpperCase() + el.slice(1, el.length)
+                }`}
+                onClick={e => this.changeDesign(e, el)}
+              />
+            ))}
           </div>
           <div className="chooseViewsWrap">
             View:
-            <Button
-              className={`frontView ${
-                chosenView === "frontView" ? "clicked" : ""
-              }`}
-              name="frontView"
-              text="Front"
-              onClick={e => this.changeView(e)}
-            />
-            <Button
-              className={`backView ${
-                chosenView === "backView" ? "clicked" : ""
-              }`}
-              name="backView"
-              text="Back"
-              onClick={e => this.changeView(e)}
-            />
-            <Button
-              className={`sideView ${
-                chosenView === "sideView" ? "clicked" : ""
-              }`}
-              name="sideView"
-              text="Sides"
-              onClick={e => this.changeView(e)}
-            />
+            {viewArr.map((el, idx) => (
+              <Button
+                key={`view-${idx}`}
+                className={`view ${view === el ? `${el} clicked` : ""}`}
+                name="view"
+                text={el[0].toUpperCase() + el.slice(1, el.length)}
+                onClick={e => this.changeDesign(e, el)}
+              />
+            ))}
           </div>
           <div className="customCenter">
             <div className="socksContainer">
               <img
                 className="sockImage imageNotMasked"
-                src={matching[`${chosenType} ${chosenView}`][0]}
-                alt={`${chosenType} ${chosenView}`}
+                src={matching[`${type} ${view}`][0]}
+                alt={`${type} ${view}`}
               />
               <img
                 className="sockImage imageMasked"
-                style={{ backgroundColor: pickedColor }}
-                src={matching[`${chosenType} ${chosenView}`][1]}
-                alt={`${chosenType} ${chosenView}`}
+                style={{ backgroundColor: color }}
+                src={matching[`${type} ${view}`][1]}
+                alt={`${type} ${view}`}
+              />
+              <img
+                className="sockImage patternMasked"
+                style={{ backgroundImage: `url(${patternArr[pattern]})` }}
+                src={matching[`${type} ${view}`][1]}
+                alt={`${type} ${view}`}
               />
             </div>
-            <div className="chooseWrap">
-              <div className="chooseColor">
-                <p>Choose Color</p>
-                <div className="colorPickerContainer">
-                  {/* <InputBox
-                    type="color"
-                    className="colorPicker"
-                    handleChange={e => this.changeSocksColor(e)}
-                  /> */}
-                  {colorArr.map((el, idx) => (
+            <div className="rightSideWrap">
+              <div className="chooseWrap">
+                <div className="chooseColor">
+                  <p>Choose Color</p>
+                  <div className="colorPickerContainer">
+                    {colorArr.map((el, idx) => (
+                      <Button
+                        className="color colorContainer"
+                        name="color"
+                        style={{ backgroundColor: el }}
+                        key={`color-${idx}`}
+                        onClick={e => this.changeDesign(e, el)}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="choosePattern">
+                  <p>Choose Pattern</p>
+                  <div className="patternPickerContainer">
+                    {patternArr.map((image, idx) => {
+                      return (
+                        <Span
+                          style={{ backgroundImage: `url(${image})` }}
+                          name="pattern"
+                          key={`pattern-${idx}`}
+                          onClick={e => this.changeDesign(e, idx)}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+                <div className="chooseImage">
+                  <p>Choose Image</p>
+                  <div className="imagePicker"></div>
+                </div>
+                <div className="orderWrap">
+                  <div className="priceEstimation">가격: {price}</div>
+                  {addToBtnArr.map((el, idx) => (
                     <Button
-                      className="colorContainer"
-                      name={el}
-                      style={{ backgroundColor: el }}
-                      key={`color-${idx}`}
-                      onClick={e => this.changeSocksColor(e)}
+                      className={el}
+                      name={`${el}Clicked`}
+                      text={`${
+                        el === "addToCartBtn"
+                          ? "장바구니 추가"
+                          : "위시리스트 추가"
+                      }`}
+                      onClick={e => this.handleAddToBtn(e, el)}
                     />
                   ))}
                 </div>
               </div>
-              <div className="choosePattern">
-                <p>Choose Pattern</p>
-                <div className="patternPicker"></div>
-              </div>
-              <div className="chooseImage">
-                <p>Choose Image</p>
-                <div className="imagePicker"></div>
-              </div>
             </div>
           </div>
+          {addToWishListBtnClicked && (
+            <div className="messageAddedToWishList">
+              해당 상품이 Wish List에 추가되었습니다
+            </div>
+          )}
         </div>
-      </>
+      </Layout>
     );
   }
 }

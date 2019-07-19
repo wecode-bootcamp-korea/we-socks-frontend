@@ -1,5 +1,5 @@
 import React from "react";
-import ImageUploader from "react-images-upload";
+// import ImageUploader from "react-images-upload";
 
 class ImgUpLoad extends React.Component {
   constructor(props) {
@@ -16,13 +16,14 @@ class ImgUpLoad extends React.Component {
 
   render() {
     return (
-      <ImageUploader
-        withIcon={true}
-        buttonText="Choose images"
-        onChange={this.onDrop}
-        imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-        maxFileSize={5242880}
-      />
+      <></>
+      // <ImageUploader
+      //   withIcon={true}
+      //   buttonText="Choose images"
+      //   onChange={this.onDrop}
+      //   imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+      //   maxFileSize={5242880}
+      // />
     );
   }
 }

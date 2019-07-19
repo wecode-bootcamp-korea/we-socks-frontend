@@ -6,7 +6,8 @@ import Footer from "Components/Footer";
 import "./Login.scss";
 
 class Login extends Component {
-  handleOnclick = this.handleOnclick.bind(this);
+  // this.handleOnclick = this.handleOnclick.bind(this)
+  handleOnclick = e => {};
 
   render() {
     return (

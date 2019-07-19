@@ -7,7 +7,7 @@ const Square = ({ image_url, title }) => {
       className="mainSquare"
       style={{ backgroundImage: `url(${image_url})` }}
     >
-      <div className="innerBox">
+      <div className="innerDiv">
         <h2 className="squareTitle">{title}</h2>
         <span className="moreSpan">SHOP NOW</span>
       </div>

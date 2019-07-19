@@ -4,10 +4,7 @@ import MyPage from "Pages/MyPage";
 import Itemlist from "./Pages/Itemlist";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
-<<<<<<< HEAD
 import Custom from "Pages/Main/Custom";
-=======
->>>>>>> 66c1f21... Modal wip
 import OrderDetail from "Pages/MyPage/OrderHistory/OrderDetail";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 

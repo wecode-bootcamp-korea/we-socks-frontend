@@ -57,6 +57,12 @@
       position: relative;
       mix-blend-mode: multiply;
     }
+
+    .patternMasked {
+      position: absolute;
+      left: 280px;
+      mix-blend-mode: multiply;
+    }
   }
 
   .chooseWrap {

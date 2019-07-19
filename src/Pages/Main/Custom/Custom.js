@@ -1,8 +1,10 @@
 import React from "react";
 import "./custom.scss";
-import Header from "Components/Header";
+import Layout from "Components/Layout";
 import Button from "Components/Button";
+import Span from "Components/Span";
 import * as sockImage from "./socksImages";
+import * as patternImage from "./patternImages";
 
 const matching = {
   "noShow front": [sockImage.noShowFront, sockImage.noShowFrontMasking],
@@ -52,8 +54,27 @@ const colorArr = [
   "#485167"
 ];
 
+const patternArr = [
+  patternImage.Argyle,
+  patternImage.bear,
+  patternImage.bird,
+  patternImage.block,
+  patternImage.color_block,
+  patternImage.crown,
+  patternImage.dotted,
+  patternImage.flower,
+  patternImage.heart,
+  patternImage.raindrop,
+  patternImage.stripe,
+  patternImage.tree,
+  patternImage.hive,
+  patternImage.money,
+  patternImage.tape
+];
+
 const viewArr = ["front", "back", "side"];
 const typeArr = ["noShow", "ankle", "mid", "high"];
+const addToBtnArr = ["addToCartBtn", "addToWishListBtn"];
 
 class Custom extends React.Component {
   constructor() {
@@ -62,21 +83,67 @@ class Custom extends React.Component {
     this.state = {
       color: "none",
       type: "noShow",
-      view: "front"
+      view: "front",
+      pattern: "",
+      price: 6000,
+      addToCartBtnClicked: false,
+      addToWishListBtnClicked: false
     };
   }
 
   changeDesign = (e, value) => {
     this.setState({
-      [e.target.name]: value
+      [e.target.getAttribute("name")]: value
     });
   };
 
+  handleAddToBtn = (e, value) => {
+    this.setState({
+      [e.target.name]: !this.state.value
+    });
+    if (e.target.name === "addToCartBtnClicked") {
+      setTimeout(() => {
+        this.setState({
+          addToCartBtnClicked: !this.state.addToCartBtnClicked
+        });
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        this.setState({
+          addToWishListBtnClicked: !this.state.addToWishListBtnClicked
+        });
+      }, 1000);
+    }
+  };
+
   render() {
-    const { color, view, type } = this.state;
+    const {
+      color,
+      view,
+      type,
+      price,
+      pattern,
+      addToCartBtnClicked,
+      addToWishListBtnClicked
+    } = this.state;
+
     return (
-      <>
-        <Header />
+      <Layout>
+        {addToCartBtnClicked && (
+          <div className="addedToCartMessage">
+            <div className="addedToCartInformation">
+              <div className="addedToCartImage"></div>
+              <div className="addedToCartCategoryAndType">Casual High</div>
+              <div className="addedToCartPrice">10,000</div>
+            </div>
+            <Button
+              className="showCartDetailBtn"
+              name="showCartDetailBtn"
+              text="SHOW CART DETAIL"
+              onClick={this.showCartDetail}
+            />
+          </div>
+        )}
         <div className="customRoot">
           <div className="chooseTypesWrap">
             Type:
@@ -119,34 +186,73 @@ class Custom extends React.Component {
                 src={matching[`${type} ${view}`][1]}
                 alt={`${type} ${view}`}
               />
+              <img
+                className="sockImage patternMasked"
+                style={{ backgroundImage: `url(${patternArr[pattern]})` }}
+                src={matching[`${type} ${view}`][1]}
+                alt={`${type} ${view}`}
+              />
             </div>
-            <div className="chooseWrap">
-              <div className="chooseColor">
-                <p>Choose Color</p>
-                <div className="colorPickerContainer">
-                  {colorArr.map((el, idx) => (
+            <div className="rightSideWrap">
+              <div className="chooseWrap">
+                <div className="chooseColor">
+                  <p>Choose Color</p>
+                  <div className="colorPickerContainer">
+                    {colorArr.map((el, idx) => (
+                      <Button
+                        className="color colorContainer"
+                        name="color"
+                        style={{ backgroundColor: el }}
+                        key={`color-${idx}`}
+                        onClick={e => this.changeDesign(e, el)}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="choosePattern">
+                  <p>Choose Pattern</p>
+                  <div className="patternPickerContainer">
+                    {patternArr.map((image, idx) => {
+                      return (
+                        <Span
+                          style={{ backgroundImage: `url(${image})` }}
+                          name="pattern"
+                          key={`pattern-${idx}`}
+                          onClick={e => this.changeDesign(e, idx)}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+                <div className="chooseImage">
+                  <p>Choose Image</p>
+                  <div className="imagePicker"></div>
+                </div>
+                <div className="orderWrap">
+                  <div className="priceEstimation">가격: {price}</div>
+                  {addToBtnArr.map((el, idx) => (
                     <Button
-                      className="color colorContainer"
-                      name="color"
-                      style={{ backgroundColor: el }}
-                      key={`color-${idx}`}
-                      onClick={e => this.changeDesign(e, el)}
+                      className={el}
+                      name={`${el}Clicked`}
+                      text={`${
+                        el === "addToCartBtn"
+                          ? "장바구니 추가"
+                          : "위시리스트 추가"
+                      }`}
+                      onClick={e => this.handleAddToBtn(e, el)}
                     />
                   ))}
                 </div>
               </div>
-              <div className="choosePattern">
-                <p>Choose Pattern</p>
-                <div className="patternPicker"></div>
-              </div>
-              <div className="chooseImage">
-                <p>Choose Image</p>
-                <div className="imagePicker"></div>
-              </div>
             </div>
           </div>
+          {addToWishListBtnClicked && (
+            <div className="messageAddedToWishList">
+              해당 상품이 Wish List에 추가되었습니다
+            </div>
+          )}
         </div>
-      </>
+      </Layout>
     );
   }
 }

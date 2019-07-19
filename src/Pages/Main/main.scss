@@ -9,3 +9,33 @@
   min-width: 550px;
   margin: 10px auto 0;
 }
+
+.mainFooter {
+  display: flex;
+  justify-content: space-around;
+  align-content: space-between;
+  flex-wrap: wrap;
+
+  width: 100%;
+  max-width: 1400px;
+  min-width: 550px;
+  margin: 0 auto;
+
+  .footerItem {
+    width: 300px;
+    min-width: 300px;
+    padding: 5px;
+
+    .p {
+      color: #000;
+      font-style: normal;
+      letter-spacing: normal;
+      line-height: 1.5;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 17px;
+  }
+}

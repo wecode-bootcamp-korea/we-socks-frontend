@@ -1,4 +1,5 @@
-// import React from "react";
+import React from "react";
+
 // import ImageUploader from "react-images-upload";
 
 // class ImgUpLoad extends React.Component {
@@ -14,17 +15,19 @@
 //     });
 //   }
 
-//   render() {
-//     return (
-//       <ImageUploader
-//         withIcon={true}
-//         buttonText="Choose images"
-//         onChange={this.onDrop}
-//         imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-//         maxFileSize={5242880}
-//       />
-//     );
-//   }
-// }
+render() {
+    return (
+      <></>
+      // <ImageUploader
+      //   withIcon={true}
+      //   buttonText="Choose images"
+      //   onChange={this.onDrop}
+      //   imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+      //   maxFileSize={5242880}
+      // />
+    );
+  }
+}
+
 
 // export default ImgUpLoad;

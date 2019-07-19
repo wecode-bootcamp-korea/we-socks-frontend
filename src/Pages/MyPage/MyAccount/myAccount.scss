@@ -155,3 +155,26 @@
     }
   }
 }
+
+.myAccountExplanation {
+  background-color: black;
+  position: absolute;
+  padding: 16px;
+
+  text-align: center;
+  bottom: 20%;
+  left: 5.4%;
+  width: 300px;
+}
+
+.closeModalBtn {
+  position: relative;
+  z-index: 1;
+  background-color: black;
+  color: white;
+
+  font-size: 15px;
+  font-weight: bold;
+  left: 200%;
+  margin: 10px auto;
+}

@@ -56,6 +56,7 @@ const colorArr = [
 ];
 
 const patternArr = [
+  "",
   patternImage.Argyle,
   patternImage.bear,
   patternImage.bird,

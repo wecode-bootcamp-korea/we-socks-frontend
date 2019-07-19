@@ -3,24 +3,45 @@ import "./sockitem.scss";
 
 class SockItem extends React.Component {
   state = {
-    isHover: false
+    isHover: false,
+    isPreview: false,
+    previewUrl: ""
   };
 
   handleHover = flag => {
     this.setState({
       isHover: flag
     });
+
+    if (this.state.isPreview) {
+      this.setState({
+        isPreview: flag
+      });
+    }
+  };
+
+  getPreviewUrl = e => {
+    const imgUrl = e.target.style.backgroundImage;
+
+    this.setState({
+      isPreview: true,
+      previewUrl: imgUrl
+    });
   };
 
   render() {
     const { image } = this.props;
-    const { isHover } = this.state;
+    const { isHover, isPreview, previewUrl } = this.state;
 
     return (
       <div className="itemWrap" onMouseLeave={() => this.handleHover(false)}>
         <div
           className="itemImage"
-          style={{ backgroundImage: `url(${image})` }}
+          style={
+            isPreview
+              ? { backgroundImage: `${previewUrl}` }
+              : { backgroundImage: `url(${image})` }
+          }
           onMouseEnter={() => this.handleHover(true)}
         ></div>
         <div className="customLabel">
@@ -32,7 +53,15 @@ class SockItem extends React.Component {
             }
           >
             <div className="previewSet">
-              <span className="previewItem"></span>
+              {/* API요청해서 받아온 후 렌더링 해야 할듯..? */}
+              <span
+                className="previewItem"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1558981420-87aa9dad1c89?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60')"
+                }}
+                onMouseOver={e => this.getPreviewUrl(e)}
+              ></span>
               <span className="previewItem"></span>
               <span className="previewItem"></span>
             </div>

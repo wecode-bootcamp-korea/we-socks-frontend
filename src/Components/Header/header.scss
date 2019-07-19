@@ -1,7 +1,9 @@
+@import "style/color.scss";
+
 .pageHeader {
   position: static;
-  border-bottom: 2px solid rgb(211, 208, 208);
-  > div {
+  border-bottom: 2px solid $headerBorderColor;
+  .headerTop {
     display: flex;
     justify-content: space-evenly;
     margin: 20px auto 5px;
@@ -54,12 +56,11 @@
 }
 
 .headerBottom {
-  margin: 5px 0 10px 450px;
   font-size: 18px;
   display: flex;
-  justify-content: space-between;
-  width: 20em;
+  justify-content: center;
   > div {
+    padding: 10px 40px;
     &:hover {
       opacity: 0.6;
       cursor: pointer;

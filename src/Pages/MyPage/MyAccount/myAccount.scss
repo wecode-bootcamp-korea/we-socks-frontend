@@ -61,43 +61,22 @@ meter {
 .myAccountExplanation {
   background-color: black;
   position: absolute;
-  padding: 1em;
-  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.3);
+  padding: 16px;
+
+  text-align: center;
   bottom: 20%;
   left: 5.4%;
-  width: 20.35em;
+  width: 300px;
 }
 
-.learnMoreExplanation {
-  .designerWrap {
-    > p {
-      color: $myAccountExplanationColor;
+.closeModalBtn {
+  position: relative;
+  z-index: 1;
+  background-color: black;
+  color: white;
 
-      &:first-child {
-        font-size: 20px;
-        font-weight: bold;
-      }
-
-      &:nth-child(2) {
-        margin-top: 1em;
-      }
-    }
-  }
-}
-
-.viewRewardsExplanation {
-  .designerLevelWrap {
-    > p {
-      color: $myAccountExplanationColor;
-
-      &:first-child {
-        font-size: 20px;
-        font-weight: bold;
-      }
-
-      &:nth-child(2) {
-        margin-top: 1em;
-      }
-    }
-  }
+  font-size: 15px;
+  font-weight: bold;
+  left: 200%;
+  margin: 10px auto;
 }

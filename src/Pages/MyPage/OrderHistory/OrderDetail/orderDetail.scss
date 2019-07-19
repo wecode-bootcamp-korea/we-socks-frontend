@@ -1,1 +1,66 @@
 @import "Style/color.scss";
+
+.orderDetailRoot {
+  padding: 3% 0 0 24%;
+
+  > p {
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  .orderStatusWrap {
+    margin: 30px 0;
+    .orderStatus {
+      margin-bottom: 13px;
+    }
+  }
+}
+
+.bottomWrap {
+  display: flex;
+  .orderStatusSummary {
+    display: flex;
+    border-top: 1px solid $myPageBorderColor;
+    .orderedProductImage {
+      width: 180px;
+      height: 180px;
+      margin-right: 45px;
+      background-image: url("https://cdn11.bigcommerce.com/s-j602wc6a/images/stencil/1024x1024/products/6526/23532/bluebell-crew-socks-recycled-cotton-w__92655.1502809282.jpg?c=2");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .orderExplanationWrap {
+      padding-top: 50px;
+      > div {
+        margin-bottom: 10px;
+        &:first-child {
+          font-weight: bold;
+        }
+        &:nth-child(2) {
+          color: $myPageHoverColor;
+        }
+      }
+    }
+  }
+
+  .orderPaymentDetail {
+    margin: 3px 150px 0;
+    border-top: 1px solid $myPageBorderColor;
+    padding-top: 50px;
+    > div {
+      display: flex;
+      margin: 0 50px 40px 0;
+      > p {
+        font-weight: bold;
+        margin: 0;
+      }
+      > div {
+        color: $myPageHoverColor;
+        padding-left: 50px;
+        text-align: left;
+      }
+    }
+  }
+}

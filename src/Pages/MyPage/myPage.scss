@@ -2,20 +2,19 @@
 
 .myPageRoot {
   border-top: 3px solid $myPageBodyColor;
-  height: 100vh;
 }
 
 .userInfo {
   position: relative;
-  left: 15.8em;
+  left: 169px;
   .userNickName {
-    padding-top: 1em;
+    padding-top: 30px;
     font-weight: bold;
     font-size: 30px;
   }
   .welcomeMessage {
     font-size: 13px;
-    line-height: 1.5em;
+    line-height: 35px;
   }
 }
 
@@ -25,18 +24,19 @@
 }
 
 .optionsWrap {
-  margin-top: 4em;
+  margin-top: 60px;
   display: flex;
 
   .selectOptionsWrap {
     position: relative;
-    left: 14.4em;
+    left: 225px;
+    width: 200px;
     text-align: right;
     font-size: 17px;
 
     > div {
-      margin-bottom: 1em;
-      padding-right: 1.3em;
+      margin-bottom: 16px;
+      padding-right: 23px;
       border-right: 2px solid $myPageBodyColor;
 
       &:last-child {
@@ -58,8 +58,8 @@
   }
   .optionsDetail {
     position: relative;
-    left: 24em;
-    bottom: 3.3em;
+    left: 350px;
+    bottom: 55px;
   }
 }
 

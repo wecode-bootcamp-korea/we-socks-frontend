@@ -2,31 +2,31 @@
 
 .eachWishListItem {
   display: flex;
-  height: 12em;
-  margin-bottom: 2em;
+  height: 200px;
+  margin-bottom: 20px;
   border-bottom: 1px solid $myPageBorderColor;
   .wishListImage {
     background-image: url("https://dsjft9k463jj9.cloudfront.net/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/m/z/mz180001_11.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    width: 12em;
+    width: 180px;
   }
 
   .wishListExplanation {
     display: flex;
     .wishListSummary {
-      width: 23em;
-      padding: 1.5em 0 0 1.5em;
+      width: 300px;
+      padding: 25px 0 0 25px;
       > div {
         font-size: 20px;
-        margin-bottom: 0.7em;
+        margin-bottom: 20px;
         &:first-child {
           font-weight: bold;
         }
         &:nth-child(2) {
           color: gray;
-          margin-bottom: 1.2em;
+          margin-bottom: 20px;
         }
       }
       .removeBtn {
@@ -35,18 +35,18 @@
       }
     }
     .whatToDo {
-      width: 15em;
+      width: 200px;
       text-align: center;
-      padding: 2.1em 0 0 1.5em;
+      padding: 33px 0 0 20px;
       > div {
         &:nth-child(2) {
-          margin: 1em;
+          margin: 18px;
         }
       }
       .addToBagBtn {
         font-size: 20px;
         border: 1px solid $myPageBorderColor;
-        padding: 0.3em 0.5em;
+        padding: 4px 8px;
       }
     }
   }

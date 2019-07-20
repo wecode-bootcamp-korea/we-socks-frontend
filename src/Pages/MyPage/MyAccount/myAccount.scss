@@ -5,19 +5,19 @@
     color: gray;
   }
   &:nth-child(3) {
-    margin-top: 2em;
+    margin-top: 50px;
   }
 
   .creatorsClubDetail {
-    margin-top: 5em;
+    margin-top: 50px;
     display: flex;
     > div {
-      width: 26em;
-      height: 26em;
+      width: 416px;
+      height: 416px;
     }
     .creatorsClubIntroduction {
       text-align: center;
-      padding-top: 1em;
+      padding-top: 18px;
       background-color: $myPageBodyColor;
       > p {
         font-size: 18px;
@@ -35,9 +35,9 @@
         .learnMoreBtn {
           font-size: 25px;
           font-weight: bold;
-          margin: 0.3em auto;
-          height: 2em;
-          width: 13em;
+          margin: 8px auto;
+          height: 50px;
+          width: 330px;
           color: white;
           background-color: $myPageBtnColor;
         }
@@ -49,13 +49,111 @@
     background-size: 160%;
     background-repeat: no-repeat;
     background-position: center;
-    background-position-x: -5.5em;
+    background-position-x: -89px;
     background-image: url("https://www.baldingbeards.com/wp-content/uploads/2018/05/best-socks-for-men-featured-image-1024x651.jpg");
   }
 }
 
-meter {
-  width: 52em;
+.myAccountExplanation {
+  background-color: black;
+  position: absolute;
+  padding: 20px;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.3);
+  bottom: 20%;
+  left: 5.4%;
+  width: 20.35em;
+}
+
+.learnMoreExplanation {
+  .designerWrap {
+    > p {
+      color: $myAccountExplanationColor;
+
+      &:first-child {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      &:nth-child(2) {
+        margin-top: 1em;
+      }
+    }
+  }
+}
+
+.viewRewardsExplanation {
+  .designerLevelWrap {
+    > p {
+      color: $myAccountExplanationColor;
+
+      &:first-child {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      &:nth-child(2) {
+        margin-top: 1em;
+      }
+    }
+  }
+}
+
+.container {
+  margin: 15px 0;
+  width: 830px;
+  text-align: center;
+
+  .progressMoved .progressBar {
+    width: 85%;
+    background-color: $progressBarEightyFivePercentColor;
+    animation: progressAnimation 4s;
+  }
+
+  .progress {
+    padding: 4.5px;
+    border-radius: 30px;
+    background: $progressBarBackgroundColor;
+    box-shadow: inset 0 1px 2px $progressBarBackgroundColor,
+      0 1px $progressBarChangedColor;
+
+    .progressBar {
+      height: 20px;
+      border-radius: 30px;
+      background-image: linear-gradient(
+        to bottom,
+        $progressBarInitialColor,
+        $progressBarChangedColor
+      );
+      transition: 0.2s linear;
+      transition-property: width, background-color;
+    }
+  }
+
+  @keyframes progressAnimation {
+    0% {
+      width: 5%;
+      background-color: $progressBarFivePercentColor;
+    }
+    25% {
+      width: 25%;
+      background-color: $progressBarTwentyFivePercentColor;
+    }
+
+    50% {
+      width: 50%;
+      background-color: $progressBarFiftyPercentColor;
+    }
+
+    75% {
+      width: 75%;
+      background-color: $progressBarSeventyFivePercentColor;
+    }
+
+    100% {
+      width: 85%;
+      background-color: $progressBarEightyFivePercentColor;
+    }
+  }
 }
 
 .myAccountExplanation {

@@ -14,6 +14,11 @@ const customModalStyles = {
   }
 };
 
+const modalContent = {
+  learnMore: <LearnMoreModal />,
+  viewRewards: <ViewRewardsModal />
+};
+
 class MyAccount extends React.Component {
   constructor(props) {
     super(props);
@@ -38,25 +43,26 @@ class MyAccount extends React.Component {
   };
 
   render() {
-    const { clickedBtn } = this.state;
+    const { clickedBtn, modalIsOpen } = this.state;
     return (
       <>
         <div>
-          <Modal
-            isOpen={this.state.modalIsOpen}
-            onRequestClose={this.closeModal}
-            className="Modal"
-            overlayClassName="Overlay"
-            style={customModalStyles}
-          >
-            <Button
-              className="closeModalBtn"
-              onClick={this.closeModal}
-              text="CLOSE"
-            />
-            {clickedBtn === "learnMore" && <LearnMoreModal />}
-            {clickedBtn === "viewRewards" && <ViewRewardsModal />}
-          </Modal>
+          {clickedBtn !== "" && (
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={this.closeModal}
+              className="Modal"
+              overlayClassName="Overlay"
+              style={customModalStyles}
+            >
+              {modalContent[clickedBtn]}
+              <Button
+                className="closeModalBtn"
+                onClick={this.closeModal}
+                text="CLOSE"
+              />
+            </Modal>
+          )}
         </div>
         <div
           className={` myAccountDetail ${

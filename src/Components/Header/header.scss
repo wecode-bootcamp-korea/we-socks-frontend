@@ -1,18 +1,23 @@
+@import "style/color.scss";
+
 .pageHeader {
   position: static;
-  border-bottom: 2px solid rgb(211, 208, 208);
-  > div {
+  border-bottom: 2px solid $headerBorderColor;
+  .headerTop {
     display: flex;
     justify-content: space-evenly;
-    margin: 1em auto 0.3em;
+    margin: 20px auto 5px;
     > div {
       display: flex;
     }
   }
+  .logo {
+    margin-right: 85px;
+  }
 }
 
 .myAccountWrap {
-  margin-top: 7em;
+  margin-top: 110px;
   .myAccountIcon {
     width: 35px;
     height: 35px;
@@ -26,7 +31,7 @@
 }
 
 .cartWrap {
-  margin-top: 6.6em;
+  margin-top: 100px;
   .cartIcon {
     width: 50px;
     height: 40px;
@@ -38,7 +43,7 @@
   }
   .cartBtn {
     font-size: 22px;
-    margin-bottom: 2.3em;
+    margin-bottom: 52px;
   }
 }
 
@@ -51,12 +56,11 @@
 }
 
 .headerBottom {
-  margin: 0.2em 0 0.2em 38.3em !important;
   font-size: 18px;
   display: flex;
-  justify-content: space-between;
-  width: 20em;
+  justify-content: center;
   > div {
+    padding: 10px 40px;
     &:hover {
       opacity: 0.6;
       cursor: pointer;

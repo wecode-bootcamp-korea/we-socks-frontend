@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./sockitem.scss";
+import "./sockPreview.scss";
 
-class SockItem extends React.Component {
+class SockPreview extends React.Component {
   state = {
     isHover: false,
     isPreview: false,
@@ -78,4 +78,4 @@ class SockItem extends React.Component {
   }
 }
 
-export default SockItem;
+export default SockPreview;

@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "Components/Layout";
-import SockItem from "Components/SockItem";
+import SockPreview from "Components/SockPreview";
 import "./itemlist.scss";
 import noShowSide from "assets/images/socks/noShow_Side.png";
 import AnkleSide from "assets/images/socks/Ankle_Side.png";
@@ -16,10 +16,10 @@ const itemlist = props => {
           <h3>Choose Your Socks type</h3>
         </div>
         <div className="list">
-          <SockItem image={noShowSide} />
-          <SockItem image={AnkleSide} />
-          <SockItem image={MidSide} />
-          <SockItem image={HighSide} />
+          <SockPreview image={noShowSide} />
+          <SockPreview image={AnkleSide} />
+          <SockPreview image={MidSide} />
+          <SockPreview image={HighSide} />
         </div>
       </div>
     </Layout>

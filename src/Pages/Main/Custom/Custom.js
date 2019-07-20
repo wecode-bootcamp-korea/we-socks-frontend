@@ -2,25 +2,11 @@ import React from "react";
 import "./custom.scss";
 import Layout from "Components/Layout";
 import Button from "Components/Button";
+import SockItem from "Components/SockItem";
+import axios from "axios";
 import Span from "Components/Span";
-import * as sockImage from "Components/SockItem/socksImages";
 import * as patternImage from "Components/SockItem/patternImages";
-import AddedToCartMessage from "Pages/MyPage/ShoppingCart/AddedToCartMessage";
-
-const matching = {
-  "noShow front": [sockImage.noShowFront, sockImage.noShowFrontMasking],
-  "noShow back": [sockImage.noShowBack, sockImage.noShowBackMasking],
-  "noShow side": [sockImage.noShowSide, sockImage.noShowSideMasking],
-  "ankle front": [sockImage.ankleFront, sockImage.ankleFrontMasking],
-  "ankle back": [sockImage.ankleBack, sockImage.ankleBackMasking],
-  "ankle side": [sockImage.ankleSide, sockImage.ankleSideMasking],
-  "mid front": [sockImage.midFront, sockImage.midFrontMasking],
-  "mid back": [sockImage.midBack, sockImage.midBackMasking],
-  "mid side": [sockImage.midSide, sockImage.midSideMasking],
-  "high front": [sockImage.highFront, sockImage.highFrontMasking],
-  "high back": [sockImage.highBack, sockImage.highBackMasking],
-  "high side": [sockImage.highSide, sockImage.highSideMasking]
-};
+import AddedToCartMessage from "Components/AddedToCartMessage";
 
 const colorArr = [
   "#F0EDE5",
@@ -83,22 +69,59 @@ class Custom extends React.Component {
 
     this.state = {
       color: "none",
-      type: "noShow",
+      type: 0,
       view: "front",
       pattern: "",
       price: 6000,
+      priceChange: false,
+      patternChosen: false,
       addToCartBtnClicked: false,
       addToWishListBtnClicked: false
     };
   }
 
-  changeDesign = (e, value) => {
+  increasePrice = () => {
     this.setState({
-      [e.target.getAttribute("name")]: value
+      priceChange: !this.state.priceChange,
+      price: this.state.price + 2000
     });
   };
 
+  changeDesign = (e, value) => {
+    const sockProperty = [e.target.getAttribute("name")];
+    this.setState({
+      [sockProperty]: value
+    });
+    if (sockProperty[0] === "pattern" && !this.state.patternChosen) {
+      this.setState(
+        {
+          patternChosen: !this.state.patternChosen
+        },
+        () => this.increasePrice()
+      );
+    }
+  };
+
   addToCart = e => {
+    let sockData = {
+      know_design_id: "no",
+      user_pk: 1,
+      category_id: 1,
+      main_type_id: this.state.type + 1,
+      color: this.state.color,
+      pattern_id: this.state.pattern,
+      logo_id: "1",
+      other_req: "req",
+      amount: 1,
+      unit_price: this.state.price
+    };
+
+    axios
+      .post("http://10.58.7.11:8000/product/add_cart_req", sockData)
+      .then(response => {
+        console.log(response);
+      });
+
     this.setState(
       {
         addToCartBtnClicked: !this.state.addToCartBtnClicked
@@ -114,6 +137,22 @@ class Custom extends React.Component {
   };
 
   addToWishList = e => {
+    let sockData = {
+      know_design_id: "no",
+      user_pk: 1,
+      category_id: 1,
+      main_type_id: this.state.type + 1,
+      color: this.state.color,
+      pattern_id: this.state.pattern,
+      logo_id: 1
+    };
+
+    axios
+      .post("http://10.58.7.11:8000/product/wish_req", sockData)
+      .then(response => {
+        console.log(response);
+      });
+
     this.setState(
       {
         addToWishListBtnClicked: !this.state.addToWishListBtnClicked
@@ -134,6 +173,7 @@ class Custom extends React.Component {
       view,
       type,
       price,
+      priceChange,
       pattern,
       addToCartBtnClicked,
       addToWishListBtnClicked
@@ -148,14 +188,16 @@ class Custom extends React.Component {
             {typeArr.map((el, idx) => (
               <Button
                 key={`type-${idx}`}
-                className={`type ${type === el ? `${el} clicked` : ""}`}
+                className={`type ${
+                  typeArr[type] === el ? `${el} clicked` : ""
+                }`}
                 name="type"
                 text={`${
                   el === "noShow"
                     ? "No-Show"
                     : el[0].toUpperCase() + el.slice(1, el.length)
                 }`}
-                onClick={e => this.changeDesign(e, el)}
+                onClick={e => this.changeDesign(e, idx)}
               />
             ))}
           </div>
@@ -173,22 +215,11 @@ class Custom extends React.Component {
           </div>
           <div className="customCenter">
             <div className="socksContainer">
-              <img
-                className="sockImage imageNotMasked"
-                src={matching[`${type} ${view}`][0]}
-                alt={`${type} ${view}`}
-              />
-              <img
-                className="sockImage imageMasked"
-                style={{ backgroundColor: color }}
-                src={matching[`${type} ${view}`][1]}
-                alt={`${type} ${view}`}
-              />
-              <img
-                className="sockImage patternMasked"
-                style={{ backgroundImage: `url(${patternArr[pattern]})` }}
-                src={matching[`${type} ${view}`][1]}
-                alt={`${type} ${view}`}
+              <SockItem
+                color={color}
+                pattern={pattern}
+                type={type}
+                view={view}
               />
             </div>
             <div className="rightSideWrap">
@@ -227,7 +258,13 @@ class Custom extends React.Component {
                   <div className="imagePicker"></div>
                 </div>
                 <div className="orderWrap">
-                  <div className="priceEstimation">가격: {price}</div>
+                  <div
+                    className={`priceEstimation ${
+                      priceChange ? "priceChange" : ""
+                    }`}
+                  >
+                    가격: {price}
+                  </div>
                   <Button
                     className="addToCartBtn"
                     name="addToCartBtn"

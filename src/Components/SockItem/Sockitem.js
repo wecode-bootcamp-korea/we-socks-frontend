@@ -2,6 +2,7 @@ import React from "react";
 import * as sockImage from "Components/SockItem/socksImages";
 import * as patternImage from "Components/SockItem/patternImages";
 
+const typeArr = ["noShow", "ankle", "mid", "high"];
 const matching = {
   "noShow front": [sockImage.noShowFront, sockImage.noShowFrontMasking],
   "noShow back": [sockImage.noShowBack, sockImage.noShowBackMasking],
@@ -42,20 +43,20 @@ class SockImage extends React.Component {
       <div className="itemImageContainer">
         <img
           className="sockImage imageNotMasked"
-          src={matching[`${type} ${view}`][0]}
-          alt={`${type} ${view}`}
+          src={matching[`${typeArr[type]} ${view}`][0]}
+          alt={`${typeArr[type]} ${view}`}
         />
         <img
           className="sockImage imageMasked"
           style={{ backgroundColor: color }}
-          src={matching[`${type} ${view}`][1]}
-          alt={`${type} ${view}`}
+          src={matching[`${typeArr[type]} ${view}`][1]}
+          alt={`${typeArr[type]} ${view}`}
         />
         <img
           className="sockImage patternMasked"
           style={{ backgroundImage: `url(${patternArr[pattern]})` }}
-          src={matching[`${type} ${view}`][1]}
-          alt={`${type} ${view}`}
+          src={matching[`${typeArr[type]} ${view}`][1]}
+          alt={`${typeArr[type]} ${view}`}
         />
       </div>
     );

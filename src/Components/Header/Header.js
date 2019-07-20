@@ -2,7 +2,7 @@ import React from "react";
 import "./header.scss";
 import Button from "Components/Button";
 import { Link } from "react-router-dom";
-import AddedToCartMessage from "Pages/MyPage/ShoppingCart/AddedToCartMessage";
+import AddedToCartMessage from "Components/AddedToCartMessage";
 class Header extends React.Component {
   constructor() {
     super();

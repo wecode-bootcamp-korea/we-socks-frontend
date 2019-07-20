@@ -4,18 +4,14 @@ import "./wishList.scss";
 import Button from "Components/Button";
 import SockItem from "Components/SockItem";
 
-<<<<<<< HEAD
 const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
 const typeArr = ["noShow", "ankle", "mid", "high"];
 
-=======
->>>>>>> ece82c7... MyPage started to communicate with the server
 class WishList extends React.Component {
   constructor() {
     super();
 
     this.state = {
-<<<<<<< HEAD
       wishListArr: [],
       listChanged: false
     };
@@ -45,21 +41,9 @@ class WishList extends React.Component {
     axios.post("http://10.58.6.101:8001/product/add_cart_req", body);
   };
 
-=======
-      wishListArr: []
-    };
-  }
-
->>>>>>> ece82c7... MyPage started to communicate with the server
-  handleClick = () => {};
-
   componentDidMount = () => {
     axios
       .post("http://10.58.5.85:8000/mypage/my_wishes", { buyer: "bj" })
-<<<<<<< HEAD
-
-=======
->>>>>>> ece82c7... MyPage started to communicate with the server
       .then(response => {
         this.setState({
           wishListArr: response.data[0].my_wish_list
@@ -82,7 +66,6 @@ class WishList extends React.Component {
           <ul className="wishList">
             {wishListArr.map((el, idx) => (
               <li className="eachWishListItem">
-<<<<<<< HEAD
                 <div className="wishListImage">
                   <SockItem
                     key={`wishList-${idx}`}
@@ -108,26 +91,6 @@ class WishList extends React.Component {
                       className="removeBtn"
                       text="REMOVE"
                       onClick={() => this.removeFromWishList(el.id)}
-=======
-                <div className="wishListImage"></div>
-                <div className="wishListExplanation">
-                  <div className="wishListSummary">
-                    <div className="productName">{el.design.label}</div>
-                    <div className="categoryAndType">{`${el.design.category} ${el.design.main_type}`}</div>
-                    <Button
-                      className="removeBtn"
-                      text="Remove"
-                      onClick={this.handleClick}
-                    />
-                  </div>
-                  <div className="whatToDo">
-                    <div className="productStatus">In Stock</div>
-                    <div className="selectCount">1</div>
-                    <Button
-                      className="addToBagBtn"
-                      text="ADD TO BAG"
-                      onClick={this.handleClick}
->>>>>>> ece82c7... MyPage started to communicate with the server
                     />
                   </div>
                 </div>

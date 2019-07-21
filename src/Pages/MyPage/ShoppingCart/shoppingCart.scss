@@ -1,0 +1,142 @@
+@import "Style/color.scss";
+
+.shoppingCartRoot {
+  margin: 80px 300px;
+  > p {
+    font-weight: bold;
+    font-size: 35px;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+  }
+
+  .shoppingCartContainer {
+    display: flex;
+
+    .leftBox {
+      .shoppingCartTotal {
+        .shoppingCartList {
+          display: flex;
+          padding: 5px 20px 0;
+          > div {
+            margin: 0 40px;
+          }
+          .productImage {
+            .sockImage {
+              position: absolute;
+              width: 130px;
+              height: 130px;
+              margin: 25px;
+            }
+
+            .imageMasked {
+              position: relative;
+              mix-blend-mode: multiply;
+            }
+
+            .patternMasked {
+              position: absolute;
+              left: 360px;
+              mix-blend-mode: multiply;
+            }
+          }
+
+          .productMiddleContainer {
+            padding: 30px 0 30px;
+            width: 180px;
+            > div {
+              margin-bottom: 6px;
+            }
+            .productCategoryAndType {
+              font-weight: bold;
+              margin-bottom: 30px;
+            }
+          }
+
+          .productRightContainer {
+            text-align: center;
+            .count,
+            .removeItemBtn {
+              margin: 22px;
+            }
+            .count {
+              border: 1px solid black;
+              font-size: 20px;
+              background-color: white;
+              padding-left: 5px;
+              margin-top: 30px;
+              &::-ms-expand {
+                display: none;
+              }
+
+              &::placeholder {
+                font-size: 25px;
+              }
+            }
+            .removeItemBtn {
+              font-size: 15px;
+              color: $myPageSmallBtnColor;
+            }
+          }
+        }
+      }
+    }
+
+    .rightBox {
+      margin: 50px 0 50px 60px;
+      width: 330px;
+      height: 410px;
+      padding: 0 15px;
+      background-color: $shoppingCartSmallBoxColor;
+
+      .payBtn {
+        width: 100%;
+        height: 50px;
+        color: white;
+        font-weight: bold;
+        font-size: 25px;
+        margin-top: 15px;
+        padding: 10px 0;
+        background-color: $myPageBtnColor;
+      }
+
+      .countTotal {
+        margin-top: 15px;
+        font-size: 18px;
+        padding: 0 10px;
+        font-weight: bold;
+      }
+
+      .priceWrap {
+        background-color: white; //$shoppingCartInnerBoxColor;
+        padding: 10px;
+        margin: 15px 0;
+        font-size: 18px;
+        > div {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 25px;
+          padding-bottom: 8px;
+          border-bottom: 1px solid $shoppingCartSmallBoxColor;
+          &:nth-child(4),
+          &:last-child {
+            border: none;
+            padding: 0;
+          }
+          > p {
+            margin: 0;
+            font-weight: bold;
+          }
+
+          &:last-child {
+            text-align: right;
+            color: $myPageSmallBtnColor;
+            justify-content: flex-end;
+            font-size: 15px;
+            margin: 10px 0;
+          }
+        }
+      }
+    }
+  }
+}

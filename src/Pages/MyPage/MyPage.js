@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "Components/Header";
+import Layout from "Components/Layout";
 import "./myPage.scss";
 import MyAccount from "Pages/MyPage/MyAccount";
 import PersonalInformation from "Pages/MyPage/PersonalInformation";
@@ -12,7 +12,7 @@ class MyPage extends React.Component {
     super();
 
     this.state = {
-      clickedClass: "personalInformation"
+      clickedClass: "myAccount"
     };
   }
 
@@ -24,8 +24,7 @@ class MyPage extends React.Component {
 
   render() {
     return (
-      <>
-        <Header />
+      <Layout>
         <div className="myPageRoot">
           <div className="userInfo">
             <div className="userNickName">Hello, Jason Kang!</div>
@@ -92,7 +91,7 @@ class MyPage extends React.Component {
             </div>
           </div>
         </div>
-      </>
+      </Layout>
     );
   }
 }

@@ -2,17 +2,44 @@ import React from "react";
 import axios from "axios";
 import "./wishList.scss";
 import Button from "Components/Button";
+import SockItem from "Components/SockItem";
+
+const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
+const typeArr = ["noShow", "ankle", "mid", "high"];
 
 class WishList extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      wishListArr: []
+      wishListArr: [],
+      listChanged: false
     };
   }
 
-  handleClick = () => {};
+  removeFromWishList = item => {
+    axios
+      .post("http://10.58.6.101:8001/product/cancel_wish_req", {
+        wish_id: item
+      })
+      .then(response => {
+        if (response.status === 200) {
+          this.setState({
+            listChanged: !this.state.listChanged
+          });
+        }
+      });
+  };
+
+  addItemToCart = item => {
+    let body = {
+      buyer: "bj",
+      design_id: item,
+      label: "socks",
+      amount: "1"
+    };
+    axios.post("http://10.58.6.101:8001/product/add_cart_req", body);
+  };
 
   componentDidMount = () => {
     axios
@@ -39,24 +66,31 @@ class WishList extends React.Component {
           <ul className="wishList">
             {wishListArr.map((el, idx) => (
               <li className="eachWishListItem">
-                <div className="wishListImage"></div>
+                <div className="wishListImage">
+                  <SockItem
+                    key={`wishList-${idx}`}
+                    type={typeArr[el.design.main_type - 1]}
+                    view="side"
+                    color={el.design.color}
+                    pattern={el.design.pattern}
+                  />
+                </div>
                 <div className="wishListExplanation">
                   <div className="wishListSummary">
-                    <div className="productName">{el.design.label}</div>
-                    <div className="categoryAndType">{`${el.design.category} ${el.design.main_type}`}</div>
-                    <Button
-                      className="removeBtn"
-                      text="Remove"
-                      onClick={this.handleClick}
-                    />
+                    <div className="categoryAndType">{`${
+                      categoryArr[el.design.category - 1]
+                    } ${typeArr[el.design.main_type - 1]}`}</div>
                   </div>
                   <div className="whatToDo">
-                    <div className="productStatus">In Stock</div>
-                    <div className="selectCount">1</div>
                     <Button
-                      className="addToBagBtn"
-                      text="ADD TO BAG"
-                      onClick={this.handleClick}
+                      className="addToCartBtn"
+                      text="ADD TO CART"
+                      onClick={() => this.addItemToCart(el.design.id)}
+                    />
+                    <Button
+                      className="removeBtn"
+                      text="REMOVE"
+                      onClick={() => this.removeFromWishList(el.id)}
                     />
                   </div>
                 </div>

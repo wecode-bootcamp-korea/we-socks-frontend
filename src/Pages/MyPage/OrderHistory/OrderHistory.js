@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Button from "Components/Button";
+import SockItem from "Components/SockItem";
 import { Link } from "react-router-dom";
 import "./orderHistory.scss";
 
@@ -27,7 +28,6 @@ class OrderHistory extends React.Component {
   render() {
     const { className } = this.props;
     const { orderHistoryArr } = this.state;
-    console.log(orderHistoryArr);
     return (
       <div
         className={`orderHistory ${
@@ -39,18 +39,24 @@ class OrderHistory extends React.Component {
           <ul className="previousOrders">
             {orderHistoryArr.map((el, idx) => (
               <li className="eachOrder">
-                <span className="productImage"></span>
+                <span className="productImage">
+                  <SockItem
+                    key={`orderHistory-${idx}`}
+                    type={el.main_type}
+                    color={el.color}
+                    pattern={el.pattern}
+                    view="side"
+                  />
+                </span>
                 <div className="orderExplanationWrap">
                   <div className="orderSummary">
                     <div className="statusAndDate">Delivered: Jun 5, 2019</div>
-                    <div className="productName">{el.design.label}</div>
-                    <div className="categoryAndType">{`${el.design.category} ${el.design.main_type}`}</div>
+                    <div className="productName">{el.label}</div>
+                    <div className="categoryAndType">{`${el.category} ${el.main_type}`}</div>
                     <div className="orderedDate">
-                      Ordered: {el.design.ordered_date}
+                      Ordered: {el.ordered_date}
                     </div>
-                    <div className="orderNumber">
-                      Order # {el.design.order_code}
-                    </div>
+                    <div className="orderNumber">Order # {el.order_code}</div>
                   </div>
                   <Link to="/orderdetail">
                     <Button

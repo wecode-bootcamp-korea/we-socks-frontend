@@ -1,7 +1,6 @@
 import React from "react";
-import Header from "Components/Header";
-import Footer from "Components/Footer";
-import "./mypage.scss";
+import Layout from "Components/Layout";
+import "./myPage.scss";
 import MyAccount from "Pages/MyPage/MyAccount";
 import PersonalInformation from "Pages/MyPage/PersonalInformation";
 import AddressBook from "Pages/MyPage/AddressBook";
@@ -25,8 +24,7 @@ class MyPage extends React.Component {
 
   render() {
     return (
-      <>
-        <Header />
+      <Layout>
         <div className="myPageRoot">
           <div className="userInfo">
             <div className="userNickName">Hello, Jason Kang!</div>
@@ -93,8 +91,7 @@ class MyPage extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
-      </>
+      </Layout>
     );
   }
 }

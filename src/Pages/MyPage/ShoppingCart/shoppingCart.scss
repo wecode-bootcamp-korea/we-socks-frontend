@@ -22,57 +22,55 @@
             margin: 0 40px;
           }
           .productImage {
-            width: 130px;
-            height: 130px;
-            margin: 25px;
+            .sockImage {
+              position: absolute;
+              width: 130px;
+              height: 130px;
+              margin: 25px;
+            }
 
-            background-image: url("https://cdn.shopify.com/s/files/1/1884/3249/products/WNC491_PRP_P_1_345x.jpg?v=1531936515");
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
+            .imageMasked {
+              position: relative;
+              mix-blend-mode: multiply;
+            }
+
+            .patternMasked {
+              position: absolute;
+              left: 360px;
+              mix-blend-mode: multiply;
+            }
           }
 
           .productMiddleContainer {
             padding: 30px 0 30px;
+            width: 180px;
             > div {
               margin-bottom: 6px;
-              &:first-child {
-                font-weight: bold;
-              }
-              &:nth-child(2) {
-                margin-bottom: 30px;
-              }
+            }
+            .productCategoryAndType {
+              font-weight: bold;
+              margin-bottom: 30px;
             }
           }
 
           .productRightContainer {
-            padding: 30px 0 30px 30px;
-            margin-left: 30px;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
+            .count,
+            .removeItemBtn {
+              margin: 22px;
+            }
             .count {
               border: 1px solid black;
               font-size: 20px;
               background-color: white;
-
               padding-left: 5px;
+              margin-top: 30px;
               &::-ms-expand {
                 display: none;
               }
 
               &::placeholder {
                 font-size: 25px;
-              }
-
-              .countBtnWrap {
-                display: flex;
-                flex-direction: column;
-                > button {
-                  font-size: 20px;
-                }
               }
             }
             .removeItemBtn {
@@ -85,8 +83,9 @@
     }
 
     .rightBox {
-      margin: 50px 0 50px 140px;
-      width: 280px;
+      margin: 50px 0 50px 60px;
+      width: 330px;
+      height: 410px;
       padding: 0 15px;
       background-color: $shoppingCartSmallBoxColor;
 

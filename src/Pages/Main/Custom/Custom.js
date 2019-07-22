@@ -4,6 +4,7 @@ import Layout from "Components/Layout";
 import Button from "Components/Button";
 import SockItem from "Components/SockItem";
 import axios from "axios";
+import { ADDRESS } from "Config/Config";
 import Span from "Components/Span";
 import * as patternImage from "Components/SockItem/patternImages";
 import * as uploadedImage from "Components/SockItem/uploadedImages";
@@ -81,9 +82,9 @@ class Custom extends React.Component {
       color: "none",
       type: 0,
       view: "front",
-      pattern: "",
+      pattern: 0,
       price: 6000,
-      uploaded: "",
+      uploaded: 0,
       priceChange: false,
       patternChosen: false,
       imageChosen: false,
@@ -175,24 +176,22 @@ class Custom extends React.Component {
       unit_price: this.state.price
     };
 
-    axios
-      .post("http://10.58.7.11:8000/product/add_cart_req", sockData)
-      .then(response => {
-        if (response.status === 200) {
-          this.setState(
-            {
-              addToCartBtnClicked: !this.state.addToCartBtnClicked
-            },
-            () => {
-              setTimeout(() => {
-                this.setState({
-                  addToCartBtnClicked: !this.state.addToCartBtnClicked
-                });
-              }, 2000);
-            }
-          );
-        }
-      });
+    axios.post(`${ADDRESS}/product/add_cart_req`, sockData).then(response => {
+      if (response.status === 200) {
+        this.setState(
+          {
+            addToCartBtnClicked: !this.state.addToCartBtnClicked
+          },
+          () => {
+            setTimeout(() => {
+              this.setState({
+                addToCartBtnClicked: !this.state.addToCartBtnClicked
+              });
+            }, 2000);
+          }
+        );
+      }
+    });
   };
 
   addToWishList = () => {
@@ -207,24 +206,23 @@ class Custom extends React.Component {
       unit_price: this.state.price
     };
 
-    axios
-      .post("http://10.58.7.11:8000/product/wish_req", sockData)
-      .then(response => {
-        if (response.status === 200) {
-          this.setState(
-            {
-              addToWishListBtnClicked: !this.state.addToWishListBtnClicked
-            },
-            () => {
-              setTimeout(() => {
-                this.setState({
-                  addToWishListBtnClicked: !this.state.addToWishListBtnClicked
-                });
-              }, 2000);
-            }
-          );
-        }
-      });
+    axios.post(`${ADDRESS}/product/wish_req`, sockData).then(response => {
+      console.log(response);
+      if (response.status === 200) {
+        this.setState(
+          {
+            addToWishListBtnClicked: !this.state.addToWishListBtnClicked
+          },
+          () => {
+            setTimeout(() => {
+              this.setState({
+                addToWishListBtnClicked: !this.state.addToWishListBtnClicked
+              });
+            }, 2000);
+          }
+        );
+      }
+    });
   };
 
   render() {

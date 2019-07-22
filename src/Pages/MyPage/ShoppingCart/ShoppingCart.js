@@ -32,7 +32,6 @@ class ShoppingCart extends React.Component {
 
   render() {
     const { cartArr } = this.state;
-    console.log(cartArr);
     return (
       <>
         <Header />

@@ -71,14 +71,12 @@
     > span {
       width: 40px;
       height: 40px;
-
       cursor: pointer;
       &:hover {
         opacity: 0.7;
       }
     }
   }
-
   .colorPickerContainer {
     display: flex;
     flex-wrap: wrap;

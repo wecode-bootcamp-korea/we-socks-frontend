@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./sockPreview.scss";
-import * as sockImage from "Pages/Main/Custom/socksImages";
-import * as patternImage from "Pages/Main/Custom/patternImages";
+import * as sockImage from "Components/SockPreview/socksImages";
+import * as patternImage from "Components/SockPreview/patternImages";
 
 const matching = {
   "noShow front": [sockImage.noShowFront, sockImage.noShowFrontMasking],

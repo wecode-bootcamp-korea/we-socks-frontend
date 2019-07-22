@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Button from "Components/Button";
-import SockItem from "Components/SockItem";
+import Sockitem from "Components/SockItem/Sockitem";
 import { Link } from "react-router-dom";
 import "./orderHistory.scss";
 
@@ -40,7 +40,7 @@ class OrderHistory extends React.Component {
             {orderHistoryArr.map((el, idx) => (
               <li className="eachOrder">
                 <span className="productImage">
-                  <SockItem
+                  <Sockitem
                     key={`orderHistory-${idx}`}
                     type={el.main_type}
                     color={el.color}

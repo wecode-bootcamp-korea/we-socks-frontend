@@ -1,11 +1,10 @@
 import React from "react";
-import Layout from "Components/Layout";
 import SockPreview from "Components/SockPreview";
 import "./itemlist.scss";
 
 const itemlist = props => {
   return (
-    <Layout>
+    <>
       <div className="lineBox"></div>
       <div className="itemlist">
         <div className="listHeader">
@@ -34,7 +33,7 @@ const itemlist = props => {
           />
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

@@ -1,8 +1,7 @@
 import React from "react";
 import "./custom.scss";
-import Layout from "Components/Layout";
 import Button from "Components/Button";
-import SockItem from "Components/SockItem";
+import Sockitem from "Components/SockItem/Sockitem";
 import axios from "axios";
 import Span from "Components/Span";
 import * as patternImage from "Components/SockItem/patternImages";
@@ -82,6 +81,7 @@ class Custom extends React.Component {
       type: 0,
       view: "front",
       pattern: "",
+      patternSize: "",
       price: 6000,
       uploaded: "",
       priceChange: false,
@@ -227,6 +227,12 @@ class Custom extends React.Component {
       });
   };
 
+  handleSize = e => {
+    this.setState({
+      patternSize: e.target.value
+    });
+  };
+
   render() {
     const {
       color,
@@ -235,13 +241,14 @@ class Custom extends React.Component {
       price,
       priceChange,
       pattern,
+      patternSize,
       uploaded,
       addToCartBtnClicked,
       addToWishListBtnClicked
     } = this.state;
 
     return (
-      <Layout>
+      <>
         <AddedToCartMessage showMessage={addToCartBtnClicked} />
         <div className="customRoot">
           <div className="chooseTypesWrap">
@@ -276,14 +283,26 @@ class Custom extends React.Component {
           </div>
           <div className="customCenter">
             <div className="socksContainer">
-              <SockItem
+              <Sockitem
                 color={color}
                 pattern={pattern - 1}
                 type={type}
                 view={view}
                 uploaded={uploaded - 1}
+                patternSize={patternSize}
               />
             </div>
+            <div className="patternSizeBar">
+              <input
+                type="range"
+                min="100"
+                max="300"
+                onChange={this.handleSize}
+                value={patternSize}
+                style={{ width: 250 }}
+              ></input>
+            </div>
+
             <div className="rightSideWrap">
               <div className="chooseWrap">
                 <div className="chooseColor">
@@ -362,7 +381,7 @@ class Custom extends React.Component {
             </div>
           )}
         </div>
-      </Layout>
+      </>
     );
   }
 }

@@ -23,56 +23,40 @@
       mix-blend-mode: multiply;
     }
   }
+}
 
-  .wishListExplanation {
-    display: flex;
-    .wishListSummary {
-      width: 300px;
-      padding: 25px 0 0 25px;
+.wishListExplanation {
+  display: flex;
+  .wishListSummary {
+    width: 300px;
+    padding: 25px 0 0 25px;
 
-      .categoryAndType {
-        color: $shoppingCartDarkFontColor;
-        margin-bottom: 20px;
-        font-weight: bold;
+    .categoryAndType {
+      color: $shoppingCartDarkFontColor;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+
+  .whatToDo {
+    text-align: center;
+    .wishListBtnWrap {
+      > button {
+        width: 200px;
+        margin: 15px;
         font-size: 20px;
-        > div {
-          font-size: 20px;
-          margin-bottom: 20px;
-          &:first-child {
-            font-weight: bold;
-          }
-          &:nth-child(2) {
-            color: gray;
-            margin-bottom: 20px;
-          }
-        }
-        .removeBtn {
-          font-size: 13px;
-          padding-left: 0;
-        }
+        padding: 10px 20px;
+        border: none;
+        color: $myPageBtnFontColor;
+        font-weight: bold;
+      }
+      .addToCartBtn {
+        background-color: $myPageSmallBtnColor;
       }
 
-      .whatToDo {
-        width: 200px;
-        text-align: center;
-
-        button {
-          width: 200px;
-          margin: 15px;
-          font-size: 20px;
-          padding: 10px 20px;
-          border: none;
-          color: $myPageBtnFontColor;
-          font-weight: bold;
-        }
-
-        .addToCartBtn {
-          background-color: $myPageSmallBtnColor;
-        }
-
-        .removeBtn {
-          background-color: $myPageBtnColor;
-        }
+      .removeBtn {
+        background-color: $myPageBtnColor;
       }
     }
   }

@@ -87,7 +87,11 @@ class Custom extends React.Component {
       view: "front",
       pattern: "",
       price: 6000,
-      addToCartBtnClicked: false,
+      uploaded: "",
+      priceChange: false,
+      patternChosen: false,
+      imageChosen: false,
+      addToCartBtnClicked: true,
       addToWishListBtnClicked: false
     };
   }

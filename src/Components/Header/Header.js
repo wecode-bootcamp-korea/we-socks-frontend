@@ -2,7 +2,7 @@ import React from "react";
 import "./header.scss";
 import Button from "Components/Button";
 import { Link } from "react-router-dom";
-import AddedToCartMessage from "Pages/MyPage/ShoppingCart/AddedToCartMessage";
+import AddedToCartMessage from "Components/AddedToCartMessage";
 class Header extends React.Component {
   constructor() {
     super();
@@ -39,8 +39,8 @@ class Header extends React.Component {
                 <Button className="myAccountBtn" text="My Account" />
               </Link>
             </div>
-            <Link to="/">
-              <span className="logo"></span>
+            <Link to="/" className="logo">
+              <span className="logoIcon"></span>
             </Link>
             <div className="cartWrap">
               <div className="cartIcon"></div>

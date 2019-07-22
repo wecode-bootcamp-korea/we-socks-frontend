@@ -1,7 +1,10 @@
 import React from "react";
+import "./sockItem.scss";
 import * as sockImage from "Components/SockItem/socksImages";
 import * as patternImage from "Components/SockItem/patternImages";
+import * as uploadedImage from "Components/SockItem/uploadedImages";
 
+const typeArr = ["noShow", "ankle", "mid", "high"];
 const matching = {
   "noShow front": [sockImage.noShowFront, sockImage.noShowFrontMasking],
   "noShow back": [sockImage.noShowBack, sockImage.noShowBackMasking],
@@ -35,27 +38,41 @@ const patternArr = [
   patternImage.tape
 ];
 
+const uploadedImageArr = [
+  uploadedImage.music,
+  uploadedImage.moon,
+  uploadedImage.nike,
+  uploadedImage.mirror,
+  uploadedImage.plus
+];
+
 class SockImage extends React.Component {
   render() {
-    const { type, color, pattern, view } = this.props;
+    const { type, color, pattern, view, uploaded } = this.props;
     return (
       <div className="itemImageContainer">
         <img
           className="sockImage imageNotMasked"
-          src={matching[`${type} ${view}`][0]}
-          alt={`${type} ${view}`}
+          src={matching[`${typeArr[type]} ${view}`][0]}
+          alt={`${typeArr[type]} ${view}`}
         />
         <img
           className="sockImage imageMasked"
           style={{ backgroundColor: color }}
-          src={matching[`${type} ${view}`][1]}
-          alt={`${type} ${view}`}
+          src={matching[`${typeArr[type]} ${view}`][1]}
+          alt={`${typeArr[type]} ${view}`}
         />
         <img
           className="sockImage patternMasked"
           style={{ backgroundImage: `url(${patternArr[pattern]})` }}
-          src={matching[`${type} ${view}`][1]}
-          alt={`${type} ${view}`}
+          src={matching[`${typeArr[type]} ${view}`][1]}
+          alt={`${typeArr[type]} ${view}`}
+        />
+        <img
+          className="sockImage uploadedImageMasked"
+          style={{ backgroundImage: `url(${uploadedImageArr[uploaded]})` }}
+          src={matching[`${typeArr[type]} ${view}`][1]}
+          alt={`${typeArr[type]} ${view}`}
         />
       </div>
     );

@@ -5,7 +5,6 @@ import InputBox from "Components/InputBox";
 import Button from "Components/Button";
 import Select from "Components/Select";
 import "./Signup.scss";
-import ImgUpLoad from "Components/ImgUpLoad";
 
 const mailArr = ["@이메일 선택", "@daum.net", "@naver.com", "@gmail.com"];
 const yearArr = ["출생년도"];
@@ -69,7 +68,6 @@ class Signup extends Component {
   render() {
     return (
       <div className="signupContainer">
-        <ImgUpLoad />
         <div className="signupContents">
           <header className="signupHeader">
             <h1>Sign up</h1>

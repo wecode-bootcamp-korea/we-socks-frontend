@@ -3,7 +3,22 @@
 
   width: 40px;
   height: 40px;
-
+  margin: 7.8px;
   border: 1px solid black;
   background-size: 50px;
+}
+
+.uploadedImagePicker {
+  display: inline-block;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  margin: 8px;
+  border: 1px solid black;
+  background-size: 50px;
+  &:hover {
+    opacity: 0.7;
+  }
 }

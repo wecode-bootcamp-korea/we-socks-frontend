@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
-import Header from "Components/Header";
-import Footer from "Components/Footer";
+import Layout from "Components/Layout";
 import Button from "Components/Button";
 import Select from "Components/Select";
 import SockItem from "Components/SockItem";
+import AddCommaToNumber from "Components/AddCommaToNumber";
 import "./shoppingCart.scss";
 
 const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
@@ -15,27 +15,65 @@ class ShoppingCart extends React.Component {
     super();
 
     this.state = {
-      cartArr: []
+      cartArr: [],
+      totalPrice: 0,
+      discountRate: 0.1,
+      checkChange: false
     };
   }
-  removeItem = () => {};
 
-  componentDidMount() {
+  removeItem = item => {
     axios
-      .post("http://10.58.6.101:8001/mypage/my_cart", { buyer: "bj" })
+      .post("http://10.58.7.11:8000/product/cancel_cart_req", { cart_id: item })
       .then(response => {
+        if (response.status === 200) {
+          this.setState({
+            checkChange: !this.state.checkChange
+          });
+        }
+      });
+  };
+
+  componentDidUpdate = prevState => {
+    if (this.state.checkChange !== prevState.checkChange) {
+      axios
+        .post("http://10.58.7.11:8000/mypage/cart", { user_pk: 1 })
+        .then(response => {
+          this.setState({
+            cartArr: response.data.my_cart_list,
+            totalPrice: response.data.my_cart_total_price,
+            totalCount: response.data.my_cart_total_amount,
+            totalPoints: response.data.my_total_points
+          });
+        });
+    }
+  };
+
+  componentDidMount = () => {
+    axios
+      .post("http://10.58.7.11:8000/mypage/cart", { user_pk: 1 })
+      .then(response => {
+        console.log(response);
         this.setState({
-          cartArr: response.data[0].my_basket_list
+          cartArr: response.data.my_cart_list,
+          totalPrice: response.data.my_cart_total_price,
+          totalCount: response.data.my_cart_total_amount,
+          totalPoints: response.data.my_total_points
         });
       });
-  }
+  };
 
   render() {
-    const { cartArr } = this.state;
-    console.log(cartArr);
+    const {
+      cartArr,
+      totalPrice,
+      discountRate,
+      totalCount,
+      totalPoints
+    } = this.state;
+    const discountPrice = totalPrice * discountRate;
     return (
-      <>
-        <Header />
+      <Layout>
         <div className="shoppingCartRoot">
           <p>Shopping Cart</p>
           <div className="shoppingCartContainer">
@@ -45,6 +83,7 @@ class ShoppingCart extends React.Component {
                   <li className="shoppingCartList">
                     <div className="productImage">
                       <SockItem
+                        key={`shoppingCart-${idx}`}
                         type={typeArr[el.design.main_type - 1]}
                         color={el.design.color}
                         pattern={el.design.pattern}
@@ -55,8 +94,12 @@ class ShoppingCart extends React.Component {
                       <div className="productCategoryAndType">{`${
                         categoryArr[el.design.category]
                       } ${typeArr[el.design.main_type - 1]}`}</div>
-                      <div className="productPrice">가격: 8,000</div>
-                      <div className="pointsPrediction">예상포인트: 600</div>
+                      <div className="productPrice">
+                        가격: {AddCommaToNumber(el.total_price)}
+                      </div>
+                      <div className="pointsPrediction">
+                        예상포인트: {AddCommaToNumber(el.rewards_points)}
+                      </div>
                     </div>
                     <div className="productRightContainer">
                       <Select
@@ -70,7 +113,7 @@ class ShoppingCart extends React.Component {
                         className="removeItemBtn"
                         name="removeItemBtn"
                         text="삭제"
-                        onClick={this.removeItem}
+                        onClick={() => this.removeItem(el.id)}
                       />
                     </div>
                   </li>
@@ -85,15 +128,21 @@ class ShoppingCart extends React.Component {
                   text="결제하기"
                   onClick={this.handlePayment}
                 />
-                <div className="countTotal">총 주문 상품: 2개</div>
+                <div className="countTotal">
+                  총 주문 상품: {AddCommaToNumber(totalCount)}개
+                </div>
                 <div className="priceWrap">
                   <div className="subtotalWrap">
                     <p>총 주문 가격</p>
-                    <div className="subtotal">318,000</div>
+                    <div className="subtotal">
+                      {AddCommaToNumber(totalPrice)}
+                    </div>
                   </div>
                   <div className="discountWrap">
                     <p>할인</p>
-                    <div className="discountTotal">47,600</div>
+                    <div className="discountTotal">
+                      {AddCommaToNumber(discountPrice)}
+                    </div>
                   </div>
                   <div className="shippingWrap">
                     <p>배송비</p>
@@ -101,19 +150,22 @@ class ShoppingCart extends React.Component {
                   </div>
                   <div className="priceTotalWrap">
                     <p>총 결제금액</p>
-                    <div className="priceTotal">270,400</div>
+                    <div className="priceTotal">
+                      {AddCommaToNumber(totalPrice - discountPrice)}
+                    </div>
                   </div>
                   <div className="pointsWrap">
                     <p>예상포인트</p>
-                    <div className="predictedPoints">1,500</div>
+                    <div className="predictedPoints">
+                      {AddCommaToNumber(totalPoints)}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <Footer />
-      </>
+      </Layout>
     );
   }
 }

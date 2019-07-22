@@ -6,7 +6,7 @@ import "./orderDetail.scss";
 
 const OrderDetail = props => {
   axios
-    .post(`http://10.58.5.85:9000/purchase/my_order`, { buyer: "bj" })
+    .post(`http://10.58.7.11:8000/mypage/cart`, { user_pk: 1 })
 
     .then(response => {
       console.log("response: ", response.data);

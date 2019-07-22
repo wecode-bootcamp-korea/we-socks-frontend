@@ -36,39 +36,43 @@ class OrderHistory extends React.Component {
       >
         <div className="orderHistoryRoot detailRoot">
           <p>Order History</p>
-          <ul className="previousOrders">
-            {orderHistoryArr.map((el, idx) => (
-              <li className="eachOrder">
-                <span className="productImage">
-                  <SockItem
-                    key={`orderHistory-${idx}`}
-                    type={el.main_type}
-                    color={el.color}
-                    pattern={el.pattern}
-                    view="side"
-                  />
-                </span>
-                <div className="orderExplanationWrap">
-                  <div className="orderSummary">
-                    <div className="statusAndDate">Delivered: Jun 5, 2019</div>
-                    <div className="productName">{el.label}</div>
-                    <div className="categoryAndType">{`${el.category} ${el.main_type}`}</div>
-                    <div className="orderedDate">
-                      Ordered: {el.ordered_date}
-                    </div>
-                    <div className="orderNumber">Order # {el.order_code}</div>
-                  </div>
-                  <Link to="/orderdetail">
-                    <Button
-                      className="orderDetailBtn"
-                      text="Order Detail"
-                      onClick={this.handleClick}
+          {orderHistoryArr && (
+            <ul className="previousOrders">
+              {orderHistoryArr.map((el, idx) => (
+                <li className="eachOrder">
+                  <span className="productImage">
+                    <SockItem
+                      key={`orderHistory-${idx}`}
+                      type={el.main_type}
+                      color={el.color}
+                      pattern={el.pattern}
+                      view="side"
                     />
-                  </Link>
-                </div>
-              </li>
-            ))}
-          </ul>
+                  </span>
+                  <div className="orderExplanationWrap">
+                    <div className="orderSummary">
+                      <div className="statusAndDate">
+                        Delivered: Jun 5, 2019
+                      </div>
+                      <div className="productName">{el.label}</div>
+                      <div className="categoryAndType">{`${el.category} ${el.main_type}`}</div>
+                      <div className="orderedDate">
+                        Ordered: {el.ordered_date}
+                      </div>
+                      <div className="orderNumber">Order # {el.order_code}</div>
+                    </div>
+                    <Link to="/orderdetail">
+                      <Button
+                        className="orderDetailBtn"
+                        text="Order Detail"
+                        onClick={this.handleClick}
+                      />
+                    </Link>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     );

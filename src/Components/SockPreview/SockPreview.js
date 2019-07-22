@@ -1,24 +1,47 @@
 import React from "react";
-import * as sockImage from "Components/SockItem/socksImages";
-import * as patternImage from "Components/SockItem/patternImages";
 
 import { Link } from "react-router-dom";
 import "./sockPreview.scss";
-const matching = {
-  "noShow front": [sockImage.noShowFront, sockImage.noShowFrontMasking],
-  "noShow back": [sockImage.noShowBack, sockImage.noShowBackMasking],
-  "noShow side": [sockImage.noShowSide, sockImage.noShowSideMasking],
-  "ankle front": [sockImage.ankleFront, sockImage.ankleFrontMasking],
-  "ankle back": [sockImage.ankleBack, sockImage.ankleBackMasking],
-  "ankle side": [sockImage.ankleSide, sockImage.ankleSideMasking],
-  "mid front": [sockImage.midFront, sockImage.midFrontMasking],
-  "mid back": [sockImage.midBack, sockImage.midBackMasking],
-  "mid side": [sockImage.midSide, sockImage.midSideMasking],
-  "high front": [sockImage.highFront, sockImage.highFrontMasking],
-  "high back": [sockImage.highBack, sockImage.highBackMasking],
-  "high side": [sockImage.highSide, sockImage.highSideMasking]
-};
+
+import * as sockImage from "Components/SockItem/socksImages";
+import * as patternImage from "Components/SockItem/patternImages";
+import * as uploadedImage from "Components/SockItem/uploadedImages";
+
+const colorArr = [
+  "#F0EDE5",
+  "#EAE6DA",
+  "#F1EA7F",
+  "#ECDB54",
+  "#D1B894",
+  "#C0AB8E",
+  "#D5AE41",
+  "#E47A2E",
+  "#E94B3C",
+  "#BD3D3A",
+  "#BCBCBE",
+  "#B4B7BA",
+  "#EABEDB",
+  "#DBB1CD",
+  "#BE9EC9",
+  "#BC70A4",
+  "#6B5B95",
+  "#944743",
+  "#7F4145",
+  "#6C4F3D",
+  "#EC9787",
+  "#BFD641",
+  "#95DEE3",
+  "#6F9FD8",
+  "#3F69AA",
+  "#00A591",
+  "#006E6D",
+  "#766F57",
+  "#2E4A62",
+  "#485167"
+];
+
 const patternArr = [
+  "",
   patternImage.Argyle,
   patternImage.bear,
   patternImage.bird,
@@ -35,6 +58,22 @@ const patternArr = [
   patternImage.money,
   patternImage.tape
 ];
+
+const typeArr = ["noShow", "ankle", "mid", "high"];
+const matching = {
+  "noShow front": [sockImage.noShowFront, sockImage.noShowFrontMasking],
+  "noShow back": [sockImage.noShowBack, sockImage.noShowBackMasking],
+  "noShow side": [sockImage.noShowSide, sockImage.noShowSideMasking],
+  "ankle front": [sockImage.ankleFront, sockImage.ankleFrontMasking],
+  "ankle back": [sockImage.ankleBack, sockImage.ankleBackMasking],
+  "ankle side": [sockImage.ankleSide, sockImage.ankleSideMasking],
+  "mid front": [sockImage.midFront, sockImage.midFrontMasking],
+  "mid back": [sockImage.midBack, sockImage.midBackMasking],
+  "mid side": [sockImage.midSide, sockImage.midSideMasking],
+  "high front": [sockImage.highFront, sockImage.highFrontMasking],
+  "high back": [sockImage.highBack, sockImage.highBackMasking],
+  "high side": [sockImage.highSide, sockImage.highSideMasking]
+};
 
 class SockPreview extends React.Component {
   state = {

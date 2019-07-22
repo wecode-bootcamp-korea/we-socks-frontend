@@ -8,7 +8,7 @@ import AddCommaToNumber from "Components/AddCommaToNumber";
 import "./shoppingCart.scss";
 
 const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
-const typeArr = ["noShow", "ankle", "mid", "high"];
+const typeArr = ["No-Show", "Ankle", "Mid", "High"];
 
 class ShoppingCart extends React.Component {
   constructor() {
@@ -24,36 +24,45 @@ class ShoppingCart extends React.Component {
 
   removeItem = item => {
     axios
-      .post("http://10.58.7.11:8000/product/cancel_cart_req", { cart_id: item })
+      .post("http://10.58.4.155:8000/product/cancel_cart_req", {
+        cart_id: item
+      })
       .then(response => {
         if (response.status === 200) {
-          this.setState({
-            checkChange: !this.state.checkChange
-          });
+          axios
+            .post("http://10.58.4.155:8000/mypage/cart", { user_pk: 1 })
+            .then(response => {
+              this.setState({
+                cartArr: response.data.my_cart_list,
+                totalPrice: response.data.my_cart_total_price,
+                totalCount: response.data.my_cart_total_amount,
+                totalPoints: response.data.my_total_points
+              });
+            });
         }
       });
   };
 
-  componentDidUpdate = prevState => {
-    if (this.state.checkChange !== prevState.checkChange) {
-      axios
-        .post("http://10.58.7.11:8000/mypage/cart", { user_pk: 1 })
-        .then(response => {
-          this.setState({
-            cartArr: response.data.my_cart_list,
-            totalPrice: response.data.my_cart_total_price,
-            totalCount: response.data.my_cart_total_amount,
-            totalPoints: response.data.my_total_points
-          });
-        });
-    }
-  };
+  // componentDidUpdate = prevState => {
+  //   console.log(123);
+  //   if (this.state.checkChange !== prevState.checkChange) {
+  //     axios
+  //       .post("http://10.58.4.155:8000/mypage/cart", { user_pk: 1 })
+  //       .then(response => {
+  //         this.setState({
+  //           cartArr: response.data.my_cart_list,
+  //           totalPrice: response.data.my_cart_total_price,
+  //           totalCount: response.data.my_cart_total_amount,
+  //           totalPoints: response.data.my_total_points
+  //         });
+  //       });
+  //   }
+  // };
 
   componentDidMount = () => {
     axios
-      .post("http://10.58.7.11:8000/mypage/cart", { user_pk: 1 })
+      .post("http://10.58.4.155:8000/mypage/cart", { user_pk: 1 })
       .then(response => {
-        console.log(response);
         this.setState({
           cartArr: response.data.my_cart_list,
           totalPrice: response.data.my_cart_total_price,
@@ -84,7 +93,7 @@ class ShoppingCart extends React.Component {
                     <div className="productImage">
                       <SockItem
                         key={`shoppingCart-${idx}`}
-                        type={typeArr[el.design.main_type - 1]}
+                        type={el.design.main_type - 1}
                         color={el.design.color}
                         pattern={el.design.pattern}
                         view="side"
@@ -98,7 +107,7 @@ class ShoppingCart extends React.Component {
                         가격: {AddCommaToNumber(el.total_price)}
                       </div>
                       <div className="pointsPrediction">
-                        예상포인트: {AddCommaToNumber(el.rewards_points)}
+                        예상포인트: {AddCommaToNumber(el.reward_points)}
                       </div>
                     </div>
                     <div className="productRightContainer">

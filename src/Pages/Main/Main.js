@@ -1,5 +1,6 @@
 import React from "react";
 import Square from "Components/MainSquare";
+import SquareTwo from "Components/MainSquare2";
 import Layout from "Components/Layout";
 import "./main.scss";
 import { Link } from "react-router-dom";
@@ -50,66 +51,26 @@ const Main = () => {
         </Link>
       </div>
       <div className="mainFooter">
-        <div className="footerItem">
-          <h2>
-            <img
-              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/smiley_1x.png"
-              sizes="35px"
-              height="35"
-              alt="Smiley icon"
-            />
-          </h2>
-          <h2>SO MUCH MORE THAN SOCKS</h2>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
-            quibusdam optio laborum minus debitis libero non
-          </p>
-        </div>
-        <div className="footerItem">
-          <h2>
-            <img
-              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/card_1x.png"
-              sizes="35px"
-              height="35"
-              alt="Smiley icon"
-            />
-          </h2>
-          <h2>THE PERFECT GIFT</h2>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
-            quibusdam optio laborum minus debitis libero non
-          </p>
-        </div>
-        <div className="footerItem">
-          <h2>
-            <img
-              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/card_1x.png"
-              sizes="35px"
-              height="35"
-              alt="Smiley icon"
-            />
-          </h2>
-          <h2>SO MUCH MORE THAN SOCKS</h2>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
-            quibusdam optio laborum minus debitis libero non
-          </p>
-        </div>
-        <div className="footerItem">
-          <h2>
-            <img
-              src="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/truck_1x.png"
-              sizes="35px"
-              height="35"
-              alt="Smiley icon"
-            />
-          </h2>
-          <h2>SO MUCH MORE THAN SOCKS</h2>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
-            quibusdam optio laborum minus debitis libero non
-          </p>
-        </div>
+        <SquareTwo
+          imgSrc="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/smiley_1x.png"
+          alt="Smiley icon"
+          title="SO MUCH MORE THAN SOCKS"
+        />
+        <SquareTwo
+          imgSrc="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/card_1x.png"
+          alt="Card icon"
+          title="THE PERFECT GIFT"
+        />
+        <SquareTwo
+          imgSrc="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/truck_1x.png"
+          alt="Truck icon"
+          title="SO MUCH MORE THAN SOCKS"
+        />
+        <SquareTwo
+          imgSrc="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/smiley_1x.png"
+          alt="Smiley icon"
+          title="SO MUCH MORE THAN SOCKS"
+        />
       </div>
     </Layout>
   );

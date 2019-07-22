@@ -1,0 +1,18 @@
+.itemImageContainer {
+  .imageMasked {
+    position: relative;
+    mix-blend-mode: multiply;
+  }
+
+  .patternMasked {
+    position: absolute;
+    left: 280px;
+    mix-blend-mode: multiply;
+  }
+
+  .uploadedImageMasked {
+    position: absolute;
+    mix-blend-mode: multiply;
+    background-size: 20%;
+  }
+}

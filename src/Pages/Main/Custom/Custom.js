@@ -6,6 +6,7 @@ import SockItem from "Components/SockItem";
 import axios from "axios";
 import Span from "Components/Span";
 import * as patternImage from "Components/SockItem/patternImages";
+import * as uploadedImage from "Components/SockItem/uploadedImages";
 import AddedToCartMessage from "Components/AddedToCartMessage";
 
 const colorArr = [
@@ -60,6 +61,15 @@ const patternArr = [
   patternImage.tape
 ];
 
+const uploadedImageArr = [
+  "",
+  uploadedImage.music,
+  uploadedImage.moon,
+  uploadedImage.nike,
+  uploadedImage.mirror,
+  uploadedImage.plus
+];
+
 const viewArr = ["front", "back", "side"];
 const typeArr = ["noShow", "ankle", "mid", "high"];
 
@@ -73,8 +83,10 @@ class Custom extends React.Component {
       view: "front",
       pattern: "",
       price: 6000,
+      uploaded: "",
       priceChange: false,
       patternChosen: false,
+      imageChosen: false,
       addToCartBtnClicked: false,
       addToWishListBtnClicked: false
     };
@@ -87,22 +99,69 @@ class Custom extends React.Component {
     });
   };
 
+  decreasePrice = () => {
+    this.setState({
+      priceChange: !this.state.priceChange,
+      price: this.state.price - 2000
+    });
+  };
+
   changeDesign = (e, value) => {
     const sockProperty = [e.target.getAttribute("name")];
     this.setState({
       [sockProperty]: value
     });
-    if (sockProperty[0] === "pattern" && !this.state.patternChosen) {
+
+    if (
+      !this.state.patternChosen &&
+      sockProperty[0] === "pattern" &&
+      value !== 0
+    ) {
       this.setState(
         {
           patternChosen: !this.state.patternChosen
         },
         () => this.increasePrice()
       );
+    } else if (
+      this.state.patternChosen &&
+      sockProperty[0] === "pattern" &&
+      value === 0
+    ) {
+      this.setState(
+        {
+          patternChosen: !this.state.patternChosen
+        },
+        () => this.decreasePrice()
+      );
+    }
+
+    if (
+      !this.state.imageChosen &&
+      sockProperty[0] === "uploaded" &&
+      value !== 0
+    ) {
+      this.setState(
+        {
+          imageChosen: !this.state.imageChosen
+        },
+        () => this.increasePrice()
+      );
+    } else if (
+      this.state.imageChosen &&
+      sockProperty[0] === "uploaded" &&
+      value === 0
+    ) {
+      this.setState(
+        {
+          imageChosen: !this.state.imageChosen
+        },
+        () => this.decreasePrice()
+      );
     }
   };
 
-  addToCart = e => {
+  addToCart = () => {
     let sockData = {
       know_design_id: "no",
       user_pk: 1,
@@ -110,7 +169,7 @@ class Custom extends React.Component {
       main_type_id: this.state.type + 1,
       color: this.state.color,
       pattern_id: this.state.pattern,
-      logo_id: "1",
+      logo_id: this.state.uploaded,
       other_req: "req",
       amount: 1,
       unit_price: this.state.price
@@ -119,52 +178,53 @@ class Custom extends React.Component {
     axios
       .post("http://10.58.7.11:8000/product/add_cart_req", sockData)
       .then(response => {
-        console.log(response);
+        if (response.status === 200) {
+          this.setState(
+            {
+              addToCartBtnClicked: !this.state.addToCartBtnClicked
+            },
+            () => {
+              setTimeout(() => {
+                this.setState({
+                  addToCartBtnClicked: !this.state.addToCartBtnClicked
+                });
+              }, 2000);
+            }
+          );
+        }
       });
-
-    this.setState(
-      {
-        addToCartBtnClicked: !this.state.addToCartBtnClicked
-      },
-      () => {
-        setTimeout(() => {
-          this.setState({
-            addToCartBtnClicked: !this.state.addToCartBtnClicked
-          });
-        }, 2000);
-      }
-    );
   };
 
-  addToWishList = e => {
+  addToWishList = () => {
     let sockData = {
-      know_design_id: "no",
+      know_design_id: "yes",
       user_pk: 1,
       category_id: 1,
       main_type_id: this.state.type + 1,
       color: this.state.color,
       pattern_id: this.state.pattern,
-      logo_id: 1
+      logo_id: this.state.uploaded,
+      unit_price: this.state.price
     };
 
     axios
       .post("http://10.58.7.11:8000/product/wish_req", sockData)
       .then(response => {
-        console.log(response);
+        if (response.status === 200) {
+          this.setState(
+            {
+              addToWishListBtnClicked: !this.state.addToWishListBtnClicked
+            },
+            () => {
+              setTimeout(() => {
+                this.setState({
+                  addToWishListBtnClicked: !this.state.addToWishListBtnClicked
+                });
+              }, 2000);
+            }
+          );
+        }
       });
-
-    this.setState(
-      {
-        addToWishListBtnClicked: !this.state.addToWishListBtnClicked
-      },
-      () => {
-        setTimeout(() => {
-          this.setState({
-            addToWishListBtnClicked: !this.state.addToWishListBtnClicked
-          });
-        }, 2000);
-      }
-    );
   };
 
   render() {
@@ -175,6 +235,7 @@ class Custom extends React.Component {
       price,
       priceChange,
       pattern,
+      uploaded,
       addToCartBtnClicked,
       addToWishListBtnClicked
     } = this.state;
@@ -217,9 +278,10 @@ class Custom extends React.Component {
             <div className="socksContainer">
               <SockItem
                 color={color}
-                pattern={pattern}
+                pattern={pattern - 1}
                 type={type}
                 view={view}
+                uploaded={uploaded - 1}
               />
             </div>
             <div className="rightSideWrap">
@@ -227,13 +289,13 @@ class Custom extends React.Component {
                 <div className="chooseColor">
                   <p>Choose Color</p>
                   <div className="colorPickerContainer">
-                    {colorArr.map((el, idx) => (
+                    {colorArr.map((color, idx) => (
                       <Button
                         className="color colorContainer"
                         name="color"
-                        style={{ backgroundColor: el }}
+                        style={{ backgroundColor: color }}
                         key={`color-${idx}`}
-                        onClick={e => this.changeDesign(e, el)}
+                        onClick={e => this.changeDesign(e, color)}
                       />
                     ))}
                   </div>
@@ -244,6 +306,7 @@ class Custom extends React.Component {
                     {patternArr.map((image, idx) => {
                       return (
                         <Span
+                          className="patternPicker"
                           style={{ backgroundImage: `url(${image})` }}
                           name="pattern"
                           key={`pattern-${idx}`}
@@ -255,7 +318,19 @@ class Custom extends React.Component {
                 </div>
                 <div className="chooseImage">
                   <p>Choose Image</p>
-                  <div className="imagePicker"></div>
+                  <div className="imagePickerContainer">
+                    {uploadedImageArr.map((image, idx) => {
+                      return (
+                        <Span
+                          className="uploadedImagePicker"
+                          style={{ backgroundImage: `url(${image})` }}
+                          name="uploaded"
+                          key={`uploaded-${idx}`}
+                          onClick={e => this.changeDesign(e, idx)}
+                        />
+                      );
+                    })}
+                  </div>
                 </div>
                 <div className="orderWrap">
                   <div

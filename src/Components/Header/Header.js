@@ -39,8 +39,8 @@ class Header extends React.Component {
                 <Button className="myAccountBtn" text="My Account" />
               </Link>
             </div>
-            <Link to="/">
-              <span className="logo"></span>
+            <Link to="/" className="logo">
+              <span className="logoIconSpan"></span>
             </Link>
             <div className="cartWrap">
               <div className="cartIcon"></div>

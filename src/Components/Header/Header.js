@@ -40,7 +40,7 @@ class Header extends React.Component {
               </Link>
             </div>
             <Link to="/" className="logo">
-              <span className="logoIconSpan"></span>
+              <span className="logoIcon"></span>
             </Link>
             <div className="cartWrap">
               <div className="cartIcon"></div>

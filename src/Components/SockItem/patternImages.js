@@ -1,18 +1,21 @@
-import Argyle from "assets/images/patterns/Argyle.png";
-import bear from "assets/images/patterns/bear.png";
-import bird from "assets/images/patterns/bird.png";
-import block from "assets/images/patterns/block.png";
-import color_block from "assets/images/patterns/color_block.png";
-import crown from "assets/images/patterns/crown.png";
-import dotted from "assets/images/patterns/dotted.png";
-import flower from "assets/images/patterns/flower.png";
-import heart from "assets/images/patterns/heart.png";
-import raindrop from "assets/images/patterns/raindrop.png";
-import stripe from "assets/images/patterns/stripe.png";
-import tree from "assets/images/patterns/tree.png";
-import hive from "assets/images/patterns/hive.png";
-import money from "assets/images/patterns/money.png";
-import tape from "assets/images/patterns/tape.png";
+const s3Url =
+  "https://wesocks-design-management.s3.ap-northeast-2.amazonaws.com";
+
+const Argyle = `${s3Url}/Argyle.png`;
+const bear = `${s3Url}/bear.png`;
+const bird = `${s3Url}/bird.png`;
+const block = `${s3Url}/block.png`;
+const color_block = `${s3Url}/color_block.png`;
+const crown = `${s3Url}/crown.png`;
+const dotted = `${s3Url}/dotted.png`;
+const flower = `${s3Url}/flower.png`;
+const heart = `${s3Url}/heart.png`;
+const raindrop = `${s3Url}/raindrop.png`;
+const stripe = `${s3Url}/stripe.png`;
+const tree = `${s3Url}/tree.png`;
+const hive = `${s3Url}/hive.png`;
+const money = `${s3Url}/money.png`;
+const tape = `${s3Url}/tape.png`;
 
 export {
   Argyle,

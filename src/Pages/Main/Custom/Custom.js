@@ -188,7 +188,7 @@ class Custom extends React.Component {
                 this.setState({
                   addToCartBtnClicked: !this.state.addToCartBtnClicked
                 });
-              }, 2000);
+              }, 3000);
             }
           );
         }

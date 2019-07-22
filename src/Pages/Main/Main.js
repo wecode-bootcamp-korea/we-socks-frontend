@@ -1,7 +1,6 @@
 import React from "react";
 import Square from "Components/MainSquare";
 import SquareTwo from "Components/MainSquare2";
-import Layout from "Components/Layout";
 import "./main.scss";
 import { Link } from "react-router-dom";
 import casualImg from "assets/images/MainSqure/casual.jpg";
@@ -11,7 +10,7 @@ import athletic from "assets/images/MainSqure/athletic.jpg";
 
 const Main = () => {
   return (
-    <Layout>
+    <>
       <div className="mainItems">
         <Link
           to={{
@@ -72,7 +71,7 @@ const Main = () => {
           title="SO MUCH MORE THAN SOCKS"
         />
       </div>
-    </Layout>
+    </>
   );
 };
 

@@ -3,8 +3,11 @@
 .addedToCartMessage {
   position: absolute;
   z-index: 1;
-  bottom: 65%;
-  right: 12%;
+  right: 190px;
+  top: 150px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
   background-color: $shoppingCartMessageBoxColor;
   font-weight: bold;
   color: $shoppingCartDarkFontColor;
@@ -17,16 +20,26 @@
       opacity: 1;
     }
   }
-
+  .sectionContainer {
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    > span {
+      font-size: 17px;
+      font-weight: none;
+      padding-bottom: 5px;
+      border-bottom: 1px solid $myPageBtnClickedBorderColor;
+    }
+  }
   .addedToCartInformation {
     position: relative;
-    padding: 10px;
 
     .addedToCartList {
       display: flex;
+      padding-right: 9px;
 
       .addedToCartImage {
-        padding-left: 10px;
+        padding-left: 35px;
         .itemImageContainer {
           width: 80px;
           .sockImage {
@@ -36,20 +49,20 @@
           }
           .imageMasked {
             position: absolute;
-            right: 300px;
+            right: 235px;
             mix-blend-mode: multiply;
           }
 
           .patternMasked {
             position: absolute;
-            left: 10px;
+            left: 35px;
             mix-blend-mode: multiply;
           }
 
           .uploadedImageMasked {
             position: absolute;
             mix-blend-mode: multiply;
-            left: 10px;
+            left: 35px;
             background-size: 20%;
           }
         }
@@ -57,12 +70,12 @@
     }
 
     .addedToCartCategoryAndType {
-      font-size: 20px;
+      font-size: 15px;
       margin: 15px;
     }
 
     .addedToCartPrice {
-      font-size: 20px;
+      font-size: 15px;
       margin: 15px;
     }
   }
@@ -71,9 +84,8 @@
     font-size: 20px;
     font-weight: bold;
     width: 80%;
-    margin-left: 35px;
-    margin-bottom: 10px;
-    padding: 10px 0;
+    height: 40px;
+    margin: 15px 0 15px 30px;
     background-color: $myPageSmallBtnColor;
     color: white;
   }

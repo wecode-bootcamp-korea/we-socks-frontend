@@ -1,6 +1,5 @@
 import React from "react";
 import "./custom.scss";
-import Layout from "Components/Layout";
 import Button from "Components/Button";
 import SockItem from "Components/SockItem";
 import axios from "axios";
@@ -82,6 +81,7 @@ class Custom extends React.Component {
       type: 0,
       view: "front",
       pattern: "",
+      patternSize: "",
       price: 6000,
       uploaded: "",
       priceChange: false,
@@ -188,7 +188,7 @@ class Custom extends React.Component {
                 this.setState({
                   addToCartBtnClicked: !this.state.addToCartBtnClicked
                 });
-              }, 2000);
+              }, 3000);
             }
           );
         }
@@ -227,6 +227,12 @@ class Custom extends React.Component {
       });
   };
 
+  handleSize = e => {
+    this.setState({
+      patternSize: e.target.value
+    });
+  };
+
   render() {
     const {
       color,
@@ -235,13 +241,14 @@ class Custom extends React.Component {
       price,
       priceChange,
       pattern,
+      patternSize,
       uploaded,
       addToCartBtnClicked,
       addToWishListBtnClicked
     } = this.state;
 
     return (
-      <Layout>
+      <>
         <AddedToCartMessage showMessage={addToCartBtnClicked} />
         <div className="customRoot">
           <div className="chooseTypesWrap">
@@ -282,8 +289,20 @@ class Custom extends React.Component {
                 type={type}
                 view={view}
                 uploaded={uploaded - 1}
+                patternSize={patternSize}
               />
             </div>
+            <div className="patternSizeBar">
+              <input
+                type="range"
+                min="100"
+                max="300"
+                onChange={this.handleSize}
+                value={patternSize}
+                style={{ width: 250 }}
+              ></input>
+            </div>
+
             <div className="rightSideWrap">
               <div className="chooseWrap">
                 <div className="chooseColor">
@@ -362,7 +381,7 @@ class Custom extends React.Component {
             </div>
           )}
         </div>
-      </Layout>
+      </>
     );
   }
 }

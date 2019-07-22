@@ -30,7 +30,6 @@ class Header extends React.Component {
     const { cartBtnClicked } = this.state;
     return (
       <>
-        <AddedToCartMessage showMessage={cartBtnClicked} />
         <header className="pageHeader">
           <div className="headerTop">
             <div className="myAccountWrap">
@@ -50,6 +49,7 @@ class Header extends React.Component {
                 onClick={this.handleCartBtnClicked}
               />
             </div>
+            <AddedToCartMessage showMessage={cartBtnClicked} />
           </div>
           <div className="headerBottom">
             <div className="kids">KIDS</div>

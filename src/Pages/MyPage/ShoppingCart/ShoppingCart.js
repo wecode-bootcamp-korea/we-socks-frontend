@@ -13,24 +13,63 @@ class ShoppingCart extends React.Component {
     super();
 
     this.state = {
-      cartArr: []
+      cartArr: [],
+      totalPrice: 0,
+      discountRate: 0.1,
+      checkChange: false
     };
   }
-  removeItem = () => {};
 
-  componentDidMount() {
+  removeItem = item => {
     axios
-      .post("http://10.58.6.101:8001/mypage/my_cart", { buyer: "bj" })
+      .post("http://10.58.7.11:8000/product/cancel_cart_req", { cart_id: item })
       .then(response => {
+        if (response.status === 200) {
+          this.setState({
+            checkChange: !this.state.checkChange
+          });
+        }
+      });
+  };
+
+  componentDidUpdate = prevState => {
+    if (this.state.checkChange !== prevState.checkChange) {
+      axios
+        .post("http://10.58.7.11:8000/mypage/cart", { user_pk: 1 })
+        .then(response => {
+          this.setState({
+            cartArr: response.data.my_cart_list,
+            totalPrice: response.data.my_cart_total_price,
+            totalCount: response.data.my_cart_total_amount,
+            totalPoints: response.data.my_total_points
+          });
+        });
+    }
+  };
+
+  componentDidMount = () => {
+    axios
+      .post("http://10.58.7.11:8000/mypage/cart", { user_pk: 1 })
+      .then(response => {
+        console.log(response);
         this.setState({
-          cartArr: response.data[0].my_basket_list
+          cartArr: response.data.my_cart_list,
+          totalPrice: response.data.my_cart_total_price,
+          totalCount: response.data.my_cart_total_amount,
+          totalPoints: response.data.my_total_points
         });
       });
-  }
+  };
 
   render() {
-    const { cartArr } = this.state;
-    console.log(cartArr);
+    const {
+      cartArr,
+      totalPrice,
+      discountRate,
+      totalCount,
+      totalPoints
+    } = this.state;
+    const discountPrice = totalPrice * discountRate;
     return (
       <div className="shoppingCartRoot">
         <p>Shopping Cart</p>

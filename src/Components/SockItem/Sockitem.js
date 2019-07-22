@@ -1,6 +1,8 @@
 import React from "react";
+import "./sockItem.scss";
 import * as sockImage from "Components/SockItem/socksImages";
 import * as patternImage from "Components/SockItem/patternImages";
+import * as uploadedImage from "Components/SockItem/uploadedImages";
 
 const typeArr = ["noShow", "ankle", "mid", "high"];
 const matching = {
@@ -36,9 +38,17 @@ const patternArr = [
   patternImage.tape
 ];
 
+const uploadedImageArr = [
+  uploadedImage.music,
+  uploadedImage.moon,
+  uploadedImage.nike,
+  uploadedImage.mirror,
+  uploadedImage.plus
+];
+
 class SockImage extends React.Component {
   render() {
-    const { type, color, pattern, view } = this.props;
+    const { type, color, pattern, view, uploaded } = this.props;
     return (
       <div className="itemImageContainer">
         <img
@@ -55,6 +65,12 @@ class SockImage extends React.Component {
         <img
           className="sockImage patternMasked"
           style={{ backgroundImage: `url(${patternArr[pattern]})` }}
+          src={matching[`${typeArr[type]} ${view}`][1]}
+          alt={`${typeArr[type]} ${view}`}
+        />
+        <img
+          className="sockImage uploadedImageMasked"
+          style={{ backgroundImage: `url(${uploadedImageArr[uploaded]})` }}
           src={matching[`${typeArr[type]} ${view}`][1]}
           alt={`${typeArr[type]} ${view}`}
         />

@@ -8,8 +8,8 @@ const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
 const typeArr = ["noShow", "ankle", "mid", "high"];
 
 class WishList extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       wishListArr: [],
@@ -19,8 +19,8 @@ class WishList extends React.Component {
 
   removeFromWishList = item => {
     axios
-      .post("http://10.58.6.101:8001/product/cancel_wish_req", {
-        wish_id: item
+      .post("http://10.58.7.11:8000/product/cancel_wish_req", {
+        wished_id: item
       })
       .then(response => {
         if (response.status === 200) {
@@ -33,23 +33,41 @@ class WishList extends React.Component {
 
   addItemToCart = item => {
     let body = {
-      buyer: "bj",
+      user_pk: 1,
       design_id: item,
-      label: "socks",
+      know_design_id: "yes",
       amount: "1"
     };
-    axios.post("http://10.58.6.101:8001/product/add_cart_req", body);
+    axios
+      .post("http://10.58.7.11:8000/product/add_cart_req", body)
+      .then(response => {
+        if (response.status === 200) {
+          this.setState({
+            listChanged: !this.state.listChanged
+          });
+        }
+      });
   };
 
   componentDidMount = () => {
     axios
-      .post("http://10.58.5.85:8000/mypage/my_wishes", { buyer: "bj" })
+      .post("http://10.58.7.11:8000/mypage/wishes", { user_pk: 1 })
       .then(response => {
         this.setState({
-          wishListArr: response.data[0].my_wish_list
+          wishListArr: response.data.my_wish_list
         });
       });
   };
+
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   axios
+  //     .post("http://10.58.7.11:8000/mypage/wishes", { user_pk: 1 })
+  //     .then(response => {
+  //       this.setState({
+  //         wishListArr: response.data.my_wish_list
+  //       });
+  //     });
+  // };
 
   render() {
     const { className } = this.props;
@@ -82,16 +100,20 @@ class WishList extends React.Component {
                     } ${typeArr[el.design.main_type - 1]}`}</div>
                   </div>
                   <div className="whatToDo">
-                    <Button
-                      className="addToCartBtn"
-                      text="ADD TO CART"
-                      onClick={() => this.addItemToCart(el.design.id)}
-                    />
-                    <Button
-                      className="removeBtn"
-                      text="REMOVE"
-                      onClick={() => this.removeFromWishList(el.id)}
-                    />
+                    <div className="wishListBtnWrap">
+                      <Button
+                        className="addToCartBtn"
+                        text="ADD TO CART"
+                        onClick={() => this.addItemToCart(el.design.id)}
+                      />
+                    </div>
+                    <div className="wishListBtnWrap">
+                      <Button
+                        className="removeBtn"
+                        text="REMOVE"
+                        onClick={() => this.removeFromWishList(el.id)}
+                      />
+                    </div>
                   </div>
                 </div>
               </li>

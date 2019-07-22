@@ -11,7 +11,7 @@ class MyPage extends React.Component {
     super();
 
     this.state = {
-      clickedClass: "myAccount"
+      clickedClass: "wishList"
     };
   }
 

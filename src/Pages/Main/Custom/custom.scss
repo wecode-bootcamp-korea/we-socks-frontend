@@ -52,21 +52,11 @@
       width: 450px;
       height: 450px;
     }
-
-    .imageMasked {
-      position: relative;
-      mix-blend-mode: multiply;
-    }
-
-    .patternMasked {
-      position: absolute;
-      left: 280px;
-      mix-blend-mode: multiply;
-    }
   }
 
   .chooseWrap {
     padding: 50px 0 0 180px;
+    margin-left: 200px;
 
     > div {
       > p {
@@ -81,7 +71,6 @@
     > span {
       width: 40px;
       height: 40px;
-      margin: 6.905px;
       cursor: pointer;
       &:hover {
         opacity: 0.7;
@@ -97,6 +86,13 @@
       width: 40px;
       height: 40px;
       margin: 6px;
+      border: 1px solid white;
+    }
+
+    .imagePickerContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
   }
 

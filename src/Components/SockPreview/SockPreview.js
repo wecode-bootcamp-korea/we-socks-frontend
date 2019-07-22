@@ -1,23 +1,11 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
 import "./sockPreview.scss";
-import * as sockImage from "Components/SockPreview/socksImages";
-import * as patternImage from "Components/SockPreview/patternImages";
 
-const matching = {
-  "noShow front": [sockImage.noShowFront, sockImage.noShowFrontMasking],
-  "noShow back": [sockImage.noShowBack, sockImage.noShowBackMasking],
-  "noShow side": [sockImage.noShowSide, sockImage.noShowSideMasking],
-  "ankle front": [sockImage.ankleFront, sockImage.ankleFrontMasking],
-  "ankle back": [sockImage.ankleBack, sockImage.ankleBackMasking],
-  "ankle side": [sockImage.ankleSide, sockImage.ankleSideMasking],
-  "mid front": [sockImage.midFront, sockImage.midFrontMasking],
-  "mid back": [sockImage.midBack, sockImage.midBackMasking],
-  "mid side": [sockImage.midSide, sockImage.midSideMasking],
-  "high front": [sockImage.highFront, sockImage.highFrontMasking],
-  "high back": [sockImage.highBack, sockImage.highBackMasking],
-  "high side": [sockImage.highSide, sockImage.highSideMasking]
-};
+import * as sockImage from "Components/SockItem/socksImages";
+import * as patternImage from "Components/SockItem/patternImages";
+import * as uploadedImage from "Components/SockItem/uploadedImages";
 
 const colorArr = [
   "#F0EDE5",
@@ -70,6 +58,22 @@ const patternArr = [
   patternImage.money,
   patternImage.tape
 ];
+
+const typeArr = ["noShow", "ankle", "mid", "high"];
+const matching = {
+  "noShow front": [sockImage.noShowFront, sockImage.noShowFrontMasking],
+  "noShow back": [sockImage.noShowBack, sockImage.noShowBackMasking],
+  "noShow side": [sockImage.noShowSide, sockImage.noShowSideMasking],
+  "ankle front": [sockImage.ankleFront, sockImage.ankleFrontMasking],
+  "ankle back": [sockImage.ankleBack, sockImage.ankleBackMasking],
+  "ankle side": [sockImage.ankleSide, sockImage.ankleSideMasking],
+  "mid front": [sockImage.midFront, sockImage.midFrontMasking],
+  "mid back": [sockImage.midBack, sockImage.midBackMasking],
+  "mid side": [sockImage.midSide, sockImage.midSideMasking],
+  "high front": [sockImage.highFront, sockImage.highFrontMasking],
+  "high back": [sockImage.highBack, sockImage.highBackMasking],
+  "high side": [sockImage.highSide, sockImage.highSideMasking]
+};
 
 class SockPreview extends React.Component {
   state = {

@@ -1,10 +1,10 @@
 import React from "react";
 import "./span.scss";
 
-const Span = ({ onClick, name, style }) => {
+const Span = ({ onClick, name, style, className }) => {
   return (
     <span
-      className="patternPicker"
+      className={className}
       name={name}
       onClick={onClick}
       style={style}

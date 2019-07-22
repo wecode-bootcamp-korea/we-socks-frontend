@@ -48,7 +48,7 @@ const uploadedImageArr = [
 
 class SockImage extends React.Component {
   render() {
-    const { type, color, pattern, view, uploaded } = this.props;
+    const { type, color, pattern, patternSize, view, uploaded } = this.props;
     return (
       <div className="itemImageContainer">
         <img
@@ -64,7 +64,10 @@ class SockImage extends React.Component {
         />
         <img
           className="sockImage patternMasked"
-          style={{ backgroundImage: `url(${patternArr[pattern]})` }}
+          style={{
+            backgroundSize: `${patternSize}px`,
+            backgroundImage: `url(${patternArr[pattern]})`
+          }}
           src={matching[`${typeArr[type]} ${view}`][1]}
           alt={`${typeArr[type]} ${view}`}
         />

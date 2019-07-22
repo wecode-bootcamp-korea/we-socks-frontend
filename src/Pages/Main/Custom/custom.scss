@@ -42,12 +42,14 @@
   }
 
   .socksContainer {
+    position: relative;
     margin-top: 130px;
     margin-left: 50px;
     width: 450px;
     height: 450px;
 
     .sockImage {
+      left: 0;
       position: absolute;
       width: 450px;
       height: 450px;
@@ -57,10 +59,22 @@
       position: relative;
       mix-blend-mode: multiply;
     }
+
+    .patternMasked {
+      position: absolute;
+      mix-blend-mode: multiply;
+    }
+    .imgDragnDrop {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100px;
+    }
   }
 
   .chooseWrap {
-    padding: 50px 0 0 130px;
+    width: 465px;
+    padding: 50px 0 0 180px;
 
     > div {
       > p {
@@ -69,23 +83,61 @@
         margin: 40px 0 10px;
       }
     }
-
-    .colorPicker {
-      width: 10px;
-      height: 10px;
-      border: none;
-      margin-top: 0;
-    }
   }
 
   .colorPickerContainer {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 
     .colorContainer {
       width: 40px;
       height: 40px;
-      margin: 5px;
+      margin: 6px;
+    }
+  }
+
+  .orderWrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-right: 5px;
+
+    .priceEstimation {
+      font-weight: bold;
+      font-size: 20px;
+      padding: 8px 18px;
+    }
+    > button {
+      color: white;
+      font-weight: bold;
+      font-size: 23px;
+      padding: 8px 18px;
+
+      &:nth-child(2) {
+        background-color: $myPageSmallBtnColor;
+      }
+      &:last-child {
+        background-color: $myPageBtnColor;
+      }
+    }
+  }
+}
+
+.messageAddedToWishList {
+  position: absolute;
+  background-color: $shoppingCartMessageBoxColor;
+  left: 69%;
+  bottom: 3%;
+  padding: 10px 30px;
+  font-size: 20px;
+  animation: fadein 1s;
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 }

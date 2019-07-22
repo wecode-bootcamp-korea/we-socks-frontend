@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+// import Modal from "Components/Modal";
 import "./index.scss";
 import Routes from "./Routes";
 // import { Provider } from "react-redux";
@@ -12,6 +13,7 @@ ReactDOM.render(
   //   <Routes />
   // </Provider>,
   <Routes />,
+
   document.getElementById("root")
 );
 

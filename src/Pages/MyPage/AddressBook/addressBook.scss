@@ -2,10 +2,11 @@
 
 .addressWrap {
   background-color: $myPageBodyColor;
-  width: 18em;
-  padding: 1.3em 0 1.2em 1.3em;
+  width: 290px;
+  padding: 25px 0 15px 25px;
+  margin-top: 40px;
   > div {
-    margin-bottom: 0.8em;
+    margin-bottom: 20px;
     &:first-child {
       font-weight: bold;
       font-size: 25px;
@@ -39,8 +40,7 @@ ul {
 
 .topSectionWrap {
   display: flex;
-  border-bottom: 1px solid $myPageBorderColor;
-  margin-top: 2.8em;
+  margin-top: 45px;
   > p {
     &:first-child {
       font-weight: bold;
@@ -51,32 +51,33 @@ ul {
 }
 
 .addBtn {
-  margin: 1.5em 0 0 20em;
+  margin: 20px 0 0 300px;
   font-size: 18px;
 }
 
-.editAddress {
+.editAddress,
+.addAddress {
   background-color: $myPageBodyColor;
-  width: 18em;
-  padding: 1.3em 0 1.2em 1.3em;
-  margin-top: 1em;
+  width: 290px;
+  padding: 25px 0 15px 25px;
+  margin-top: 40px;
   > p {
     font-weight: bold;
-    margin: 0em;
+    margin: 0px;
     &:first-child {
       font-size: 25px;
-      margin-bottom: 1em;
+      margin-bottom: 25px;
     }
   }
 
   input {
-    width: 16em;
-    height: 2em;
+    width: 240px;
+    height: 30px;
     font-size: 15px;
-    margin: 0.5em 0 1em 0;
+    margin: 10px 0 20px 0;
   }
 
-  .editCompleteBtn {
+  button {
     background-color: $myPageBodyColor;
     font-size: 15px;
     color: $myPageSmallBtnColor;

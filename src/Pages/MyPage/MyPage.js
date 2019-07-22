@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "Components/Header";
+import Footer from "Components/Footer";
 import "./mypage.scss";
 import MyAccount from "Pages/MyPage/MyAccount";
 import PersonalInformation from "Pages/MyPage/PersonalInformation";
@@ -12,7 +13,7 @@ class MyPage extends React.Component {
     super();
 
     this.state = {
-      clickedClass: "personalInformation"
+      clickedClass: "myAccount"
     };
   }
 
@@ -92,6 +93,7 @@ class MyPage extends React.Component {
             </div>
           </div>
         </div>
+        <Footer />
       </>
     );
   }

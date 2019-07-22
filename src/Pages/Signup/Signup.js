@@ -5,6 +5,7 @@ import InputBox from "Components/InputBox";
 import Button from "Components/Button";
 import Select from "Components/Select";
 import "./Signup.scss";
+import { API_URL, TOKEN_KEY } from "config";
 
 const yearArr = ["출생년도"];
 const monthArr = ["월"];
@@ -41,7 +42,7 @@ class Signup extends Component {
   };
 
   handleOnClick = () => {
-    fetch("http://10.58.4.229:8000/user", {
+    fetch(`${API_URL}user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -53,10 +54,17 @@ class Signup extends Component {
         phone_number: this.state.phoneNumber,
         birthday: this.state.year + this.state.month + this.state.day
       })
-    });
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.error_code === "EMAILALREADYEXISTS") {
+          this.setState({
+            checkEmail: "이메일 중복"
+          });
+        }
+      });
   };
   render() {
-    console.log(this.state.email);
     return (
       <div className="signupContainer">
         <div className="signupContents">
@@ -71,15 +79,7 @@ class Signup extends Component {
               classname="signupIdInput"
               handleChange={this.handleInput}
             />
-            <p
-              className={`${
-                this.state.checkEmail !== this.state.email
-                  ? "showEmailText"
-                  : "hiddenEmailText"
-              }`}
-            >
-              email이 중복되었습니다.
-            </p>
+            <p className={this.state.checkEmail}></p>
           </div>
           <div className="signupPw">
             <InputBox
@@ -89,8 +89,8 @@ class Signup extends Component {
               name="password"
               handleChange={this.handleInput}
             />
-            <p className="showPwText">
-              비밀번호는 영문+숫자+특수문자 8자리 이상으로 설정해주세요.
+            <p className="showPwText1">
+              영문+숫자+특수문자 8자리 이상으로 설정해주세요.
             </p>
           </div>
           <div className="signupPw">
@@ -104,7 +104,7 @@ class Signup extends Component {
             <p
               className={`${
                 this.state.password !== this.state.rePassword
-                  ? "showPwText"
+                  ? "showPwText2"
                   : "hiddenPwText"
               }`}
             >

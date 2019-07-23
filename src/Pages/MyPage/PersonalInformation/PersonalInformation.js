@@ -65,12 +65,13 @@ class PersonalInformation extends React.Component {
               onChange={e => this.handleChange(e)}
             />
             <Button
-              className="updateNicknameBtn"
+              className="updateInfoBtn updateNicknameBtn"
               name="updateNickname"
               text="update"
               onClick={e => this.handleClick(e)}
             />
           </div>
+
           <div className="changePassword">
             <p>Password</p>
             <InputBox
@@ -80,13 +81,13 @@ class PersonalInformation extends React.Component {
               type="password"
               onChange={e => this.handleChange(e)}
             />
+            <Button
+              className="updateInfoBtn updatePasswordBtn"
+              name="updatePassword"
+              text="update"
+              onClick={e => this.handleClick(e)}
+            />
           </div>
-          <Button
-            className="updatePasswordBtn"
-            name="updatePassword"
-            text="update"
-            onClick={e => this.handleClick(e)}
-          />
         </div>
       </div>
     );

@@ -179,20 +179,21 @@ class Custom extends React.Component {
     axios
       .post("http://10.58.7.11:8000/product/add_cart_req", sockData)
       .then(response => {
-        if (response.status === 200) {
-          this.setState(
-            {
-              addToCartBtnClicked: !this.state.addToCartBtnClicked
-            },
-            () => {
-              setTimeout(() => {
-                this.setState({
-                  addToCartBtnClicked: !this.state.addToCartBtnClicked
-                });
-              }, 3000);
-            }
-          );
-        }
+        this.setState(
+          {
+            addToCartBtnClicked: !this.state.addToCartBtnClicked
+          },
+          () => {
+            setTimeout(() => {
+              this.setState({
+                addToCartBtnClicked: !this.state.addToCartBtnClicked
+              });
+            }, 3000);
+          }
+        );
+      })
+      .catch(error => {
+        alert("이미 등록된 상품입니다.");
       });
   };
 
@@ -225,6 +226,9 @@ class Custom extends React.Component {
             }
           );
         }
+      })
+      .catch(error => {
+        alert("이미 등록된 상품입니다.");
       });
   };
 

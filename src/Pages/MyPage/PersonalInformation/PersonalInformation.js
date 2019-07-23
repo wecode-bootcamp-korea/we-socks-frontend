@@ -10,7 +10,8 @@ class PersonalInformation extends React.Component {
 
     this.state = {
       nickname: "",
-      password: ""
+      password: "",
+      showSuccessMessage: false
     };
   }
 
@@ -20,6 +21,7 @@ class PersonalInformation extends React.Component {
       Authorization:
         "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NDN9.ZqD0eEcH_WXZ11rKA6ww2kGd-4zdQNu_k57OU-y0G7A"
     };
+
     if (e.target.name === "updateNickname") {
       body = {
         nickname: this.state.nickname
@@ -29,10 +31,14 @@ class PersonalInformation extends React.Component {
         password: this.state.password
       };
     }
+
     axios
       .post("http://10.58.6.61:8000/user/update", body, { headers })
       .then(response => {
-        console.log(response);
+        alert("정보변경 성공");
+      })
+      .catch(error => {
+        alert("실패");
       });
   };
 

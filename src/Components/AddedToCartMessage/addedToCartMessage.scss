@@ -1,0 +1,80 @@
+@import "Style/color.scss";
+
+.addedToCartMessage {
+  position: absolute;
+  z-index: 1;
+  bottom: 65%;
+  right: 12%;
+  background-color: $shoppingCartMessageBoxColor;
+  font-weight: bold;
+  color: $shoppingCartDarkFontColor;
+  animation: fadein 1s;
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .addedToCartInformation {
+    position: relative;
+    padding: 10px;
+
+    .addedToCartList {
+      display: flex;
+
+      .addedToCartImage {
+        padding-left: 10px;
+        .itemImageContainer {
+          width: 80px;
+          .sockImage {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+          }
+          .imageMasked {
+            position: absolute;
+            right: 300px;
+            mix-blend-mode: multiply;
+          }
+
+          .patternMasked {
+            position: absolute;
+            left: 10px;
+            mix-blend-mode: multiply;
+          }
+
+          .uploadedImageMasked {
+            position: absolute;
+            mix-blend-mode: multiply;
+            left: 10px;
+            background-size: 20%;
+          }
+        }
+      }
+    }
+
+    .addedToCartCategoryAndType {
+      font-size: 20px;
+      margin: 15px;
+    }
+
+    .addedToCartPrice {
+      font-size: 20px;
+      margin: 15px;
+    }
+  }
+
+  .showCartDetailBtn {
+    font-size: 20px;
+    font-weight: bold;
+    width: 80%;
+    margin-left: 35px;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    background-color: $myPageSmallBtnColor;
+    color: white;
+  }
+}

@@ -1,72 +1,128 @@
-import React from "react";
-import axios from "axios";
-import "./wishList.scss";
-import Button from "Components/Button";
+// import React from "react";
+// import axios from "axios";
+// import "./wishList.scss";
+// import Button from "Components/Button";
+// import SockItem from "Components/SockItem";
 
-class WishList extends React.Component {
-  constructor() {
-    super();
+// const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
+// const typeArr = ["noShow", "ankle", "mid", "high"];
 
-    this.state = {
-      wishListArr: []
-    };
-  }
+// class WishList extends React.Component {
+//   constructor(props) {
+//     super(props);
 
-  handleClick = () => {};
+//     this.state = {
+//       wishListArr: [],
+//       listChanged: false
+//     };
+//   }
 
-  componentDidMount = () => {
-    axios
-      .post("http://10.58.5.85:8000/mypage/my_wishes", { buyer: "bj" })
-      .then(response => {
-        this.setState({
-          wishListArr: response.data[0].my_wish_list
-        });
-      });
-  };
+//   removeFromWishList = item => {
+//     axios
+//       .post("http://10.58.7.11:8000/product/cancel_wish_req", {
+//         wished_id: item
+//       })
+//       .then(response => {
+//         if (response.status === 200) {
+//           this.setState({
+//             listChanged: !this.state.listChanged
+//           });
+//         }
+//       });
+//   };
 
-  render() {
-    const { className } = this.props;
-    const { wishListArr } = this.state;
+//   addItemToCart = item => {
+//     let body = {
+//       user_pk: 1,
+//       design_id: item,
+//       know_design_id: "yes",
+//       amount: "1"
+//     };
+//     axios
+//       .post("http://10.58.7.11:8000/product/add_cart_req", body)
+//       .then(response => {
+//         if (response.status === 200) {
+//           this.setState({
+//             listChanged: !this.state.listChanged
+//           });
+//         }
+//       });
+//   };
 
-    return (
-      <div
-        className={` wishList ${
-          className === "wishList" ? "showDetail" : "hidden"
-        }`}
-      >
-        <div className="wishListRoot detailRoot">
-          <p>Wish List</p>
-          <ul className="wishList">
-            {wishListArr.map((el, idx) => (
-              <li className="eachWishListItem">
-                <div className="wishListImage"></div>
-                <div className="wishListExplanation">
-                  <div className="wishListSummary">
-                    <div className="productName">{el.design.label}</div>
-                    <div className="categoryAndType">{`${el.design.category} ${el.design.main_type}`}</div>
-                    <Button
-                      className="removeBtn"
-                      text="Remove"
-                      onClick={this.handleClick}
-                    />
-                  </div>
-                  <div className="whatToDo">
-                    <div className="productStatus">In Stock</div>
-                    <div className="selectCount">1</div>
-                    <Button
-                      className="addToBagBtn"
-                      text="ADD TO BAG"
-                      onClick={this.handleClick}
-                    />
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    );
-  }
-}
+//   componentDidMount = () => {
+//     axios
+//       .post("http://10.58.7.11:8000/mypage/wishes", { user_pk: 1 })
+//       .then(response => {
+//         this.setState({
+//           wishListArr: response.data.my_wish_list
+//         });
+//       });
+//   };
 
-export default WishList;
+//   // componentDidUpdate = (prevProps, prevState) => {
+//   //   axios
+//   //     .post("http://10.58.7.11:8000/mypage/wishes", { user_pk: 1 })
+//   //     .then(response => {
+//   //       this.setState({
+//   //         wishListArr: response.data.my_wish_list
+//   //       });
+//   //     });
+//   // };
+
+//   render() {
+//     const { className } = this.props;
+//     const { wishListArr } = this.state;
+
+//     return (
+//       <div
+//         className={` wishList ${
+//           className === "wishList" ? "showDetail" : "hidden"
+//         }`}
+//       >
+//         <div className="wishListRoot detailRoot">
+//           <p>Wish List</p>
+//           <ul className="wishList">
+//             {wishListArr.map((el, idx) => (
+//               <li className="eachWishListItem">
+//                 <div className="wishListImage">
+//                   <SockItem
+//                     key={`wishList-${idx}`}
+//                     type={el.design.main_type - 1}
+//                     view="side"
+//                     color={el.design.color}
+//                     pattern={el.design.pattern}
+//                   />
+//                 </div>
+//                 <div className="wishListExplanation">
+//                   <div className="wishListSummary">
+//                     <div className="categoryAndType">{`${
+//                       categoryArr[el.design.category - 1]
+//                     } ${typeArr[el.design.main_type - 1]}`}</div>
+//                   </div>
+//                   <div className="whatToDo">
+//                     <div className="wishListBtnWrap">
+//                       <Button
+//                         className="addToCartBtn"
+//                         text="ADD TO CART"
+//                         onClick={() => this.addItemToCart(el.design.id)}
+//                       />
+//                     </div>
+//                     <div className="wishListBtnWrap">
+//                       <Button
+//                         className="removeBtn"
+//                         text="REMOVE"
+//                         onClick={() => this.removeFromWishList(el.id)}
+//                       />
+//                     </div>
+//                   </div>
+//                 </div>
+//               </li>
+//             ))}
+//           </ul>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
+
+// export default WishList;

@@ -6,47 +6,57 @@
   margin-bottom: 20px;
   border-bottom: 1px solid $myPageBorderColor;
   .wishListImage {
-    background-image: url("https://dsjft9k463jj9.cloudfront.net/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/m/z/mz180001_11.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    width: 180px;
+    .sockImage {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+    }
+
+    .imageMasked {
+      position: relative;
+      mix-blend-mode: multiply;
+    }
+
+    .patternMasked {
+      position: absolute;
+      left: 0;
+      mix-blend-mode: multiply;
+    }
+  }
+}
+
+.wishListExplanation {
+  display: flex;
+  .wishListSummary {
+    width: 300px;
+    padding: 25px 0 0 25px;
+
+    .categoryAndType {
+      color: $shoppingCartDarkFontColor;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 20px;
+    }
   }
 
-  .wishListExplanation {
-    display: flex;
-    .wishListSummary {
-      width: 300px;
-      padding: 25px 0 0 25px;
-      > div {
+  .whatToDo {
+    text-align: center;
+    .wishListBtnWrap {
+      > button {
+        width: 200px;
+        margin: 15px;
         font-size: 20px;
-        margin-bottom: 20px;
-        &:first-child {
-          font-weight: bold;
-        }
-        &:nth-child(2) {
-          color: gray;
-          margin-bottom: 20px;
-        }
+        padding: 10px 20px;
+        border: none;
+        color: $myPageBtnFontColor;
+        font-weight: bold;
       }
+      .addToCartBtn {
+        background-color: $myPageSmallBtnColor;
+      }
+
       .removeBtn {
-        font-size: 13px;
-        padding-left: 0;
-      }
-    }
-    .whatToDo {
-      width: 200px;
-      text-align: center;
-      padding: 33px 0 0 20px;
-      > div {
-        &:nth-child(2) {
-          margin: 18px;
-        }
-      }
-      .addToBagBtn {
-        font-size: 20px;
-        border: 1px solid $myPageBorderColor;
-        padding: 4px 8px;
+        background-color: $myPageBtnColor;
       }
     }
   }

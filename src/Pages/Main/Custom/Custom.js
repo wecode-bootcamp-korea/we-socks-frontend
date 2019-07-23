@@ -1,28 +1,13 @@
 /* eslint-disable no-unused-expressions */
 import React from "react";
 import "./custom.scss";
-import Layout from "Components/Layout";
 import Button from "Components/Button";
+import SockItem from "Components/SockItem";
+import axios from "axios";
 import Span from "Components/Span";
-import * as sockImage from "./socksImages";
-import * as patternImage from "./patternImages";
-import AddedToCartMessage from "Pages/MyPage/ShoppingCart/AddedToCartMessage";
-import InputBox from "Components/InputBox";
-
-const matching = {
-  "noShow front": [sockImage.noShowFront, sockImage.noShowFrontMasking],
-  "noShow back": [sockImage.noShowBack, sockImage.noShowBackMasking],
-  "noShow side": [sockImage.noShowSide, sockImage.noShowSideMasking],
-  "ankle front": [sockImage.ankleFront, sockImage.ankleFrontMasking],
-  "ankle back": [sockImage.ankleBack, sockImage.ankleBackMasking],
-  "ankle side": [sockImage.ankleSide, sockImage.ankleSideMasking],
-  "mid front": [sockImage.midFront, sockImage.midFrontMasking],
-  "mid back": [sockImage.midBack, sockImage.midBackMasking],
-  "mid side": [sockImage.midSide, sockImage.midSideMasking],
-  "high front": [sockImage.highFront, sockImage.highFrontMasking],
-  "high back": [sockImage.highBack, sockImage.highBackMasking],
-  "high side": [sockImage.highSide, sockImage.highSideMasking]
-};
+import * as patternImage from "Components/SockItem/patternImages";
+import * as uploadedImage from "Components/SockItem/uploadedImages";
+import AddedToCartMessage from "Components/AddedToCartMessage";
 
 const colorArr = [
   "#F0EDE5",
@@ -74,6 +59,15 @@ const patternArr = [
   patternImage.hive,
   patternImage.money,
   patternImage.tape
+];
+
+const uploadedImageArr = [
+  "",
+  uploadedImage.music,
+  uploadedImage.moon,
+  uploadedImage.nike,
+  uploadedImage.mirror,
+  uploadedImage.plus
 ];
 
 const viewArr = ["front", "back", "side"];
@@ -137,40 +131,145 @@ class Custom extends React.Component {
     // });
   };
 
-  changeDesign = (e, value) => {
+  increasePrice = () => {
     this.setState({
-      [e.target.getAttribute("name")]: value
+      priceChange: !this.state.priceChange,
+      price: this.state.price + 2000
     });
   };
 
-  addToCart = e => {
-    this.setState(
-      {
-        addToCartBtnClicked: !this.state.addToCartBtnClicked
-      },
-      () => {
-        setTimeout(() => {
-          this.setState({
-            addToCartBtnClicked: !this.state.addToCartBtnClicked
-          });
-        }, 2000);
-      }
-    );
+  decreasePrice = () => {
+    this.setState({
+      priceChange: !this.state.priceChange,
+      price: this.state.price - 2000
+    });
   };
 
-  addToWishList = e => {
-    this.setState(
-      {
-        addToWishListBtnClicked: !this.state.addToWishListBtnClicked
-      },
-      () => {
-        setTimeout(() => {
-          this.setState({
-            addToWishListBtnClicked: !this.state.addToWishListBtnClicked
-          });
-        }, 2000);
-      }
-    );
+  changeDesign = (e, value) => {
+    const sockProperty = [e.target.getAttribute("name")];
+    this.setState({
+      [sockProperty]: value
+    });
+
+    if (
+      !this.state.patternChosen &&
+      sockProperty[0] === "pattern" &&
+      value !== 0
+    ) {
+      this.setState(
+        {
+          patternChosen: !this.state.patternChosen
+        },
+        () => this.increasePrice()
+      );
+    } else if (
+      this.state.patternChosen &&
+      sockProperty[0] === "pattern" &&
+      value === 0
+    ) {
+      this.setState(
+        {
+          patternChosen: !this.state.patternChosen
+        },
+        () => this.decreasePrice()
+      );
+    }
+
+    if (
+      !this.state.imageChosen &&
+      sockProperty[0] === "uploaded" &&
+      value !== 0
+    ) {
+      this.setState(
+        {
+          imageChosen: !this.state.imageChosen
+        },
+        () => this.increasePrice()
+      );
+    } else if (
+      this.state.imageChosen &&
+      sockProperty[0] === "uploaded" &&
+      value === 0
+    ) {
+      this.setState(
+        {
+          imageChosen: !this.state.imageChosen
+        },
+        () => this.decreasePrice()
+      );
+    }
+  };
+
+  addToCart = () => {
+    let sockData = {
+      know_design_id: "no",
+      user_pk: 1,
+      category_id: 1,
+      main_type_id: this.state.type + 1,
+      color: this.state.color,
+      pattern_id: this.state.pattern,
+      logo_id: this.state.uploaded,
+      other_req: "req",
+      amount: 1,
+      unit_price: this.state.price
+    };
+
+    axios
+      .post("http://10.58.7.11:8000/product/add_cart_req", sockData)
+      .then(response => {
+        if (response.status === 200) {
+          this.setState(
+            {
+              addToCartBtnClicked: !this.state.addToCartBtnClicked
+            },
+            () => {
+              setTimeout(() => {
+                this.setState({
+                  addToCartBtnClicked: !this.state.addToCartBtnClicked
+                });
+              }, 2000);
+            }
+          );
+        }
+      });
+  };
+
+  addToWishList = () => {
+    let sockData = {
+      know_design_id: "yes",
+      user_pk: 1,
+      category_id: 1,
+      main_type_id: this.state.type + 1,
+      color: this.state.color,
+      pattern_id: this.state.pattern,
+      logo_id: this.state.uploaded,
+      unit_price: this.state.price
+    };
+
+    axios
+      .post("http://10.58.7.11:8000/product/wish_req", sockData)
+      .then(response => {
+        if (response.status === 200) {
+          this.setState(
+            {
+              addToWishListBtnClicked: !this.state.addToWishListBtnClicked
+            },
+            () => {
+              setTimeout(() => {
+                this.setState({
+                  addToWishListBtnClicked: !this.state.addToWishListBtnClicked
+                });
+              }, 2000);
+            }
+          );
+        }
+      });
+  };
+
+  handleSize = e => {
+    this.setState({
+      patternSize: e.target.value
+    });
   };
 
   render() {
@@ -179,13 +278,16 @@ class Custom extends React.Component {
       view,
       type,
       price,
+      priceChange,
       pattern,
+      patternSize,
+      uploaded,
       addToCartBtnClicked,
       addToWishListBtnClicked
     } = this.state;
 
     return (
-      <Layout>
+      <>
         <AddedToCartMessage showMessage={addToCartBtnClicked} />
         <div className="customRoot">
           <div className="chooseTypesWrap">
@@ -193,14 +295,16 @@ class Custom extends React.Component {
             {typeArr.map((el, idx) => (
               <Button
                 key={`type-${idx}`}
-                className={`type ${type === el ? `${el} clicked` : ""}`}
+                className={`type ${
+                  typeArr[type] === el ? `${el} clicked` : ""
+                }`}
                 name="type"
                 text={`${
                   el === "noShow"
                     ? "No-Show"
                     : el[0].toUpperCase() + el.slice(1, el.length)
                 }`}
-                onClick={e => this.changeDesign(e, el)}
+                onClick={e => this.changeDesign(e, idx)}
               />
             ))}
           </div>
@@ -218,22 +322,13 @@ class Custom extends React.Component {
           </div>
           <div className="customCenter">
             <div className="socksContainer">
-              <img
-                className="sockImage imageNotMasked"
-                src={matching[`${type} ${view}`][0]}
-                alt={`${type} ${view}`}
-              />
-              <img
-                className="sockImage imageMasked"
-                style={{ backgroundColor: color }}
-                src={matching[`${type} ${view}`][1]}
-                alt={`${type} ${view}`}
-              />
-              <img
-                className="sockImage patternMasked"
-                style={{ backgroundImage: `url(${patternArr[pattern]})` }}
-                src={matching[`${type} ${view}`][1]}
-                alt={`${type} ${view}`}
+              <SockItem
+                color={color}
+                pattern={pattern - 1}
+                type={type}
+                view={view}
+                uploaded={uploaded - 1}
+                patternSize={patternSize}
               />
               {this.state.imgArr && (
                 <img
@@ -252,18 +347,29 @@ class Custom extends React.Component {
                 />
               )}
             </div>
+            <div className="patternSizeBar">
+              <input
+                type="range"
+                min="100"
+                max="300"
+                onChange={this.handleSize}
+                value={patternSize}
+                style={{ width: 250 }}
+              ></input>
+            </div>
+
             <div className="rightSideWrap">
               <div className="chooseWrap">
                 <div className="chooseColor">
                   <p>Choose Color</p>
                   <div className="colorPickerContainer">
-                    {colorArr.map((el, idx) => (
+                    {colorArr.map((color, idx) => (
                       <Button
                         className="color colorContainer"
                         name="color"
-                        style={{ backgroundColor: el }}
+                        style={{ backgroundColor: color }}
                         key={`color-${idx}`}
-                        onClick={e => this.changeDesign(e, el)}
+                        onClick={e => this.changeDesign(e, color)}
                       />
                     ))}
                   </div>
@@ -274,6 +380,7 @@ class Custom extends React.Component {
                     {patternArr.map((image, idx) => {
                       return (
                         <Span
+                          className="patternPicker"
                           style={{ backgroundImage: `url(${image})` }}
                           name="pattern"
                           key={`pattern-${idx}`}
@@ -285,15 +392,28 @@ class Custom extends React.Component {
                 </div>
                 <div className="chooseImage">
                   <p>Choose Image</p>
-                  <div className="imagePicker"></div>
-                  <InputBox
-                    type="file"
-                    name="file"
-                    handleChange={this.imgUproad}
-                  />
+                  <div className="imagePickerContainer">
+                    {uploadedImageArr.map((image, idx) => {
+                      return (
+                        <Span
+                          className="uploadedImagePicker"
+                          style={{ backgroundImage: `url(${image})` }}
+                          name="uploaded"
+                          key={`uploaded-${idx}`}
+                          onClick={e => this.changeDesign(e, idx)}
+                        />
+                      );
+                    })}
+                  </div>
                 </div>
                 <div className="orderWrap">
-                  <div className="priceEstimation">가격: {price}</div>
+                  <div
+                    className={`priceEstimation ${
+                      priceChange ? "priceChange" : ""
+                    }`}
+                  >
+                    가격: {price}
+                  </div>
                   <Button
                     className="addToCartBtn"
                     name="addToCartBtn"
@@ -316,7 +436,7 @@ class Custom extends React.Component {
             </div>
           )}
         </div>
-      </Layout>
+      </>
     );
   }
 }

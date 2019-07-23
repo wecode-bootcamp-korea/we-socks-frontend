@@ -25,7 +25,9 @@ class MyAccount extends React.Component {
 
     this.state = {
       clickedBtn: "",
-      modalIsOpen: false
+      modalIsOpen: false,
+      progressBarWidth: "30%",
+      progressBarBgColor: "green"
     };
   }
 
@@ -43,7 +45,12 @@ class MyAccount extends React.Component {
   };
 
   render() {
-    const { clickedBtn, modalIsOpen } = this.state;
+    const {
+      clickedBtn,
+      modalIsOpen,
+      progressBarWidth,
+      progressBarBgColor
+    } = this.state;
     return (
       <>
         <div>
@@ -76,15 +83,17 @@ class MyAccount extends React.Component {
               WeSocks CREATOR에게는 다양한 혜택이 제공됩니다
             </p>
             <p>Points</p>
-            <meter
-              className="points"
-              min="0"
-              low="50"
-              value="350"
-              optimum="300"
-              high="400"
-              max="500"
-            ></meter>
+            <div className="progressBarContainer">
+              <div className="progress progressMoved">
+                <div
+                  className="progressBar"
+                  style={{
+                    width: progressBarWidth,
+                    backgroundColor: progressBarBgColor
+                  }}
+                ></div>
+              </div>
+            </div>
             <div className="creatorsClubDetail">
               <div className="creatorsClubIntroduction">
                 <p>당신은 꼬꼬마입니다</p>

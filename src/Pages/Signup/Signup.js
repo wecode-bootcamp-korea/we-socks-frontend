@@ -4,8 +4,9 @@ import React, { Component } from "react";
 import InputBox from "Components/InputBox";
 import Button from "Components/Button";
 import Select from "Components/Select";
-import "./Signup.scss";
 import { API_URL, TOKEN_KEY } from "config";
+
+import "./Signup.scss";
 
 const yearArr = ["출생년도"];
 const monthArr = ["월"];

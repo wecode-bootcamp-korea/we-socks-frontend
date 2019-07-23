@@ -2,7 +2,7 @@
 
 .customRoot {
   margin: 80px 230px;
-
+  flex-wrap: wrap;
   .chooseTypesWrap {
     margin: 0 20px 20px;
     display: flex;
@@ -54,27 +54,18 @@
       width: 450px;
       height: 450px;
     }
+  }
 
-    .imageMasked {
-      position: relative;
-      mix-blend-mode: multiply;
-    }
-
-    .patternMasked {
-      position: absolute;
-      mix-blend-mode: multiply;
-    }
-    .imgDragnDrop {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100px;
-    }
+  .patternSizeBar {
+    position: absolute;
+    top: 1000px;
+    left: 380px;
   }
 
   .chooseWrap {
     width: 465px;
     padding: 50px 0 0 180px;
+    margin-left: 200px;
 
     > div {
       > p {
@@ -85,6 +76,16 @@
     }
   }
 
+  .patternPickerContainer {
+    > span {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
   .colorPickerContainer {
     display: flex;
     flex-wrap: wrap;
@@ -94,6 +95,13 @@
       width: 40px;
       height: 40px;
       margin: 6px;
+      border: 1px solid white;
+    }
+
+    .imagePickerContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
   }
 
@@ -107,7 +115,21 @@
       font-weight: bold;
       font-size: 20px;
       padding: 8px 18px;
+      transition: opacity 1s;
     }
+
+    .priceChange {
+      animation: fadein 1s;
+      @keyframes fadein {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    }
+
     > button {
       color: white;
       font-weight: bold;

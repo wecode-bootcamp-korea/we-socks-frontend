@@ -75,3 +75,49 @@
   margin-bottom: 3px;
   color: red;
 }
+
+.checkBoxContainer {
+  position: relative;
+  display: block;
+  height: 26px;
+  margin: 0 0;
+  #loginCheck {
+    margin-top: 4px;
+    margin-left: 0;
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #4e545f;
+    cursor: pointer;
+    background: url(https://png.pngtree.com/png-vector/20190121/ourmid/pngtree-correct-symbol-big-red-check-mark-stereoscopic-rendering-check-mark-png-image_508031.jpg)
+      no-repeat;
+    background-size: 18px;
+  }
+  #loginCheckNone {
+    margin-top: 4px;
+    margin-left: 0;
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #4e545f;
+    cursor: pointer;
+    background-size: 18px;
+  }
+  #loginCheckLabel {
+    margin-top: 4px;
+    margin-left: 0;
+    font-size: 12px;
+    line-height: 26px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 26px;
+    padding-left: 33px;
+    cursor: pointer;
+    color: #333;
+  }
+}

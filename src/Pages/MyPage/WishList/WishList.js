@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import "./wishList.scss";
 import Button from "Components/Button";
-import Sockitem from "Components/SockItem/Sockitem";
+import SockItem from "Components/SockItem";
 
 const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
 const typeArr = ["noShow", "ankle", "mid", "high"];
@@ -85,7 +85,7 @@ class WishList extends React.Component {
             {wishListArr.map((el, idx) => (
               <li className="eachWishListItem">
                 <div className="wishListImage">
-                  <Sockitem
+                  <SockItem
                     key={`wishList-${idx}`}
                     type={typeArr[el.design.main_type - 1]}
                     view="side"

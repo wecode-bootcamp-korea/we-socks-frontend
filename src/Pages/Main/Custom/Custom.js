@@ -1,7 +1,8 @@
 import React from "react";
 import "./custom.scss";
 import Button from "Components/Button";
-import Sockitem from "Components/SockItem/Sockitem";
+import SockItem from "Components/SockItem";
+import InputBox from "Components/InputBox";
 import axios from "axios";
 import Span from "Components/Span";
 import * as patternImage from "Components/SockItem/patternImages";
@@ -283,7 +284,7 @@ class Custom extends React.Component {
           </div>
           <div className="customCenter">
             <div className="socksContainer">
-              <Sockitem
+              <SockItem
                 color={color}
                 pattern={pattern - 1}
                 type={type}
@@ -293,14 +294,14 @@ class Custom extends React.Component {
               />
             </div>
             <div className="patternSizeBar">
-              <input
+              <InputBox
                 type="range"
                 min="100"
                 max="300"
                 onChange={this.handleSize}
                 value={patternSize}
                 style={{ width: 250 }}
-              ></input>
+              />
             </div>
 
             <div className="rightSideWrap">

@@ -122,7 +122,7 @@ class SockPreview extends React.Component {
                     ][1]
                   : matching[`${typeArr[defaultType]} side`][1]
               }
-              alt={`${defaultType} side`}
+              alt={`${defaultType} side pattern`}
             />
           </div>
         </Link>

@@ -8,7 +8,9 @@ import Span from "Components/Span";
 import * as patternImage from "Components/SockItem/patternImages";
 import * as uploadedImage from "Components/SockItem/uploadedImages";
 import AddedToCartMessage from "Components/AddedToCartMessage";
-
+import { API_URL } from "config";
+import { isFulfilled } from "q";
+import Axios from "axios";
 const colorArr = [
   "#F0EDE5",
   "#EAE6DA",
@@ -90,6 +92,7 @@ class Custom extends React.Component {
   };
 
   imgUproad = e => {
+    e.persist();
     let reader = new FileReader();
     let file = e.target.files[0];
     reader.onloadend = () => {
@@ -98,6 +101,14 @@ class Custom extends React.Component {
     if (file) {
       reader.readAsDataURL(file);
     }
+    let formData = new FormData();
+    formData.append("image", file);
+    let headers = {
+      "content-type": "multipart/form-data"
+    };
+    Axios.post("http://10.58.3.112:8000/aws/upload", formData, {
+      headers
+    });
   };
 
   onImgBtnClick = (e, image) => {

@@ -43,22 +43,6 @@ class ShoppingCart extends React.Component {
       });
   };
 
-  // componentDidUpdate = prevState => {
-  //   console.log(123);
-  //   if (this.state.checkChange !== prevState.checkChange) {
-  //     axios
-  //       .post("http://10.58.4.155:8000/mypage/cart", { user_pk: 1 })
-  //       .then(response => {
-  //         this.setState({
-  //           cartArr: response.data.my_cart_list,
-  //           totalPrice: response.data.my_cart_total_price,
-  //           totalCount: response.data.my_cart_total_amount,
-  //           totalPoints: response.data.my_total_points
-  //         });
-  //       });
-  //   }
-  // };
-
   componentDidMount = () => {
     axios
       .post("http://10.58.4.155:8000/mypage/cart", { user_pk: 1 })

@@ -106,12 +106,12 @@
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-    margin-right: 5px;
 
     .priceEstimation {
       font-weight: bold;
       font-size: 20px;
       padding: 8px 18px;
+      width: 150px;
       transition: opacity 1s;
     }
 

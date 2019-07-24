@@ -2,6 +2,7 @@ import React from "react";
 import "./addressBook.scss";
 import Button from "Components/Button";
 import InputBox from "Components/InputBox";
+import Select from "Components/Select";
 
 class AddressBook extends React.Component {
   constructor(props) {
@@ -12,13 +13,13 @@ class AddressBook extends React.Component {
     };
   }
 
-  componentDidMount() {
-    window.addEventListener("click", e => this.handleClick(e));
-  }
+  // componentDidMount() {
+  //   window.addEventListener("click", e => this.handleClick(e));
+  // }
 
-  componentWillUnmount() {
-    window.removeEventListener("click", e => this.handleClick(e));
-  }
+  // componentWillUnmount() {
+  //   window.removeEventListener("click", e => this.handleClick(e));
+  // }
 
   handleClick = e => {
     this.setState({
@@ -82,11 +83,11 @@ class AddressBook extends React.Component {
             <p>Edit Address</p>
             <p>
               Address Type
-              <InputBox
-                type="text"
-                name="addressTypeInput"
+              <Select
                 className="addressTypeInput"
-                placeholder="Home, Work, John's..."
+                name="addressTypeInput"
+                makeSelection
+                ref_array={["Home", "Work", "Parents'", "Lovers'"]}
               />
             </p>
             <p>Address</p>

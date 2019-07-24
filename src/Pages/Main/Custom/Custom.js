@@ -84,7 +84,9 @@ class Custom extends React.Component {
     addToWishListBtnClicked: false,
     imgArr: "",
     X: 0,
-    Y: 0
+    Y: 0,
+    top: 0,
+    left: 0
   };
 
   imgUproad = e => {
@@ -98,37 +100,33 @@ class Custom extends React.Component {
     }
   };
 
+  onImgBtnClick = (e, image) => {
+    this.setState({
+      ...this.state,
+      imgArr: image
+    });
+  };
+
   onDragStart = e => {
-    console.log("onDragStart", e.clientX, e.clientY);
-    // this.setState({
-    //   ...this.state,
-    //   // X: e.nativeEvent.offsetX,
-    //   // Y: e.nativeEvent.offsetY
-    //   X: e.clientX,
-    //   Y: e.clientY
-    // });
+    e.persist();
+    this.pageX = e.pageX;
+    this.pageY = e.pageY;
+    console.log("onDragStart", e);
   };
 
-  onDrag = e => {
-    console.log("onDrag", e.clientX, e.clientY);
-    // this.setState({
-    //   ...this.state,
-    //   // X: e.nativeEvent.offsetX,
-    //   // Y: e.nativeEvent.offsetX
-    //   X: e.clientX,
-    //   Y: e.clientY
-    // });
-  };
+  dragEnd = e => {
+    e.persist();
 
-  onDragEnd = e => {
-    console.log("onDragEnd", e.clientX, e.clientY);
-    // this.setState({
-    //   ...this.state,
-    //   X: e.clientX,
-    //   Y: e.clientY
-    //   // X: e.nativeEvent.offsetX,
-    //   // Y: e.nativeEvent.offsetX
-    // });
+    const { top, left } = this.state;
+    const gapX = e.pageX - this.pageX;
+    const gapY = e.pageY - this.pageY;
+
+    console.log("onDrdragEndag", e);
+    console.log("gap", gapX, gapY);
+    this.setState({
+      top: top + gapY,
+      left: left + gapX
+    });
   };
 
   increasePrice = () => {
@@ -283,7 +281,9 @@ class Custom extends React.Component {
       patternSize,
       uploaded,
       addToCartBtnClicked,
-      addToWishListBtnClicked
+      addToWishListBtnClicked,
+      top,
+      left
     } = this.state;
 
     return (
@@ -331,19 +331,17 @@ class Custom extends React.Component {
                 patternSize={patternSize}
               />
               {this.state.imgArr && (
-                <img
+                <div
                   className="imgDragnDrop"
                   style={{
-                    backgroundImage: `url(${patternArr[pattern]})`,
-                    left: this.state.X,
-                    top: this.state.Y
+                    top,
+                    left,
+                    backgroundImage: `url(${this.state.imgArr})`
                   }}
-                  src={this.state.imgArr}
                   alt={`${type} ${view}`}
                   draggable={true}
                   onDragStart={this.onDragStart}
-                  onDrag={this.onDrag}
-                  onDragEnd={this.onDragEnd}
+                  onDragEnd={this.dragEnd}
                 />
               )}
             </div>
@@ -357,7 +355,6 @@ class Custom extends React.Component {
                 style={{ width: 250 }}
               ></input>
             </div>
-
             <div className="rightSideWrap">
               <div className="chooseWrap">
                 <div className="chooseColor">
@@ -400,12 +397,18 @@ class Custom extends React.Component {
                           style={{ backgroundImage: `url(${image})` }}
                           name="uploaded"
                           key={`uploaded-${idx}`}
-                          onClick={e => this.changeDesign(e, idx)}
+                          onClick={e => this.onImgBtnClick(e, image)}
                         />
                       );
                     })}
+                    <input
+                      type="file"
+                      className="customImgUpBtn"
+                      onChange={this.imgUproad}
+                    />
                   </div>
                 </div>
+
                 <div className="orderWrap">
                   <div
                     className={`priceEstimation ${

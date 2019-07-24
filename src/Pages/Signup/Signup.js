@@ -58,9 +58,17 @@ class Signup extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.error_code === "EMAILALREADYEXISTS") {
+        console.log(data);
+        if (data.error_code === "EMAIL_ALREADY_EXISTS") {
           this.setState({
             checkEmail: "이메일 중복"
+          });
+          return;
+        }
+        if (data.error_code !== "EMAIL_ALREADY_EXISTS") {
+          alert("로그인 페이지로 이동합니다. 가입하신 정보로 로그인 해주세요");
+          this.props.history.push({
+            pathname: "/login"
           });
         }
       });
@@ -80,7 +88,15 @@ class Signup extends Component {
               classname="signupIdInput"
               handleChange={this.handleInput}
             />
-            <p className={this.state.checkEmail}></p>
+            <p
+              className={
+                this.state.checkEmail.length < 2
+                  ? "showEmailText1"
+                  : "showEmailText2"
+              }
+            >
+              {this.state.checkEmail}
+            </p>
           </div>
           <div className="signupPw">
             <InputBox

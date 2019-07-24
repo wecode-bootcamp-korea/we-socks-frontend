@@ -15,6 +15,13 @@ class Login extends Component {
     pwText: "",
     checkBox: "loginCheckNone"
   };
+
+  addPlusFriend = () => {
+    window.Kakao.PlusFriend.addFriend({
+      plusFriendId: "_xcLqmC" // 플러스친구 홈 URL에 명시된 id로 설정합니다.
+    });
+  };
+
   handleInput = e => {
     this.setState({
       [e.target.name]: e.target.value.trim()
@@ -68,6 +75,7 @@ class Login extends Component {
             });
             return;
           } else {
+            alert("We Socks에 오신것을 환영합니다. 오늘도 좋은 하루 되세요");
             this.props.history.push({
               pathname: "/"
             });
@@ -78,6 +86,10 @@ class Login extends Component {
 
   componentDidMount() {
     window.Kakao.init("ee298c66ffafca1d0d2da71485794771");
+    // window.Kakao.PlusFriend.createChatButton({
+    //   container: "#plusfriend-chat-button",
+    //   plusFriendId: "_FTmxfT" // 플러스친구 홈 URL에 명시된 id로 설정합니다.
+    // });
     window.Kakao.Auth.createLoginButton({
       container: "#kakao-login-btn",
       success: function(authObj) {
@@ -102,11 +114,11 @@ class Login extends Component {
   render() {
     return (
       <div className="loginContainer">
+        {/* <div id="plusfriend-chat-button"></div> */}
         <div className="loginContents">
           <div className="loginHeadText">
             <h2>Sign in</h2>
           </div>
-
           <div className="loginInputArea">
             <div className="loginIdinput">
               <InputBox

@@ -70,6 +70,15 @@ ul {
     }
   }
 
+  select {
+    width: 240px;
+    height: 30px;
+    font-size: 15px;
+    margin: 10px 0 15px;
+    border: 1px solid $myPageSelectBorderColor;
+    background-color: $myPageBtnFontColor;
+  }
+
   input {
     width: 240px;
     height: 30px;

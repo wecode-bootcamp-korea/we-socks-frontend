@@ -80,14 +80,20 @@ class AddressBook extends React.Component {
               this.state.clickedBtn === "addBtn" ? "showDtail" : "hidden"
             }`}
           >
-            <p>Edit Address</p>
+            <p>Add Address</p>
             <p>
               Address Type
               <Select
-                className="addressTypeInput"
-                name="addressTypeInput"
+                className="addressTypeSelect"
+                name="addressTypeSelect"
                 makeSelection
-                ref_array={["Home", "Work", "Parents'", "Lovers'"]}
+                ref_array={[
+                  "Choose Type",
+                  "Home",
+                  "Work",
+                  "Parents'",
+                  "Lovers'"
+                ]}
               />
             </p>
             <p>Address</p>
@@ -125,11 +131,17 @@ class AddressBook extends React.Component {
             <p>Edit Address</p>
             <p>
               Address Type
-              <InputBox
-                type="text"
-                name="addressTypeInput"
-                className="addressTypeInput"
-                placeholder="Home, Work, John's..."
+              <Select
+                className="addressTypeSelect"
+                name="addressTypeSelect"
+                makeSelection
+                ref_array={[
+                  "Choose Type",
+                  "Home",
+                  "Work",
+                  "Parents'",
+                  "Lovers'"
+                ]}
               />
             </p>
             <p>Address</p>

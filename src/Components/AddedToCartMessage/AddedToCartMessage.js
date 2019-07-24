@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Button from "Components/Button";
 import SockItem from "Components/SockItem";
+import AddCommaToNumber from "Components/AddCommaToNumber";
 import "./addedToCartMessage.scss";
 import { Link } from "react-router-dom";
 
@@ -19,7 +20,7 @@ class AddedToCartMessage extends React.Component {
 
   componentDidMount = () => {
     axios
-      .post("http://10.58.7.11:8000/mypage/cart", { user_pk: 1 })
+      .post("http://10.58.4.155:8000/mypage/cart", { user_pk: 1 })
       .then(response => {
         this.setState({
           cartMessageArray: response.data.my_cart_list
@@ -33,6 +34,11 @@ class AddedToCartMessage extends React.Component {
     return (
       showMessage && (
         <div className="addedToCartMessage">
+          <div className="sectionContainer">
+            <span className="sockImageSmall">Socks</span>
+            <span className="sockCategoryAndTypeSmall">Type</span>
+            <span className="sockPriceSmall">Price</span>
+          </div>
           <ul className="addedToCartInformation">
             {cartMessageArray.map((el, idx) => (
               <li className="addedToCartList">
@@ -50,7 +56,9 @@ class AddedToCartMessage extends React.Component {
                 <div className="addedToCartCategoryAndType">{`${
                   categoryArr[el.design.category]
                 } ${typeArr[el.design.main_type]}`}</div>
-                <div className="addedToCartPrice">{el.design.unit_price}</div>
+                <div className="addedToCartPrice">
+                  {AddCommaToNumber(el.design.unit_price)}
+                </div>
               </li>
             ))}
           </ul>

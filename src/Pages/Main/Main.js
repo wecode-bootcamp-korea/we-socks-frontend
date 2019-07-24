@@ -3,10 +3,13 @@ import Square from "Components/MainSquare";
 import SquareTwo from "Components/MainSquare2";
 import "./main.scss";
 import { Link } from "react-router-dom";
-import casualImg from "assets/images/MainSqure/casual.jpg";
-import kidsImg from "assets/images/MainSqure/kids.jpg";
-import dressedImg from "assets/images/MainSqure/dressed.jpg";
-import athletic from "assets/images/MainSqure/athletic.jpg";
+const s3Url =
+  "https://wesocks-design-management.s3.ap-northeast-2.amazonaws.com";
+
+const casualImg = `${s3Url}/casual.jpg`;
+const kidsImg = `${s3Url}/kids.jpg`;
+const dressedImg = `${s3Url}/dressed.jpg`;
+const athletic = `${s3Url}/athletic.jpg`;
 
 const Main = () => {
   return (

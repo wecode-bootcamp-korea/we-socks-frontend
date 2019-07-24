@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import Button from "Components/Button";
 import Select from "Components/Select";
-import Sockitem from "Components/SockItem/Sockitem";
+import SockItem from "Components/SockItem/SockItem";
 import "./shoppingCart.scss";
 
 const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
@@ -22,7 +22,9 @@ class ShoppingCart extends React.Component {
 
   removeItem = item => {
     axios
-      .post("http://10.58.7.11:8000/product/cancel_cart_req", { cart_id: item })
+      .post("http://10.58.4.155:8000/product/cancel_cart_req", {
+        cart_id: item
+      })
       .then(response => {
         if (response.status === 200) {
           this.setState({
@@ -32,24 +34,24 @@ class ShoppingCart extends React.Component {
       });
   };
 
-  componentDidUpdate = prevState => {
-    if (this.state.checkChange !== prevState.checkChange) {
-      axios
-        .post("http://10.58.7.11:8000/mypage/cart", { user_pk: 1 })
-        .then(response => {
-          this.setState({
-            cartArr: response.data.my_cart_list,
-            totalPrice: response.data.my_cart_total_price,
-            totalCount: response.data.my_cart_total_amount,
-            totalPoints: response.data.my_total_points
-          });
-        });
-    }
-  };
+  // componentDidUpdate = prevState => {
+  //   if (this.state.checkChange !== prevState.checkChange) {
+  //     axios
+  //       .post("http://10.58.4.155:8000/mypage/cart", { user_pk: 1 })
+  //       .then(response => {
+  //         this.setState({
+  //           cartArr: response.data.my_cart_list,
+  //           totalPrice: response.data.my_cart_total_price,
+  //           totalCount: response.data.my_cart_total_amount,
+  //           totalPoints: response.data.my_total_points
+  //         });
+  //       });
+  //   }
+  // };
 
   componentDidMount = () => {
     axios
-      .post("http://10.58.7.11:8000/mypage/cart", { user_pk: 1 })
+      .post("http://10.58.4.155:8000/mypage/cart", { user_pk: 1 })
       .then(response => {
         console.log(response);
         this.setState({
@@ -79,7 +81,7 @@ class ShoppingCart extends React.Component {
               {cartArr.map((el, idx) => (
                 <li className="shoppingCartList">
                   <div className="productImage">
-                    <Sockitem
+                    <SockItem
                       type={typeArr[el.design.main_type - 1]}
                       color={el.design.color}
                       pattern={el.design.pattern}

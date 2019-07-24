@@ -2,6 +2,8 @@
 
 .myPageRoot {
   border-top: 3px solid $myPageBodyColor;
+  height: 100%;
+  min-height: 428px;
 }
 
 .userInfo {

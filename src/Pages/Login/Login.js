@@ -113,7 +113,7 @@ class Login extends Component {
                 type="text"
                 name="email"
                 classname="login_input"
-                placeholder="e-mail address"
+                placeholder="e-mail"
                 handleChange={this.handleInput}
               />
               <p className="loginIdtext">{this.state.emailText}</p>
@@ -123,7 +123,7 @@ class Login extends Component {
                 type="password"
                 name="password"
                 classname="login_input"
-                placeholder="Password"
+                placeholder="password"
                 handleChange={this.handleInput}
               />
               <p className="loginPwtext">{this.state.pwText}</p>
@@ -135,7 +135,7 @@ class Login extends Component {
           >
             <div id={this.state.checkBox}></div>
             <label id="loginCheckLabel" for="loginCheck">
-              email save
+              save e-mail
             </label>
           </div>
           <Button
@@ -143,7 +143,16 @@ class Login extends Component {
             text="sign in"
             onClick={this.LoginBtnOnClick}
           />
-          <a id="kakao-login-btn"></a>
+          <div className="loginBtnBox">
+            <a id="kakao-login-btn"></a>
+            <div className="guestLogin">
+              <img
+                src="https://image.shutterstock.com/image-vector/eye-sign-illustration-dark-gray-260nw-444409546.jpg"
+                className="guestLoginImg"
+              />
+              <p className="guestLoginText">게스트 로그인</p>
+            </div>
+          </div>
         </div>
       </div>
     );

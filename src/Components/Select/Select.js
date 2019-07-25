@@ -13,9 +13,9 @@ const Select = props => {
       value={props.value}
     >
       {ref_array.map((el, idx) => (
-        <option key={`${name}-${idx}`} value={el}>
+        <Option key={`${name}-${idx}`} value={el}>
           {el}
-        </option>
+        </Option>
       ))}
     </select>
   );

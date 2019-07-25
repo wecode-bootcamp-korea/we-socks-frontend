@@ -5,6 +5,7 @@ import Button from "Components/Button";
 import SockItem from "Components/SockItem";
 import InputBox from "Components/InputBox";
 import axios from "axios";
+import { ADDRESS } from "Config/Config";
 import Span from "Components/Span";
 import * as patternImage from "Components/SockItem/patternImages";
 import * as uploadedImage from "Components/SockItem/uploadedImages";

@@ -3,6 +3,7 @@ import React from "react";
 import "./custom.scss";
 import Button from "Components/Button";
 import SockItem from "Components/SockItem";
+import InputBox from "Components/InputBox";
 import axios from "axios";
 import Span from "Components/Span";
 import * as patternImage from "Components/SockItem/patternImages";
@@ -79,12 +80,15 @@ const typeArr = ["noShow", "ankle", "mid", "high"];
 class Custom extends React.Component {
   state = {
     color: "none",
-    type: "noShow",
+    type: 0,
     view: "front",
     pattern: "",
     price: 6000,
+    uploaded: 0,
     addToCartBtnClicked: false,
     addToWishListBtnClicked: false,
+    patternChosen: false,
+    imageChosen: false,
     imgArr: "",
     X: 0,
     Y: 0,
@@ -212,52 +216,55 @@ class Custom extends React.Component {
 
   addToCart = () => {
     let sockData = {
+      label: "socks",
       know_design_id: "no",
       user_pk: 1,
       category_id: 1,
       main_type_id: this.state.type + 1,
       color: this.state.color,
       pattern_id: this.state.pattern,
-      logo_id: this.state.uploaded,
+      logo_id: this.state.uploaded + 1,
       other_req: "req",
-      amount: 1,
+      count: 1,
       unit_price: this.state.price
     };
 
     axios
-      .post("http://10.58.7.11:8000/product/add_cart_req", sockData)
+      .post("http://10.58.2.189:8000/product/add_cart_req", sockData)
       .then(response => {
-        if (response.status === 200) {
-          this.setState(
-            {
-              addToCartBtnClicked: !this.state.addToCartBtnClicked
-            },
-            () => {
-              setTimeout(() => {
-                this.setState({
-                  addToCartBtnClicked: !this.state.addToCartBtnClicked
-                });
-              }, 3000);
-            }
-          );
-        }
+        this.setState(
+          {
+            addToCartBtnClicked: !this.state.addToCartBtnClicked
+          },
+          () => {
+            setTimeout(() => {
+              this.setState({
+                addToCartBtnClicked: !this.state.addToCartBtnClicked
+              });
+            }, 3000);
+          }
+        );
+      })
+      .catch(error => {
+        alert("이미 등록된 상품입니다.");
       });
   };
 
   addToWishList = () => {
     let sockData = {
+      label: "socks",
       know_design_id: "yes",
       user_pk: 1,
       category_id: 1,
       main_type_id: this.state.type + 1,
       color: this.state.color,
       pattern_id: this.state.pattern,
-      logo_id: this.state.uploaded,
+      logo_id: this.state.uploaded + 1,
       unit_price: this.state.price
     };
 
     axios
-      .post("http://10.58.7.11:8000/product/wish_req", sockData)
+      .post("http://10.58.2.189:8000/product/wish_req", sockData)
       .then(response => {
         if (response.status === 200) {
           this.setState(
@@ -273,6 +280,9 @@ class Custom extends React.Component {
             }
           );
         }
+      })
+      .catch(error => {
+        alert("이미 등록된 상품입니다.");
       });
   };
 
@@ -358,14 +368,14 @@ class Custom extends React.Component {
               )}
             </div>
             <div className="patternSizeBar">
-              <input
+              <InputBox
                 type="range"
                 min="100"
                 max="300"
                 onChange={this.handleSize}
                 value={patternSize}
                 style={{ width: 250 }}
-              ></input>
+              />
             </div>
             <div className="rightSideWrap">
               <div className="chooseWrap">

@@ -1,5 +1,6 @@
 import React from "react";
 import "./addressBook.scss";
+import "Pages/MyPage/myPage.scss";
 import Button from "Components/Button";
 import InputBox from "Components/InputBox";
 
@@ -12,13 +13,13 @@ class AddressBook extends React.Component {
     };
   }
 
-  componentDidMount() {
-    window.addEventListener("click", e => this.handleClick(e));
-  }
+  // componentDidMount() {
+  //   window.addEventListener("click", e => this.handleClick(e));
+  // }
 
-  componentWillUnmount() {
-    window.removeEventListener("click", e => this.handleClick(e));
-  }
+  // componentWillUnmount() {
+  //   window.removeEventListener("click", e => this.handleClick(e));
+  // }
 
   handleClick = e => {
     this.setState({

@@ -12,8 +12,8 @@
       display: flex;
     }
   }
-  .logo {
-    margin-right: 85px;
+  button {
+    background-color: transparent;
   }
 }
 
@@ -46,6 +46,9 @@
     font-size: 22px;
     margin-bottom: 52px;
   }
+
+  #plusfriend-chat-button {
+  }
 }
 
 .logo {
@@ -57,7 +60,7 @@
 }
 
 .headerBottom {
-  font-size: 18px;
+  font-size: 20px;
   display: flex;
   justify-content: center;
   > div {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import "./sockPreview.scss";
 
 import * as sockImage from "Components/SockItem/socksImages";
@@ -41,8 +41,16 @@ const matching = {
 };
 
 class SockPreview extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.moveToCustom.bind(this);
+  }
+
   state = {
     isHover: false,
+    isTouch: false,
+    isClicked: false,
     isPreview: false,
     hoverIdx: 0
   };
@@ -59,11 +67,23 @@ class SockPreview extends React.Component {
     }
   };
 
+  handleTouch = () => {
+    this.setState({
+      isTouch: !this.state.isTouch
+    });
+  };
+
   getPreview = (e, idx) => {
     this.setState({
       isPreview: true,
       hoverIdx: idx
     });
+  };
+
+  moveToCustom = () => {
+    if (!this.state.isTouch) {
+      this.props.history.push("/custom");
+    }
   };
 
   render() {
@@ -72,60 +92,60 @@ class SockPreview extends React.Component {
 
     return (
       <div className="itemWrap" onMouseLeave={() => this.handleHover(false)}>
-        <Link to="/custom">
-          <div
-            className="itemImage"
-            onMouseEnter={() => this.handleHover(true)}
-          >
-            <img
-              className="sockImage imageNotMasked"
-              src={
-                isHover && isPreview
-                  ? matching[
-                      `${typeArr[preview[hoverIdx].main_type_id - 1]} side`
-                    ][0]
-                  : matching[`${typeArr[defaultType]} side`][0]
-              }
-              alt={`${defaultType} side`}
-            />
-            <img
-              className="sockImage imageMasked"
-              style={
-                isHover && isPreview
-                  ? { backgroundColor: preview[hoverIdx].color }
-                  : { backgroundColor: defaultColor }
-              }
-              src={
-                isHover && isPreview
-                  ? matching[
-                      `${typeArr[preview[hoverIdx].main_type_id - 1]} side`
-                    ][1]
-                  : matching[`${typeArr[defaultType]} side`][1]
-              }
-              alt={`${defaultType} side`}
-            />
-            <img
-              className="sockImage patternMasked"
-              style={
-                isHover && isPreview
-                  ? {
-                      backgroundImage: `url(${
-                        patternArr[preview[hoverIdx].pattern_id - 1]
-                      })`
-                    }
-                  : { backgroundImage: `url(${patternArr[defaultPattern]})` }
-              }
-              src={
-                isHover && isPreview
-                  ? matching[
-                      `${typeArr[preview[hoverIdx].main_type_id - 1]} side`
-                    ][1]
-                  : matching[`${typeArr[defaultType]} side`][1]
-              }
-              alt={`${defaultType} side pattern`}
-            />
-          </div>
-        </Link>
+        <div
+          className="itemImage"
+          onMouseEnter={() => this.handleHover(true)}
+          onTouchStart={this.handleTouch}
+          onClick={this.moveToCustom}
+        >
+          <img
+            className="sockImage imageNotMasked"
+            src={
+              isHover && isPreview
+                ? matching[
+                    `${typeArr[preview[hoverIdx].main_type_id - 1]} side`
+                  ][0]
+                : matching[`${typeArr[defaultType]} side`][0]
+            }
+            alt={`${defaultType} side`}
+          />
+          <img
+            className="sockImage imageMasked"
+            style={
+              isHover && isPreview
+                ? { backgroundColor: preview[hoverIdx].color }
+                : { backgroundColor: defaultColor }
+            }
+            src={
+              isHover && isPreview
+                ? matching[
+                    `${typeArr[preview[hoverIdx].main_type_id - 1]} side`
+                  ][1]
+                : matching[`${typeArr[defaultType]} side`][1]
+            }
+            alt={`${defaultType} side`}
+          />
+          <img
+            className="sockImage patternMasked"
+            style={
+              isHover && isPreview
+                ? {
+                    backgroundImage: `url(${
+                      patternArr[preview[hoverIdx].pattern_id - 1]
+                    })`
+                  }
+                : { backgroundImage: `url(${patternArr[defaultPattern]})` }
+            }
+            src={
+              isHover && isPreview
+                ? matching[
+                    `${typeArr[preview[hoverIdx].main_type_id - 1]} side`
+                  ][1]
+                : matching[`${typeArr[defaultType]} side`][1]
+            }
+            alt={`${defaultType} side pattern`}
+          />
+        </div>
         <div className="customLabel">
           <span className="miniLogo"></span>
           <span className="miniLabel">Customize</span>
@@ -188,4 +208,4 @@ class SockPreview extends React.Component {
   }
 }
 
-export default SockPreview;
+export default withRouter(SockPreview);

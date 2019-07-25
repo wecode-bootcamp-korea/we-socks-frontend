@@ -1,62 +1,165 @@
 @import "Style/color.scss";
 
-.eachWishListItem {
+.wishListRoot {
   display: flex;
-  height: 200px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid $myPageBorderColor;
-  .wishListImage {
-    .sockImage {
-      position: absolute;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  .eachWishListItem {
+    display: flex;
+    flex-direction: row;
+
+    height: 200px;
+    margin-bottom: 20px;
+
+    .wishListImage {
+      display: flex;
+      flex-direction: row;
+
+      .itemImageContainer {
+        width: 200px;
+        height: 200px;
+      }
+      .sockImage {
+        position: absolute;
+        width: 180px;
+        height: 180px;
+      }
+
+      .imageMasked {
+        position: relative;
+        mix-blend-mode: multiply;
+      }
+
+      .patternMasked {
+        position: relative;
+        left: 0;
+        mix-blend-mode: multiply;
+      }
+    }
+  }
+
+  .wishListExplanation {
+    display: flex;
+    flex-wrap: wrap;
+    .wishListSummary {
+      padding: 5% 0 0 5%;
       width: 180px;
-      height: 180px;
+
+      .categoryAndType {
+        color: $shoppingCartDarkFontColor;
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 20px;
+      }
     }
 
-    .imageMasked {
-      position: relative;
-      mix-blend-mode: multiply;
-    }
+    .whatToDo {
+      text-align: center;
 
-    .patternMasked {
-      position: absolute;
-      left: 0;
-      mix-blend-mode: multiply;
+      .wishListBtnWrap {
+        > button {
+          width: 200px;
+          margin: 8% 0 0 50%;
+          font-size: 20px;
+          padding: 5% 10%;
+          border: none;
+          color: $myPageBtnFontColor;
+          font-weight: bold;
+        }
+        .addToCartBtn {
+          background-color: $myPageSmallBtnColor;
+        }
+
+        .removeBtn {
+          background-color: $myPageBtnColor;
+        }
+      }
     }
   }
 }
 
-.wishListExplanation {
-  display: flex;
-  .wishListSummary {
-    padding: 5% 0 0 5%;
-    width: 180px;
+@media (max-width: 768px) {
+  .wishListRoot {
+    position: relative;
+    right: 5%;
+    .eachWishListItem {
+      .wishListImage {
+        .itemImageContainer {
+          width: 100px;
+          height: 100px;
+        }
+      }
 
-    .categoryAndType {
-      color: $shoppingCartDarkFontColor;
-      margin-bottom: 20px;
-      font-weight: bold;
-      font-size: 20px;
+      .wishListExplanation {
+        display: flex;
+
+        flex-wrap: wrap;
+        .wishListSummary {
+          margin-left: 50%;
+          padding: 0;
+          width: 200px;
+          .categoryAndType {
+            color: $shoppingCartDarkFontColor;
+            font-weight: bold;
+            font-size: 20px;
+          }
+        }
+
+        .whatToDo {
+          text-align: center;
+          margin: 0 0 40px 20%;
+          .wishListBtnWrap {
+            > button {
+              font-size: 20px;
+              padding: 5% 10%;
+              border: none;
+              color: $myPageBtnFontColor;
+              font-weight: bold;
+            }
+          }
+        }
+      }
     }
   }
+}
 
-  .whatToDo {
-    text-align: center;
-    .wishListBtnWrap {
-      > button {
-        width: 200px;
-        margin: 8% 0 0 60%;
-        font-size: 20px;
-        padding: 5% 10%;
-        border: none;
-        color: $myPageBtnFontColor;
-        font-weight: bold;
-      }
-      .addToCartBtn {
-        background-color: $myPageSmallBtnColor;
+@media (max-width: 320px) {
+  .wishListRoot {
+    .eachWishListItem {
+      .wishListImage {
+        .itemImageContainer {
+          width: 100px;
+          height: 100px;
+        }
       }
 
-      .removeBtn {
-        background-color: $myPageBtnColor;
+      .wishListExplanation {
+        display: flex;
+        flex-wrap: wrap;
+        .wishListSummary {
+          width: 75px;
+          margin: 0 0 0 45%;
+
+          .categoryAndType {
+            font-size: 18px;
+          }
+        }
+      }
+
+      .whatToDo {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+
+        > div {
+          padding-right: 30px;
+          .addToCartBtn,
+          .removeBtn {
+            width: 100px;
+            padding: 0;
+          }
+        }
       }
     }
   }

@@ -12,7 +12,7 @@ class MyPage extends React.Component {
     super();
 
     this.state = {
-      clickedClass: "orderHistory"
+      clickedClass: "wishList"
     };
   }
 

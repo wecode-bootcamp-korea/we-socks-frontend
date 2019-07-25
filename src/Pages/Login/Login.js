@@ -3,9 +3,7 @@ import React, { Component } from "react";
 import InputBox from "Components/InputBox";
 import Button from "Components/Button";
 import "./Login.scss";
-import { post } from "Common/api";
 import { API_URL, TOKEN_KEY } from "config";
-import { validate, throwStatement } from "@babel/types";
 
 class Login extends Component {
   state = {
@@ -14,12 +12,6 @@ class Login extends Component {
     emailText: "",
     pwText: "",
     checkBox: "loginCheckNone"
-  };
-
-  addPlusFriend = () => {
-    window.Kakao.PlusFriend.addFriend({
-      plusFriendId: "_xcLqmC" // 플러스친구 홈 URL에 명시된 id로 설정합니다.
-    });
   };
 
   handleInput = e => {
@@ -83,17 +75,11 @@ class Login extends Component {
         });
     }
   };
-
   componentDidMount() {
-    window.Kakao.init("ee298c66ffafca1d0d2da71485794771");
-    // window.Kakao.PlusFriend.createChatButton({
-    //   container: "#plusfriend-chat-button",
-    //   plusFriendId: "_FTmxfT" // 플러스친구 홈 URL에 명시된 id로 설정합니다.
-    // });
+    // window.Kakao.init("ee298c66ffafca1d0d2da71485794771");
     window.Kakao.Auth.createLoginButton({
       container: "#kakao-login-btn",
       success: function(authObj) {
-        console.log(JSON.stringify(authObj));
         fetch(`${API_URL}user/login/kakao`, {
           method: "GET",
           headers: {
@@ -114,7 +100,6 @@ class Login extends Component {
   render() {
     return (
       <div className="loginContainer">
-        {/* <div id="plusfriend-chat-button"></div> */}
         <div className="loginContents">
           <div className="loginHeadText">
             <h2>Sign in</h2>
@@ -147,7 +132,7 @@ class Login extends Component {
           >
             <div id={this.state.checkBox}></div>
             <label id="loginCheckLabel" for="loginCheck">
-              로그인 상태 유지
+              email save
             </label>
           </div>
           <Button

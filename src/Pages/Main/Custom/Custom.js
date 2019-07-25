@@ -11,6 +11,7 @@ import AddedToCartMessage from "Components/AddedToCartMessage";
 import { API_URL } from "config";
 import { isFulfilled } from "q";
 import Axios from "axios";
+
 const colorArr = [
   "#F0EDE5",
   "#EAE6DA",

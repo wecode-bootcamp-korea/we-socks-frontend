@@ -45,9 +45,6 @@
     font-size: 22px;
     margin-bottom: 52px;
   }
-
-  #plusfriend-chat-button {
-  }
 }
 
 .logo {
@@ -59,11 +56,16 @@
 }
 
 .headerBottom {
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  > div {
-    padding: 1% 2%;
+  .headerLink {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .headerBottomBtn {
+    font-size: 23px;
+    text-decoration: none;
+    padding: 1.3% 2%;
     &:hover {
       opacity: 0.6;
       cursor: pointer;

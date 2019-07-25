@@ -1,30 +1,29 @@
-const s3Url =
-  "https://wesocks-design-management.s3.ap-northeast-2.amazonaws.com";
+import { S3_URL } from "config";
 
-const highFrontMasking = `${s3Url}/High_Front_Masking.png`;
-const highFront = `${s3Url}/High_Front.png`;
-const highBackMasking = `${s3Url}/High_Back_Masking.png`;
-const highBack = `${s3Url}/High_Back.png`;
-const ankleSideMasking = `${s3Url}/Ankle_Side_Masking.png`;
-const ankleSide = `${s3Url}/Ankle_Side.png`;
-const ankleFrontMasking = `${s3Url}/Ankle_Front_Masking.png`;
-const ankleFront = `${s3Url}/Ankle_Front.png`;
-const ankleBack = `${s3Url}/Ankle_Back.png`;
-const ankleBackMasking = `${s3Url}/Ankle_Back_Masking.png`;
-const noShowBackMasking = `${s3Url}/noShow_Back_Masking.png`;
-const noShowBack = `${s3Url}/noShow_Back.png`;
-const noShowFrontMasking = `${s3Url}/noShow_Front_Masking.png`;
-const noShowFront = `${s3Url}/noShow_Front.png`;
-const noShowSideMasking = `${s3Url}/noShow_Side_Masking.png`;
-const noShowSide = `${s3Url}/noShow_Side.png`;
-const midBackMasking = `${s3Url}/Mid_Back_Masking.png`;
-const midBack = `${s3Url}/Mid_Back.png`;
-const midFrontMasking = `${s3Url}/Mid_Front_Masking.png`;
-const midFront = `${s3Url}/Mid_Front.png`;
-const midSideMasking = `${s3Url}/Mid_Side_Masking.png`;
-const midSide = `${s3Url}/Mid_Side.png`;
-const highSideMasking = `${s3Url}/High_Side_Masking.png`;
-const highSide = `${s3Url}/High_Side.png`;
+const highFrontMasking = `${S3_URL}/High_Front_Masking.png`;
+const highFront = `${S3_URL}/High_Front.png`;
+const highBackMasking = `${S3_URL}/High_Back_Masking.png`;
+const highBack = `${S3_URL}/High_Back.png`;
+const ankleSideMasking = `${S3_URL}/Ankle_Side_Masking.png`;
+const ankleSide = `${S3_URL}/Ankle_Side.png`;
+const ankleFrontMasking = `${S3_URL}/Ankle_Front_Masking.png`;
+const ankleFront = `${S3_URL}/Ankle_Front.png`;
+const ankleBack = `${S3_URL}/Ankle_Back.png`;
+const ankleBackMasking = `${S3_URL}/Ankle_Back_Masking.png`;
+const noShowBackMasking = `${S3_URL}/noShow_Back_Masking.png`;
+const noShowBack = `${S3_URL}/noShow_Back.png`;
+const noShowFrontMasking = `${S3_URL}/noShow_Front_Masking.png`;
+const noShowFront = `${S3_URL}/noShow_Front.png`;
+const noShowSideMasking = `${S3_URL}/noShow_Side_Masking.png`;
+const noShowSide = `${S3_URL}/noShow_Side.png`;
+const midBackMasking = `${S3_URL}/Mid_Back_Masking.png`;
+const midBack = `${S3_URL}/Mid_Back.png`;
+const midFrontMasking = `${S3_URL}/Mid_Front_Masking.png`;
+const midFront = `${S3_URL}/Mid_Front.png`;
+const midSideMasking = `${S3_URL}/Mid_Side_Masking.png`;
+const midSide = `${S3_URL}/Mid_Side.png`;
+const highSideMasking = `${S3_URL}/High_Side_Masking.png`;
+const highSide = `${S3_URL}/High_Side.png`;
 
 export {
   noShowBackMasking,

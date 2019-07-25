@@ -3,7 +3,6 @@ import React from "react";
 import "./custom.scss";
 import Button from "Components/Button";
 import SockItem from "Components/SockItem";
-import InputBox from "Components/InputBox";
 import axios from "axios";
 import Span from "Components/Span";
 import * as patternImage from "Components/SockItem/patternImages";
@@ -66,10 +65,9 @@ const patternArr = [
 
 const uploadedImageArr = [
   "",
-  uploadedImage.music,
-  uploadedImage.moon,
   uploadedImage.nike,
-  uploadedImage.mirror,
+  uploadedImage.apple,
+  uploadedImage.weCodeLogo,
   uploadedImage.plus
 ];
 
@@ -82,7 +80,7 @@ class Custom extends React.Component {
     type: 0,
     view: "front",
     pattern: "",
-    patternSize: "",
+    patternSize: 30,
     price: 6000,
     uploaded: 0,
     addToCartBtnClicked: false,
@@ -100,23 +98,29 @@ class Custom extends React.Component {
     e.persist();
     let reader = new FileReader();
     let file = e.target.files[0];
+
     reader.onloadend = () => {
       this.setState({ ...this.state, imgArr: reader.result });
     };
+
     if (file) {
       reader.readAsDataURL(file);
     }
+
     let formData = new FormData();
     formData.append("image", file);
+
     let headers = {
       "content-type": "multipart/form-data"
     };
+
     Axios.post("http://10.58.3.112:8000/aws/upload", formData, {
       headers
     });
   };
 
   onImgBtnClick = (e, image) => {
+    this.changeDesign(e, uploadedImageArr.indexOf(image));
     this.setState({
       ...this.state,
       imgArr: image
@@ -127,7 +131,6 @@ class Custom extends React.Component {
     e.persist();
     this.pageX = e.pageX;
     this.pageY = e.pageY;
-    console.log("onDragStart", e);
   };
 
   dragEnd = e => {
@@ -137,8 +140,6 @@ class Custom extends React.Component {
     const gapX = e.pageX - this.pageX;
     const gapY = e.pageY - this.pageY;
 
-    console.log("onDrdragEndag", e);
-    console.log("gap", gapX, gapY);
     this.setState({
       top: top + gapY,
       left: left + gapX
@@ -161,6 +162,7 @@ class Custom extends React.Component {
 
   changeDesign = (e, value) => {
     const sockProperty = [e.target.getAttribute("name")];
+
     this.setState({
       [sockProperty]: value
     });
@@ -176,7 +178,8 @@ class Custom extends React.Component {
         },
         () => this.increasePrice()
       );
-    } else if (
+    }
+    if (
       this.state.patternChosen &&
       sockProperty[0] === "pattern" &&
       value === 0
@@ -188,7 +191,6 @@ class Custom extends React.Component {
         () => this.decreasePrice()
       );
     }
-
     if (
       !this.state.imageChosen &&
       sockProperty[0] === "uploaded" &&
@@ -198,9 +200,10 @@ class Custom extends React.Component {
         {
           imageChosen: !this.state.imageChosen
         },
-        () => this.increasePrice()
+        () => console.log(this.state.imageChosen) //this.increasePrice()
       );
-    } else if (
+    }
+    if (
       this.state.imageChosen &&
       sockProperty[0] === "uploaded" &&
       value === 0
@@ -216,21 +219,24 @@ class Custom extends React.Component {
 
   addToCart = () => {
     let sockData = {
-      label: "socks",
-      know_design_id: "no",
       user_pk: 1,
+      label: "socks",
       category_id: 1,
       main_type_id: this.state.type + 1,
       color: this.state.color,
-      pattern_id: this.state.pattern,
-      logo_id: this.state.uploaded + 1,
+      pattern_type_id: this.state.pattern,
+      pattern_size: this.state.patternSize,
+      logo_type_id: this.state.uploaded + 1,
+      logo_size: 3,
+      logo_x_coordinate: this.state.top,
+      logo_y_coordinate: this.state.left,
       other_req: "req",
       count: 1,
       unit_price: this.state.price
     };
 
     axios
-      .post("http://10.58.2.189:8000/product/add_cart_req", sockData)
+      .post(`${API_URL}product/add_cart_req`, sockData)
       .then(response => {
         this.setState(
           {
@@ -252,19 +258,24 @@ class Custom extends React.Component {
 
   addToWishList = () => {
     let sockData = {
-      label: "socks",
-      know_design_id: "yes",
       user_pk: 1,
+      label: "socks",
       category_id: 1,
       main_type_id: this.state.type + 1,
       color: this.state.color,
-      pattern_id: this.state.pattern,
-      logo_id: this.state.uploaded + 1,
+      pattern_type_id: this.state.pattern,
+      pattern_size: this.state.patternSize,
+      logo_type_id: this.state.uploaded + 1,
+      logo_size: 3,
+      logo_x_coordinate: this.state.top,
+      logo_y_coordinate: this.state.left,
+      other_req: "req",
+      count: 1,
       unit_price: this.state.price
     };
 
     axios
-      .post("http://10.58.2.189:8000/product/wish_req", sockData)
+      .post(`${API_URL}product/wish_req`, sockData)
       .then(response => {
         if (response.status === 200) {
           this.setState(
@@ -279,10 +290,12 @@ class Custom extends React.Component {
               }, 2000);
             }
           );
+          window.location.reload();
         }
       })
       .catch(error => {
         alert("이미 등록된 상품입니다.");
+        window.location.reload();
       });
   };
 
@@ -425,6 +438,7 @@ class Custom extends React.Component {
                     })}
                     <input
                       type="file"
+                      namep="uploaded"
                       className="customImgUpBtn"
                       onChange={this.imgUproad}
                     />

@@ -12,6 +12,7 @@ import AddedToCartMessage from "Components/AddedToCartMessage";
 import { API_URL } from "config";
 import { isFulfilled } from "q";
 import Axios from "axios";
+
 const colorArr = [
   "#F0EDE5",
   "#EAE6DA",
@@ -79,12 +80,15 @@ const typeArr = ["noShow", "ankle", "mid", "high"];
 class Custom extends React.Component {
   state = {
     color: "none",
-    type: "noShow",
+    type: 0,
     view: "front",
     pattern: "",
     price: 6000,
+    uploaded: 0,
     addToCartBtnClicked: false,
     addToWishListBtnClicked: false,
+    patternChosen: false,
+    imageChosen: false,
     imgArr: "",
     X: 0,
     Y: 0,
@@ -212,20 +216,21 @@ class Custom extends React.Component {
 
   addToCart = () => {
     let sockData = {
+      label: "socks",
       know_design_id: "no",
       user_pk: 1,
       category_id: 1,
       main_type_id: this.state.type + 1,
       color: this.state.color,
       pattern_id: this.state.pattern,
-      logo_id: this.state.uploaded,
+      logo_id: this.state.uploaded + 1,
       other_req: "req",
-      amount: 1,
+      count: 1,
       unit_price: this.state.price
     };
 
     axios
-      .post("http://10.58.7.11:8000/product/add_cart_req", sockData)
+      .post("http://10.58.2.189:8000/product/add_cart_req", sockData)
       .then(response => {
         this.setState(
           {
@@ -247,18 +252,19 @@ class Custom extends React.Component {
 
   addToWishList = () => {
     let sockData = {
+      label: "socks",
       know_design_id: "yes",
       user_pk: 1,
       category_id: 1,
       main_type_id: this.state.type + 1,
       color: this.state.color,
       pattern_id: this.state.pattern,
-      logo_id: this.state.uploaded,
+      logo_id: this.state.uploaded + 1,
       unit_price: this.state.price
     };
 
     axios
-      .post("http://10.58.7.11:8000/product/wish_req", sockData)
+      .post("http://10.58.2.189:8000/product/wish_req", sockData)
       .then(response => {
         if (response.status === 200) {
           this.setState(

@@ -5,11 +5,64 @@
   margin-bottom: 50px;
 
   .headerTop {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 20px auto 5px;
-    > div {
+    margin-top: 20px;
+    height: 200px;
+
+    .logoWrap {
+      width: 350px;
+      height: 350px;
+      cursor: pointer;
+    }
+
+    .logoIcon {
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      background-image: url("https://wesocks-design-management.s3.ap-northeast-2.amazonaws.com/WeSocksLogo.jpg");
+      background-position: center;
+      background-size: 160%;
+    }
+
+    .headerBtnWrap {
       display: flex;
+      position: relative;
+      bottom: 213px;
+      justify-content: space-around;
+      > div {
+        display: flex;
+      }
+
+      .myAccountWrap {
+        margin-top: 110px;
+        .myAccountIcon {
+          width: 35px;
+          height: 35px;
+          background-image: url("https://previews.123rf.com/images/alekseyvanin/alekseyvanin1709/alekseyvanin170901431/86082022-baby-socks-line-icon-outline-vector-sign-linear-style-pictogram-isolated-on-white-symbol-illustratio.jpg");
+          background-size: 200%;
+          background-position: center;
+        }
+        .myAccountBtn {
+          font-size: 22px;
+        }
+      }
+
+      .cartWrap {
+        margin-top: 100px;
+        .cartIcon {
+          width: 50px;
+          height: 40px;
+          background-color: none;
+          background-image: url("https://cdn4.iconfinder.com/data/icons/shopping-21/64/shopping-01-512.png");
+          background-size: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+        .cartBtn {
+          font-size: 22px;
+          position: relative;
+          top: 8px;
+        }
+      }
     }
   }
   button {
@@ -17,53 +70,16 @@
   }
 }
 
-.myAccountWrap {
-  margin-top: 110px;
-  .myAccountIcon {
-    width: 35px;
-    height: 35px;
-    background-image: url("https://previews.123rf.com/images/alekseyvanin/alekseyvanin1709/alekseyvanin170901431/86082022-baby-socks-line-icon-outline-vector-sign-linear-style-pictogram-isolated-on-white-symbol-illustratio.jpg");
-    background-size: 200%;
-    background-position: center;
-  }
-  .myAccountBtn {
-    font-size: 22px;
-  }
-}
-
-.cartWrap {
-  margin-top: 100px;
-  .cartIcon {
-    width: 50px;
-    height: 40px;
-    background-color: none;
-    background-image: url("https://cdn4.iconfinder.com/data/icons/shopping-21/64/shopping-01-512.png");
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .cartBtn {
-    font-size: 22px;
-    margin-bottom: 52px;
-  }
-}
-
-.logo {
-  background-image: url("https://wesocks-design-management.s3.ap-northeast-2.amazonaws.com/WeSocksLogo.jpg");
-  width: 200px;
-  height: 200px;
-  background-position: center;
-  background-size: 160%;
-}
-
 .headerBottom {
-  font-size: 20px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   > div {
     padding: 10px 40px;
 
-    > span {
+    > button {
+      font-size: 20px;
       padding-bottom: 8px;
       border-bottom: 6px solid black;
       transition: 0.2s all;
@@ -73,5 +89,36 @@
         border-bottom: 6px solid rgba(0, 0, 0, 0.3);
       }
     }
+  }
+}
+@media (max-width: 768px) {
+  .headerTop {
+    .headerBtnWrap {
+      display: flex;
+      position: relative;
+      top: -125px;
+      justify-content: space-evenly;
+      > div {
+        display: flex;
+      }
+    }
+
+    .headerBottom {
+      position: relative;
+      top: 150px;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .headerTop {
+    position: relative;
+    bottom: 25px;
+  }
+
+  .headerBottom {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
   }
 }

@@ -8,6 +8,7 @@ import Login from "./Pages/Login";
 import Custom from "Pages/Main/Custom";
 import OrderDetail from "Pages/MyPage/OrderHistory/OrderDetail";
 import ShoppingCart from "Pages/MyPage/ShoppingCart";
+import ErrorPage from "Pages/ErrorPage";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -15,18 +16,17 @@ class Routes extends React.Component {
   render() {
     return (
       <Router>
-        <Layout>
-          <Switch>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/mypage" component={MyPage} />
-            <Route exact path="/custom" component={Custom} />
-            <Route exact path="/itemlist" component={Itemlist} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/orderdetail" component={OrderDetail} />
-            <Route exact path="/shoppingcart" component={ShoppingCart} />
-          </Switch>
-        </Layout>
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route exact path="/mypage" component={MyPage} />
+          <Route exact path="/custom" component={Custom} />
+          <Route exact path="/itemlist" component={Itemlist} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/orderdetail" component={OrderDetail} />
+          <Route exact path="/shoppingcart" component={ShoppingCart} />
+          <Route path="*" component={ErrorPage} />
+        </Switch>
       </Router>
     );
   }

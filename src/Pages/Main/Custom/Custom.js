@@ -3,6 +3,7 @@ import React from "react";
 import "./custom.scss";
 import Button from "Components/Button";
 import SockItem from "Components/SockItem";
+import Layout from "Components/Layout";
 import InputBox from "Components/InputBox";
 import axios from "axios";
 import { ADDRESS } from "Config/Config";
@@ -310,7 +311,7 @@ class Custom extends React.Component {
     } = this.state;
 
     return (
-      <>
+      <Layout>
         <AddedToCartMessage showMessage={addToCartBtnClicked} />
         <div className="customRoot">
           <div className="chooseTypesWrap">
@@ -462,7 +463,7 @@ class Custom extends React.Component {
             </div>
           )}
         </div>
-      </>
+      </Layout>
     );
   }
 }

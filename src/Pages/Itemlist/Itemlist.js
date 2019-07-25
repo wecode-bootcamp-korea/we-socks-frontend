@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SockPreview from "Components/SockPreview";
+import Layout from "Components/Layout";
 import "./itemlist.scss";
 
 const API_URL = "http://10.58.5.28:8001";
@@ -44,37 +45,39 @@ class itemlist extends Component {
     } = this.state;
 
     return (
-      <div className="itemlist">
-        <div className="listHeader">
-          <h3>Choose Your Socks type</h3>
+      <Layout>
+        <div className="itemlist">
+          <div className="listHeader">
+            <h3>Choose Your Socks type</h3>
+          </div>
+          <div className="list">
+            <SockPreview
+              defaultType="0"
+              defaultColor="none"
+              defaultPattern="0"
+              preview={noShowPreviewArr}
+            />
+            <SockPreview
+              defaultType="1"
+              defaultColor="none"
+              defaultPattern="0"
+              preview={anklePreviewArr}
+            />
+            <SockPreview
+              defaultType="2"
+              defaultColor="none"
+              defaultPattern="0"
+              preview={midPreviewArr}
+            />
+            <SockPreview
+              defaultType="3"
+              defaultColor="none"
+              defaultPattern="0"
+              preview={highPreviewArr}
+            />
+          </div>
         </div>
-        <div className="list">
-          <SockPreview
-            defaultType="0"
-            defaultColor="none"
-            defaultPattern="0"
-            preview={noShowPreviewArr}
-          />
-          <SockPreview
-            defaultType="1"
-            defaultColor="none"
-            defaultPattern="0"
-            preview={anklePreviewArr}
-          />
-          <SockPreview
-            defaultType="2"
-            defaultColor="none"
-            defaultPattern="0"
-            preview={midPreviewArr}
-          />
-          <SockPreview
-            defaultType="3"
-            defaultColor="none"
-            defaultPattern="0"
-            preview={highPreviewArr}
-          />
-        </div>
-      </div>
+      </Layout>
     );
   }
 }

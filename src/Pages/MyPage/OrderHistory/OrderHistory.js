@@ -19,7 +19,7 @@ class OrderHistory extends React.Component {
 
   componentDidMount = () => {
     axios
-      .post("http://10.58.5.85:8000/purchase/my_order", { buyer: "bj" })
+      .post("http://10.58.2.189:8000/purchase/my_order", { user_pk: 1 })
       .then(response => {
         this.setState({
           orderHistoryArr: response.data[0].order_list

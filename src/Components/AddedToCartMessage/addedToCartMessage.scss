@@ -2,8 +2,9 @@
 
 .addedToCartMessage {
   position: absolute;
-  bottom: 65%;
-  right: 12%;
+  z-index: 1;
+  bottom: 10%;
+  right: 8%;
   background-color: $shoppingCartMessageBoxColor;
   font-weight: bold;
   color: $shoppingCartDarkFontColor;
@@ -16,32 +17,63 @@
       opacity: 1;
     }
   }
-
+  .sectionContainer {
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    > span {
+      font-size: 17px;
+      font-weight: none;
+      padding-bottom: 5px;
+      border-bottom: 1px solid $myPageBtnClickedBorderColor;
+    }
+  }
   .addedToCartInformation {
     position: relative;
-    display: flex;
-    padding: 10px;
 
-    > div {
-      &:first-child {
-        width: 50px;
-        height: 50px;
-        margin: 5px;
-        background-image: url("https://cdn11.bigcommerce.com/s-j602wc6a/images/stencil/1024x1024/products/6526/23532/bluebell-crew-socks-recycled-cotton-w__92655.1502809282.jpg?c=2");
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-      }
+    .addedToCartList {
+      display: flex;
+      padding-right: 9px;
 
-      &:nth-child(2) {
-        font-size: 20px;
-        margin: 15px;
-      }
+      .addedToCartImage {
+        padding-left: 35px;
+        .itemImageContainer {
+          width: 80px;
+          .sockImage {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+          }
+          .imageMasked {
+            position: absolute;
+            right: 235px;
+            mix-blend-mode: multiply;
+          }
 
-      &:last-child {
-        font-size: 20px;
-        margin: 15px;
+          .patternMasked {
+            position: absolute;
+            left: 35px;
+            mix-blend-mode: multiply;
+          }
+
+          .uploadedImageMasked {
+            position: absolute;
+            mix-blend-mode: multiply;
+            left: 35px;
+            background-size: 20%;
+          }
+        }
       }
+    }
+
+    .addedToCartCategoryAndType {
+      font-size: 15px;
+      margin: 15px;
+    }
+
+    .addedToCartPrice {
+      font-size: 15px;
+      margin: 15px;
     }
   }
 

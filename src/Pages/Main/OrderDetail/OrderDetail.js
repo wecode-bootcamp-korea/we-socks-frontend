@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "Components/Button";
-import Header from "Components/Header";
 import "./orderDetail.scss";
 
 class OrderDetail extends React.Component {
@@ -11,7 +10,6 @@ class OrderDetail extends React.Component {
   render() {
     return (
       <>
-        <Header />
         <div className="orderDetailRoot">
           <p>Order Detail</p>
           <div className="leftBox">

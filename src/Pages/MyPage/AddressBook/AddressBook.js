@@ -1,5 +1,6 @@
 import React from "react";
 import "./addressBook.scss";
+import "Pages/MyPage/myPage.scss";
 import Button from "Components/Button";
 import InputBox from "Components/InputBox";
 import Select from "Components/Select";

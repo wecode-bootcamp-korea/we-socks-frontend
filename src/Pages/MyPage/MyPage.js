@@ -13,22 +13,22 @@ class MyPage extends React.Component {
     super();
 
     this.state = {
-      clickedClass: "myAccount"
+      clickedClass: "orderHistory"
     };
   }
 
-  // componentDidMount = () => {
-  //   const headers = {
-  //     Authorizaion:
-  //       "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NDN9.ZqD0eEcH_WXZ11rKA6ww2kGd-4zdQNu_k57OU-y0G7A"
-  //   };
-  //   axios
-  //     .get("http://10.58.3.201:8000/user/mypoint", { headers })
-  //     .then(response => {
-  //       console.log(response);
-  //     });
-  //   fetch("http://10.58.3.201:8000/user/mypoint");
-  // };
+  componentDidMount = () => {
+    const headers = {
+      Authorizaion:
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NDN9.ZqD0eEcH_WXZ11rKA6ww2kGd-4zdQNu_k57OU-y0G7A"
+    };
+    axios
+      .get("http://10.58.3.201:8000/user/mypoint", { headers })
+      .then(response => {
+        console.log(response);
+      });
+    fetch("http://10.58.3.201:8000/user/mypoint");
+  };
 
   handleOptionClick = name => {
     this.setState({

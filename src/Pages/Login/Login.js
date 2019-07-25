@@ -80,6 +80,13 @@ class Login extends Component {
     }
   };
   componentDidMount() {
+<<<<<<< HEAD
+=======
+     window.Kakao.PlusFriend.createChatButton({
+       container: "#plusfriend-chat-button",
+       plusFriendId: "_FTmxfT" // 플러스친구 홈 URL에 명시된 id로 설정합니다.
+     });
+>>>>>>> 14bddc786c9fa32909068ed1b15ad87be452f076
     window.Kakao.Auth.createLoginButton({
       container: "#kakao-login-btn",
       success: function(authObj) {

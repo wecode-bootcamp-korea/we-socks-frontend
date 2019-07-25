@@ -6,15 +6,29 @@ import PersonalInformation from "Pages/MyPage/PersonalInformation";
 import AddressBook from "Pages/MyPage/AddressBook";
 import OrderHistory from "Pages/MyPage/OrderHistory";
 import WishList from "Pages/MyPage/WishList";
+import axios from "axios";
 
 class MyPage extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      clickedClass: "wishList"
+      clickedClass: "orderHistory"
     };
   }
+
+  componentDidMount = () => {
+    const headers = {
+      Authorizaion:
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NDN9.ZqD0eEcH_WXZ11rKA6ww2kGd-4zdQNu_k57OU-y0G7A"
+    };
+    axios
+      .get("http://10.58.3.201:8000/user/mypoint", { headers })
+      .then(response => {
+        console.log(response);
+      });
+    fetch("http://10.58.3.201:8000/user/mypoint");
+  };
 
   handleOptionClick = name => {
     this.setState({

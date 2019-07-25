@@ -1,41 +1,82 @@
-import React from "react";
-import Layout from "Components/Layout";
+import React, { Component } from "react";
+import axios from "axios";
 import SockPreview from "Components/SockPreview";
 import "./itemlist.scss";
 
-const itemlist = props => {
-  return (
-    <Layout>
-      <div className="lineBox"></div>
+const API_URL = "http://10.58.5.28:8001";
+
+class itemlist extends Component {
+  state = {
+    noShowPreviewArr: [],
+    anklePreviewArr: [],
+    midPreviewArr: [],
+    highPreviewArr: []
+  };
+
+  componentDidMount = async () => {
+    const noshow = await axios.post(`${API_URL}/main/most_wished_list`, {
+      main_type: "1"
+    });
+    const ankle = await axios.post(`${API_URL}/main/most_wished_list`, {
+      main_type: "2"
+    });
+    const mid = await axios.post(`${API_URL}/main/most_wished_list`, {
+      main_type: "3"
+    });
+    const high = await axios.post(`${API_URL}/main/most_wished_list`, {
+      main_type: "4"
+    });
+
+    this.setState({
+      noShowPreviewArr: noshow.data,
+      anklePreviewArr: ankle.data,
+      midPreviewArr: mid.data,
+      highPreviewArr: high.data
+    });
+  };
+
+  render() {
+    const {
+      noShowPreviewArr,
+      anklePreviewArr,
+      midPreviewArr,
+      highPreviewArr
+    } = this.state;
+
+    return (
       <div className="itemlist">
         <div className="listHeader">
           <h3>Choose Your Socks type</h3>
         </div>
         <div className="list">
           <SockPreview
-            defaultType="noShow"
+            defaultType="0"
             defaultColor="none"
             defaultPattern="0"
+            preview={noShowPreviewArr}
           />
           <SockPreview
-            defaultType="ankle"
+            defaultType="1"
             defaultColor="none"
             defaultPattern="0"
+            preview={anklePreviewArr}
           />
           <SockPreview
-            defaultType="mid"
+            defaultType="2"
             defaultColor="none"
             defaultPattern="0"
+            preview={midPreviewArr}
           />
           <SockPreview
-            defaultType="high"
+            defaultType="3"
             defaultColor="none"
             defaultPattern="0"
+            preview={highPreviewArr}
           />
         </div>
       </div>
-    </Layout>
-  );
-};
+    );
+  }
+}
 
 export default itemlist;

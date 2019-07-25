@@ -26,6 +26,14 @@ class Header extends React.Component {
       }
     );
   };
+
+  componentDidMount() {
+    window.Kakao.PlusFriend.createChatButton({
+      container: "#plusfriend-chat-button",
+      plusFriendId: "_FTmxfT" // 플러스친구 홈 URL에 명시된 id로 설정합니다.
+    });
+  }
+
   render() {
     const { cartBtnClicked } = this.state;
     return (
@@ -49,6 +57,8 @@ class Header extends React.Component {
                 text="Cart"
                 onClick={this.handleCartBtnClicked}
               />
+
+              <div id="plusfriend-chat-button"></div>
             </div>
           </div>
           <div className="headerBottom">

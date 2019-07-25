@@ -5,6 +5,9 @@ import SockItem from "Components/SockItem";
 import { Link } from "react-router-dom";
 import "./orderHistory.scss";
 
+const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
+const typeArr = ["No-Show", "Ankle", "Mid", "High"];
+
 class OrderHistory extends React.Component {
   constructor() {
     super();
@@ -25,6 +28,7 @@ class OrderHistory extends React.Component {
   };
 
   handleClick = () => {};
+
   render() {
     const { className } = this.props;
     const { orderHistoryArr } = this.state;
@@ -43,10 +47,10 @@ class OrderHistory extends React.Component {
                   <span className="productImage">
                     <SockItem
                       key={`orderHistory-${idx}`}
-                      type={el.main_type}
-                      color={el.color}
-                      pattern={el.pattern}
+                      type={el.design.main_type - 1}
                       view="side"
+                      color={el.design.color}
+                      pattern={el.design.pattern}
                     />
                   </span>
                   <div className="orderExplanationWrap">
@@ -55,7 +59,9 @@ class OrderHistory extends React.Component {
                         Delivered: Jul 5, 2019
                       </div>
                       <div className="productName">{el.label}</div>
-                      <div className="categoryAndType">{`${el.category} ${el.main_type}`}</div>
+                      <div className="categoryAndType">{`${
+                        categoryArr[el.design.category - 1]
+                      } ${typeArr[el.design.main_type - 1]}`}</div>
                       <div className="orderedDate">
                         Ordered: {el.ordered_date}
                       </div>

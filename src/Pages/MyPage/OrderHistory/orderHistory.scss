@@ -3,7 +3,7 @@
 .eachOrder {
   display: flex;
   height: 200px;
-  margin: 45px 0 45px;
+  margin: 5% 0 4%;
   border-bottom: 1px solid $myPageBorderColor;
   padding-bottom: 20px;
 
@@ -29,7 +29,6 @@
 
   .orderExplanationWrap {
     display: flex;
-    width: 600px;
     .orderSummary {
       font-size: 18px;
       margin: auto 30px;
@@ -46,8 +45,9 @@
 
     .orderDetailBtn {
       font-size: 20px;
-      height: 35px;
-      margin: 0 0 0 200px;
+      width: 130px;
+      height: 40px;
+      margin: 15% 0 0 70%;
       border: 1px solid $myPageBorderColor;
     }
   }

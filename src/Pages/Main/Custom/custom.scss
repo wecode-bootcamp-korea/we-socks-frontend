@@ -63,7 +63,13 @@ $mediaPixel: 768px;
       height: 350px;
     }
 
+    .itemImageContainer {
+      position: relative;
+    }
+
     .sockImage {
+      top: 0;
+      left: 0;
       position: absolute;
       width: 100%;
       height: 100%;
@@ -72,6 +78,18 @@ $mediaPixel: 768px;
         width: 350px;
         height: 352px;
       }
+    }
+
+    .imgDragnDrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 70px;
+      height: 70px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      // border-radius: 50px;
+      background-color: black;
     }
   }
 
@@ -210,12 +228,6 @@ $mediaPixel: 768px;
       margin: 6px;
       border: 1px solid white;
     }
-
-    .imagePickerContainer {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
   }
 
   .orderWrap {
@@ -280,4 +292,18 @@ $mediaPixel: 768px;
       opacity: 1;
     }
   }
+}
+
+.imagePickerContainer {
+  position: relative;
+}
+
+.customImgUpBtn {
+  position: absolute;
+  top: 66px;
+  left: 8px;
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+  cursor: pointer;
 }

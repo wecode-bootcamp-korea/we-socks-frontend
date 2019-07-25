@@ -45,18 +45,22 @@ class Header extends React.Component {
             </Link>
             <div className="cartWrap">
               <div className="cartIcon"></div>
-              <Button
-                className="cartBtn"
-                text="Cart"
-                onClick={this.handleCartBtnClicked}
-              />
+              <Link to="/shoppingcart">
+                <Button
+                  className="cartBtn"
+                  text="Cart"
+                  onClick={this.handleCartBtnClicked}
+                />
+              </Link>
             </div>
           </div>
           <div className="headerBottom">
-            <div className="kids">KIDS</div>
-            <div className="casual">CASUAL</div>
-            <div className="dressed">DRESSED</div>
-            <div className="athletic">ATHLETIC</div>
+            <Link to="/main" className="headerLink">
+              <Button className="kids headerBottomBtn" text="KIDS" />
+              <Button className="casual headerBottomBtn" text="CASUAL" />
+              <Button className="dressed headerBottomBtn" text="DRESSED" />
+              <Button className="athletic headerBottomBtn" text="ATHLETIC" />
+            </Link>
           </div>
         </header>
       </>

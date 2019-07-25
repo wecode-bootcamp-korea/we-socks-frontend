@@ -237,8 +237,8 @@ $mediaPixel: 768px;
     .priceEstimation {
       font-weight: bold;
       font-size: 20px;
+      width: 170px;
       padding: 8px 18px;
-      width: 150px;
       transition: opacity 1s;
     }
 
@@ -255,22 +255,24 @@ $mediaPixel: 768px;
     }
 
     > button {
-      color: white;
       font-weight: bold;
       font-size: 23px;
       padding: 8px 18px;
+      width: 230px;
 
       @media screen and (max-width: $mediaPixel) {
         font-size: 16px;
         padding: 20px 5px;
       }
+    }
+    .addToCartBtn {
+      color: $myPageBtnFontColor;
+      background-color: $shoppingCartDarkFontColor;
+    }
 
-      &:nth-child(2) {
-        background-color: $myPageSmallBtnColor;
-      }
-      &:last-child {
-        background-color: $myPageBtnColor;
-      }
+    .addToWishListBtn {
+      color: $shoppingCartDarkFontColor;
+      border: 2px solid $shoppingCartDarkFontColor;
     }
   }
 }

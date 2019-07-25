@@ -303,7 +303,7 @@ class Custom extends React.Component {
         <AddedToCartMessage showMessage={addToCartBtnClicked} />
         <div className="customRoot">
           <div className="chooseTypesWrap">
-            Type:
+            <span className="chooseTitle">Type_</span>
             {typeArr.map((el, idx) => (
               <Button
                 key={`type-${idx}`}
@@ -321,7 +321,7 @@ class Custom extends React.Component {
             ))}
           </div>
           <div className="chooseViewsWrap">
-            View:
+            <span className="chooseTitle">View_</span>
             {viewArr.map((el, idx) => (
               <Button
                 key={`view-${idx}`}

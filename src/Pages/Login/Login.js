@@ -55,6 +55,10 @@ class Login extends Component {
         .then(res => res.json())
         .then(data => {
           console.log(data);
+          if (data.access_token) {
+            localStorage.setItem(TOKEN_KEY, data.access_token);
+            window.location.href = "/";
+          }
           if (data.error_code === "EMAIL_NOT_EXISTS") {
             this.setState({
               emailText: "존재하지 않는 이메일입니다."
@@ -76,7 +80,6 @@ class Login extends Component {
     }
   };
   componentDidMount() {
-    // window.Kakao.init("ee298c66ffafca1d0d2da71485794771");
     window.Kakao.Auth.createLoginButton({
       container: "#kakao-login-btn",
       success: function(authObj) {

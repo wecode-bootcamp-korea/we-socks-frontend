@@ -3,25 +3,24 @@
 .customRoot {
   margin: 80px 230px;
   flex-wrap: wrap;
+
   .chooseTypesWrap {
-    margin: 0 20px 20px;
-    display: flex;
-    justify-content: space-evenly;
-    width: 420px;
+    margin-bottom: 20px;
     font-size: 20px;
-    font-weight: bolder;
   }
 
   .chooseViewsWrap {
-    display: flex;
-    justify-content: space-evenly;
-    width: 420px;
     font-size: 20px;
-    font-weight: bolder;
   }
-
+  .chooseTitle {
+    font-size: 20px;
+    font-weight: 900;
+    width: 100px;
+    display: inline-block;
+  }
   button {
     cursor: pointer;
+    margin-right: 20px;
     font-size: 20px;
     color: $customBtnUnclickedColor;
     &:hover {
@@ -33,8 +32,6 @@
 
   .clicked {
     color: $customBtnClickedColor;
-    text-decoration: underline;
-    font-weight: bold;
   }
 
   .customCenter {

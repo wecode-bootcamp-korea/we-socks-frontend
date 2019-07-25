@@ -1,4 +1,4 @@
-@import "style/color.scss";
+@import "Style/color.scss";
 
 .pageHeader {
   position: static;
@@ -11,8 +11,8 @@
       display: flex;
     }
   }
-  .logo {
-    margin-right: 85px;
+  button {
+    background-color: transparent;
   }
 }
 
@@ -45,6 +45,9 @@
     font-size: 22px;
     margin-bottom: 52px;
   }
+
+  #plusfriend-chat-button {
+  }
 }
 
 .logo {
@@ -56,11 +59,11 @@
 }
 
 .headerBottom {
-  font-size: 18px;
+  font-size: 20px;
   display: flex;
   justify-content: center;
   > div {
-    padding: 10px 40px;
+    padding: 1% 2%;
     &:hover {
       opacity: 0.6;
       cursor: pointer;

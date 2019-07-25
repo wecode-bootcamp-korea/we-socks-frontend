@@ -71,12 +71,6 @@ class SockImage extends React.Component {
           src={matching[`${typeArr[type]} ${view}`][1]}
           alt={`${typeArr[type]} ${view}`}
         />
-        <img
-          className="sockImage uploadedImageMasked"
-          style={{ backgroundImage: `url(${uploadedImageArr[uploaded]})` }}
-          src={matching[`${typeArr[type]} ${view}`][1]}
-          alt={`${typeArr[type]} ${view}`}
-        />
       </div>
     );
   }

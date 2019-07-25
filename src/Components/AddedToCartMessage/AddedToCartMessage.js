@@ -31,7 +31,6 @@ class AddedToCartMessage extends React.Component {
   render() {
     const { showMessage } = this.props;
     const { cartMessageArray } = this.state;
-
     return (
       showMessage && (
         <div className="addedToCartMessage">

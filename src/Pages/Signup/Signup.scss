@@ -36,31 +36,47 @@
   margin: 20px auto;
 }
 .showEmailText {
-  visibility: visible;
-  color: #4e545f;
-  font-size: 0.875em;
+  font-size: 12px;
   margin-top: 3px;
   margin-bottom: 3px;
+  color: black;
+}
+.showEmailText2 {
+  font-size: 12px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  color: red;
 }
 
 .hiddenEmailText {
   visibility: hidden;
-  font-size: 10px;
+  font-size: 12px;
   margin-top: 3px;
   margin-bottom: 3px;
+  color: red;
 }
 
-.showPwText {
-  font-size: 10px;
+.showPwText1 {
+  font-size: 12px;
   margin-top: 3px;
   margin-bottom: 3px;
+  color: black;
+}
+
+.showPwText2 {
+  visibility: visible;
+  font-size: 12px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  color: red;
 }
 
 .hiddenPwText {
-  font-size: 10px;
+  font-size: 12px;
   visibility: hidden;
   margin-top: 3px;
   margin-bottom: 3px;
+  color: red;
 }
 
 .signupBtn {
@@ -114,8 +130,8 @@
 .signupDayInputSelect {
   width: 32%;
   height: 46px;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin-top: 19px;
+  margin-bottom: 8px;
   color: #4e545f;
   font-size: 0.875em;
   border-color: #4e545f;
@@ -127,5 +143,5 @@
 
 .signupPhoneNumInput {
   margin-top: 10px;
-  margin-bottom: 3px;
+  margin-bottom: 10px;
 }

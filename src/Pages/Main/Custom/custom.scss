@@ -42,15 +42,34 @@
   }
 
   .socksContainer {
+    position: relative;
     margin-top: 130px;
     margin-left: 50px;
     width: 450px;
     height: 450px;
 
+    .itemImageContainer {
+      position: relative;
+    }
+
     .sockImage {
+      top: 0;
+      left: 0;
       position: absolute;
       width: 450px;
       height: 450px;
+    }
+
+    .imgDragnDrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 70px;
+      height: 70px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      // border-radius: 50px;
+      background-color: black;
     }
   }
 
@@ -151,6 +170,7 @@
   }
 
   .chooseWrap {
+    width: 465px;
     padding: 50px 0 0 180px;
     margin-left: 200px;
 
@@ -183,12 +203,6 @@
       height: 40px;
       margin: 6px;
       border: 1px solid white;
-    }
-
-    .imagePickerContainer {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
     }
   }
 
@@ -249,4 +263,18 @@
       opacity: 1;
     }
   }
+}
+
+.imagePickerContainer {
+  position: relative;
+}
+
+.customImgUpBtn {
+  position: absolute;
+  top: 66px;
+  left: 8px;
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+  cursor: pointer;
 }

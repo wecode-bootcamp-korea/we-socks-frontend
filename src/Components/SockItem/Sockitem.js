@@ -53,14 +53,14 @@ class SockImage extends React.Component {
       <div className="itemImageContainer">
         <img
           className="sockImage imageNotMasked"
-          src={matching[`${typeArr[type]} ${view}`][0]}
-          alt={`${typeArr[type]} ${view}`}
+          src={matching[`${type} ${view}`][0]}
+          alt={`${type} ${view}`}
         />
         <img
           className="sockImage imageMasked"
           style={{ backgroundColor: color }}
-          src={matching[`${typeArr[type]} ${view}`][1]}
-          alt={`${typeArr[type]} ${view}`}
+          src={matching[`${type} ${view}`][1]}
+          alt={`${type} ${view}`}
         />
         <img
           className="sockImage patternMasked"
@@ -68,14 +68,8 @@ class SockImage extends React.Component {
             backgroundSize: `${patternSize}px`,
             backgroundImage: `url(${patternArr[pattern]})`
           }}
-          src={matching[`${typeArr[type]} ${view}`][1]}
-          alt={`${typeArr[type]} ${view}`}
-        />
-        <img
-          className="sockImage uploadedImageMasked"
-          style={{ backgroundImage: `url(${uploadedImageArr[uploaded]})` }}
-          src={matching[`${typeArr[type]} ${view}`][1]}
-          alt={`${typeArr[type]} ${view}`}
+          src={matching[`${type} ${view}`][1]}
+          alt={`${type} ${view}`}
         />
       </div>
     );

@@ -16,6 +16,7 @@ const Main = () => {
     <>
       <div className="mainItems">
         <Link
+          className="squareBox"
           to={{
             pathname: "/itemlist",
             query: { kind: "kids" }
@@ -25,6 +26,7 @@ const Main = () => {
           <Square image_url={kidsImg} title="KIDS" />
         </Link>
         <Link
+          className="squareBox"
           to={{
             pathname: "/itemlist",
             query: { kind: "casual" }
@@ -34,6 +36,7 @@ const Main = () => {
           <Square image_url={casualImg} title="CASUAL" />
         </Link>
         <Link
+          className="squareBox"
           to={{
             pathname: "/itemlist",
             query: { kind: "dressed" }
@@ -43,6 +46,7 @@ const Main = () => {
           <Square image_url={dressedImg} title="DRESSED" />
         </Link>
         <Link
+          className="squareBox"
           to={{
             pathname: "/itemlist",
             query: { kind: "athletic" }
@@ -54,22 +58,22 @@ const Main = () => {
       </div>
       <div className="mainFooter">
         <SquareTwo
-          imgSrc="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/smiley_1x.png"
+          imgSrc="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/smiley_2x.png"
           alt="Smiley icon"
           title="SO MUCH MORE THAN SOCKS"
         />
         <SquareTwo
-          imgSrc="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/card_1x.png"
+          imgSrc="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/card_2x.png"
           alt="Card icon"
           title="THE PERFECT GIFT"
         />
         <SquareTwo
-          imgSrc="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/truck_1x.png"
+          imgSrc="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/truck_2x.png"
           alt="Truck icon"
           title="SO MUCH MORE THAN SOCKS"
         />
         <SquareTwo
-          imgSrc="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/smiley_1x.png"
+          imgSrc="https://www.happysocks.com/media/wysiwyg/Generic/icon-usp/smiley_2x.png"
           alt="Smiley icon"
           title="SO MUCH MORE THAN SOCKS"
         />

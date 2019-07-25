@@ -83,6 +83,7 @@ class Custom extends React.Component {
     type: 0,
     view: "front",
     pattern: "",
+    patternSize: "",
     price: 6000,
     uploaded: 0,
     addToCartBtnClicked: false,
@@ -368,14 +369,14 @@ class Custom extends React.Component {
               )}
             </div>
             <div className="patternSizeBar">
-              <InputBox
+              <input
                 type="range"
                 min="100"
                 max="300"
                 onChange={this.handleSize}
                 value={patternSize}
                 style={{ width: 250 }}
-              />
+              ></input>
             </div>
             <div className="rightSideWrap">
               <div className="chooseWrap">

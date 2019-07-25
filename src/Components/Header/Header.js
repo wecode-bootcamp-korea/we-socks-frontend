@@ -55,12 +55,18 @@ class Header extends React.Component {
             <AddedToCartMessage showMessage={cartBtnClicked} />
           </div>
           <div className="headerBottom">
-            <Link to="/main" className="headerLink">
-              <Button className="kids headerBottomBtn" text="KIDS" />
-              <Button className="casual headerBottomBtn" text="CASUAL" />
-              <Button className="dressed headerBottomBtn" text="DRESSED" />
-              <Button className="athletic headerBottomBtn" text="ATHLETIC" />
-            </Link>
+            <div className="kids">
+              <span>KIDS</span>
+            </div>
+            <div className="casual">
+              <span>CASUAL</span>
+            </div>
+            <div className="dressed">
+              <span>DRESSED</span>
+            </div>
+            <div className="athletic">
+              <span>ATHLETIC</span>
+            </div>
           </div>
         </header>
       </>

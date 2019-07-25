@@ -1,13 +1,18 @@
 .mainItems {
   display: flex;
-  justify-content: space-around;
-  align-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
 
   width: 100%;
-  max-width: 1400px;
-  min-width: 550px;
+  max-width: 1550px;
+  min-width: 320px;
   margin: 10px auto 0;
+
+  .squareBox {
+    flex: 1 0 550px;
+    height: 350px;
+    margin: 1px;
+  }
 }
 
 .mainFooter {
@@ -19,7 +24,7 @@
   width: 100%;
   max-width: 1400px;
   min-width: 550px;
-  margin: 0 auto;
+  margin: 20px auto;
 
   .footerItem {
     width: 300px;

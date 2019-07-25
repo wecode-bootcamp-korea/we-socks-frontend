@@ -63,13 +63,7 @@ $mediaPixel: 768px;
       height: 350px;
     }
 
-    .itemImageContainer {
-      position: relative;
-    }
-
     .sockImage {
-      top: 0;
-      left: 0;
       position: absolute;
       width: 100%;
       height: 100%;
@@ -95,7 +89,6 @@ $mediaPixel: 768px;
 
   .patternSizeBar {
     position: absolute;
-    width: 250px;
     top: 450px;
     left: 100px;
 
@@ -116,7 +109,6 @@ $mediaPixel: 768px;
       width: 100%;
       height: 5px;
       cursor: pointer;
-      animate: 0.2s;
       box-shadow: 0px 0px 0px #000000;
       background: #2497e3;
       border-radius: 1px;
@@ -228,6 +220,12 @@ $mediaPixel: 768px;
       height: 40px;
       margin: 6px;
       border: 1px solid white;
+    }
+
+    .imagePickerContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
   }
 

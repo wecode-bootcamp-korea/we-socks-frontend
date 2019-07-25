@@ -20,7 +20,7 @@ class WishList extends React.Component {
 
   removeFromWishList = item => {
     axios
-      .post(`${ADDRESS}/product/cancel_wish_req`, {
+      .post(`${ADDRESS}product/cancel_wish_req`, {
         wished_id: item
       })
       .then(response => {
@@ -40,10 +40,10 @@ class WishList extends React.Component {
       design_id: design,
       wished_id: wish,
       know_design_id: "yes",
-      amount: 1
+      count: 1
     };
 
-    axios.post(`${ADDRESS}/product/add_cart_req`, body).then(response => {
+    axios.post(`${ADDRESS}product/add_cart_req`, body).then(response => {
       if (response.status === 200) {
         this.setState({
           listChanged: !this.state.listChanged

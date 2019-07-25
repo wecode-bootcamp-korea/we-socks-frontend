@@ -207,7 +207,6 @@ class Custom extends React.Component {
     };
 
     axios.post(`${ADDRESS}/product/wish_req`, sockData).then(response => {
-      console.log(response);
       if (response.status === 200) {
         this.setState(
           {

@@ -17,13 +17,11 @@ class AddressBook extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   window.addEventListener("click", e => this.handleClick(e));
-  // }
-
-  // componentWillUnmount() {
-  //   window.removeEventListener("click", e => this.handleClick(e));
-  // }
+  componentDidMount() {
+    axios.get("http://localhost:8000/address/1").then(response => {
+      console.log(response);
+    });
+  }
 
   handleClick = e => {
     this.setState({
@@ -38,7 +36,18 @@ class AddressBook extends React.Component {
   };
 
   updateAddress = () => {
-    axios.post("http://localhost:8000");
+    let body = {
+      id: 1,
+      address_type: 2,
+      address: this.state.addressInput,
+      recepient: this.state.recepientInput
+    };
+
+    axios
+      .post("http://localhost:8000/user/address/update", body)
+      .then(response => {
+        window.location.reload();
+      });
   };
 
   handleAddressType;
@@ -98,8 +107,8 @@ class AddressBook extends React.Component {
             <Select
               className="addressTypeSelect"
               name="addressTypeSelect"
-              makeSelection={e => this.handleChange(e)}
               ref_array={["Choose Type", "Home", "Work", "Parents'", "Lovers'"]}
+              makeSelection={e => this.handleChange(e)}
             />
             <p>Recepient</p>
             <InputBox
@@ -157,7 +166,7 @@ class AddressBook extends React.Component {
             <Button
               className="addCompleteBtn"
               name="addCompleteBtn"
-              text="add complete"
+              text="edit complete"
               onClick={this.updateAddress}
             />
           </div>

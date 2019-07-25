@@ -29,6 +29,7 @@
   display: flex;
   .wishListSummary {
     padding: 5% 0 0 5%;
+    width: 180px;
 
     .categoryAndType {
       color: $shoppingCartDarkFontColor;
@@ -42,7 +43,7 @@
     text-align: center;
     .wishListBtnWrap {
       > button {
-        width: 130%;
+        width: 200px;
         margin: 8% 0 0 60%;
         font-size: 20px;
         padding: 5% 10%;

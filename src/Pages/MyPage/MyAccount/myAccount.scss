@@ -108,29 +108,29 @@
       background-color: $progressBarEightyFivePercentColor;
     }
   }
+}
 
-  .myAccountExplanation {
-    background-color: black;
-    position: absolute;
-    padding: 16px;
+.myAccountExplanation {
+  background-color: black;
+  position: fixed;
+  padding: 16px;
 
-    text-align: center;
-    bottom: 20%;
-    left: 5.4%;
-    width: 300px;
-  }
+  text-align: center;
+  bottom: 24%;
+  left: 40%;
+  width: 300px;
+}
 
-  .closeModalBtn {
-    position: relative;
-    z-index: 1;
-    background-color: black;
-    color: white;
+.closeModalBtn {
+  position: relative;
+  z-index: 1;
+  background-color: black;
+  color: white;
 
-    font-size: 15px;
-    font-weight: bold;
-    left: 200%;
-    margin: 10px auto;
-  }
+  font-size: 15px;
+  font-weight: bold;
+  left: 200%;
+  margin: 10px auto;
 }
 
 @media (max-width: 768px) {

@@ -16,6 +16,8 @@ class ShoppingCart extends React.Component {
     this.state = {
       cartArr: [],
       totalPrice: 0,
+      totalPoints: 0,
+      totalCount: 0,
       discountRate: 0.1,
       checkChange: false
     };
@@ -23,18 +25,18 @@ class ShoppingCart extends React.Component {
 
   removeItem = item => {
     axios
-      .post("http://10.58.4.155:8000/product/cancel_cart_req", {
+      .post("http://10.58.2.189:8000/product/cancel_cart_req", {
         cart_id: item
       })
       .then(response => {
         if (response.status === 200) {
           axios
-            .post("http://10.58.4.155:8000/mypage/cart", { user_pk: 1 })
+            .post("http://10.58.2.189:8000/cart/list", { user_pk: 1 })
             .then(response => {
               this.setState({
                 cartArr: response.data.my_cart_list,
                 totalPrice: response.data.my_cart_total_price,
-                totalCount: response.data.my_cart_total_amount,
+                totalCount: response.data.my_cart_total_count,
                 totalPoints: response.data.my_total_points
               });
             });
@@ -44,12 +46,13 @@ class ShoppingCart extends React.Component {
 
   componentDidMount = () => {
     axios
-      .post("http://10.58.4.155:8000/mypage/cart", { user_pk: 1 })
+      .post("http://10.58.2.189:8000/cart/list", { user_pk: 1 })
       .then(response => {
+        console.log(response);
         this.setState({
           cartArr: response.data.my_cart_list,
           totalPrice: response.data.my_cart_total_price,
-          totalCount: response.data.my_cart_total_amount,
+          totalCount: response.data.my_cart_total_count,
           totalPoints: response.data.my_total_points
         });
       });
@@ -63,6 +66,7 @@ class ShoppingCart extends React.Component {
       totalCount,
       totalPoints
     } = this.state;
+
     const discountPrice = totalPrice * discountRate;
     return (
       <div className="shoppingCartRoot">
@@ -122,6 +126,7 @@ class ShoppingCart extends React.Component {
               <div className="countTotal">
                 총 주문 상품: {AddCommaToNumber(totalCount)}개
               </div>
+
               <div className="priceWrap">
                 <div className="subtotalWrap">
                   <p>총 주문 가격</p>

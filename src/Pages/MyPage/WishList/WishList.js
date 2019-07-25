@@ -3,9 +3,10 @@ import axios from "axios";
 import "./wishList.scss";
 import Button from "Components/Button";
 import SockItem from "Components/SockItem";
+import { ADDRESS } from "Config/Config";
 
 const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
-const typeArr = ["noShow", "ankle", "mid", "high"];
+const typeArr = ["No-Show", "Ankle", "Mid", "High"];
 
 class WishList extends React.Component {
   constructor(props) {
@@ -19,49 +20,54 @@ class WishList extends React.Component {
 
   removeFromWishList = item => {
     axios
-      .post("http://10.58.7.11:8000/product/cancel_wish_req", {
+      .post(`${ADDRESS}product/cancel_wish_req`, {
         wished_id: item
       })
       .then(response => {
         if (response.status === 200) {
-          this.setState({
-            listChanged: !this.state.listChanged
+          axios.post(`${ADDRESS}cart/wishes`, { user_pk: 1 }).then(response => {
+            this.setState({
+              wishListArr: response.data.my_wish_list
+            });
           });
         }
       });
   };
 
-  addItemToCart = item => {
+  addItemToCart = (design, wish) => {
     let body = {
       user_pk: 1,
-      design_id: item,
+      design_id: design,
+      wished_id: wish,
       know_design_id: "yes",
-      amount: "1"
+      count: 1
     };
-    axios
-      .post("http://10.58.7.11:8000/product/add_cart_req", body)
-      .then(response => {
-        if (response.status === 200) {
+
+    axios.post(`${ADDRESS}product/add_cart_req`, body).then(response => {
+      if (response.status === 200) {
+        this.setState({
+          listChanged: !this.state.listChanged
+        });
+        axios.post(`${ADDRESS}cart/wishes`, { user_pk: 1 }).then(response => {
           this.setState({
-            listChanged: !this.state.listChanged
+            wishListArr: response.data.my_wish_list
           });
-        }
-      });
+        });
+      }
+    });
   };
 
   componentDidMount = () => {
-    axios
-      .post("http://10.58.7.11:8000/mypage/wishes", { user_pk: 1 })
-      .then(response => {
-        this.setState({
-          wishListArr: response.data.my_wish_list
-        });
+    axios.post(`${ADDRESS}cart/wishes`, { user_pk: 1 }).then(response => {
+      this.setState({
+        wishListArr: response.data.my_wish_list
       });
+    });
   };
 
-  // componentDidUpdate = (prevProps, prevState) => {
+  // componentWillUnmount = () => {
   //   axios
-  //     .post("http://10.58.7.11:8000/mypage/wishes", { user_pk: 1 })
+  //     .post("http://10.58.4.155:8000/mypage/wishes", { user_pk: 1 })
   //     .then(response => {
   //       this.setState({
   //         wishListArr: response.data.my_wish_list
@@ -87,7 +93,7 @@ class WishList extends React.Component {
                 <div className="wishListImage">
                   <SockItem
                     key={`wishList-${idx}`}
-                    type={typeArr[el.design.main_type - 1]}
+                    type={el.design.main_type - 1}
                     view="side"
                     color={el.design.color}
                     pattern={el.design.pattern}
@@ -104,7 +110,7 @@ class WishList extends React.Component {
                       <Button
                         className="addToCartBtn"
                         text="ADD TO CART"
-                        onClick={() => this.addItemToCart(el.design.id)}
+                        onClick={() => this.addItemToCart(el.design.id, el.id)}
                       />
                     </div>
                     <div className="wishListBtnWrap">

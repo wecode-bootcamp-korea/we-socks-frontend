@@ -1,16 +1,14 @@
 .mainSquare {
-  width: 680px;
-  min-width: 400px;
-  height: 400px;
-
-  margin: 10px auto;
+  width: 100%;
+  height: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background-position: bottom;
+  background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
 
   text-align: center;
 
@@ -18,10 +16,6 @@
 
   &:hover {
     opacity: 0.8;
-  }
-
-  &:last-child {
-    background-position: center;
   }
 }
 

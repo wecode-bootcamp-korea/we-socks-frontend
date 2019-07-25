@@ -1,20 +1,12 @@
 import React from "react";
 
 function InputBox(props) {
-  const {
-    className,
-    handleChange,
-    name,
-    type,
-    placeholder,
-    value,
-    list
-  } = props;
+  const { className, onChange, name, type, placeholder, value, list } = props;
 
   return (
     <input
       className={className}
-      onChange={handleChange}
+      onChange={onChange}
       name={name}
       type={type}
       placeholder={placeholder}

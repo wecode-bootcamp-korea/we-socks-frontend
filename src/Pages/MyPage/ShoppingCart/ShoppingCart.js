@@ -123,7 +123,10 @@ class ShoppingCart extends React.Component {
                 text="결제하기"
                 onClick={this.handlePayment}
               />
-              <div className="countTotal">총 주문 상품: {totalCount}개</div>
+              <div className="countTotal">
+                총 주문 상품: {AddCommaToNumber(totalCount)}개
+              </div>
+
               <div className="priceWrap">
                 <div className="subtotalWrap">
                   <p>총 주문 가격</p>

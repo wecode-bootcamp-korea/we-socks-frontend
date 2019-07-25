@@ -10,24 +10,22 @@ $mediaPixel: 768px;
   }
 
   .chooseTypesWrap {
-    margin: 0 20px 20px;
-    display: flex;
-    justify-content: space-evenly;
-    width: 420px;
+    margin-bottom: 20px;
     font-size: 20px;
-    font-weight: bolder;
   }
 
   .chooseViewsWrap {
-    display: flex;
-    justify-content: space-evenly;
-    width: 420px;
     font-size: 20px;
-    font-weight: bolder;
   }
-
+  .chooseTitle {
+    font-size: 20px;
+    font-weight: 900;
+    width: 100px;
+    display: inline-block;
+  }
   button {
     cursor: pointer;
+    margin-right: 20px;
     font-size: 20px;
     color: $customBtnUnclickedColor;
     &:hover {
@@ -39,8 +37,6 @@ $mediaPixel: 768px;
 
   .clicked {
     color: $customBtnClickedColor;
-    text-decoration: underline;
-    font-weight: bold;
   }
 
   .customCenter {
@@ -84,12 +80,11 @@ $mediaPixel: 768px;
       position: absolute;
       top: 0;
       left: 0;
-      width: 70px;
-      height: 70px;
+      width: 200px;
+      height: 200px;
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: 150px;
       // border-radius: 50px;
-      background-color: black;
     }
   }
 

@@ -3,3 +3,11 @@
   position: relative;
   padding-bottom: 250px;
 }
+
+#plusfriend-chat-button {
+  position: fixed;
+  height: 60px;
+  right: 20px;
+  bottom: 10px;
+  z-index: 100;
+}

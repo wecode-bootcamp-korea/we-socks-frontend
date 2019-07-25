@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "Components/Layout";
 import "./myPage.scss";
 import MyAccount from "Pages/MyPage/MyAccount";
 import PersonalInformation from "Pages/MyPage/PersonalInformation";

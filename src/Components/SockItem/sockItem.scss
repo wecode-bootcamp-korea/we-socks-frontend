@@ -1,4 +1,11 @@
+$mediaPixel: 768px;
+
 .itemImageContainer {
+  position: relative;
+
+  width: 350px;
+  height: 350px;
+
   .imageMasked {
     position: relative;
     mix-blend-mode: multiply;
@@ -8,6 +15,10 @@
     position: absolute;
     left: 280px;
     mix-blend-mode: multiply;
+
+    @media screen and (max-width: $mediaPixel) {
+      left: 0;
+    }
   }
 
   .uploadedImageMasked {

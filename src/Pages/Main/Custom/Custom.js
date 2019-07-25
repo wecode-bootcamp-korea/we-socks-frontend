@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React from "react";
 import "./custom.scss";
 import Button from "Components/Button";
@@ -8,7 +9,9 @@ import Span from "Components/Span";
 import * as patternImage from "Components/SockItem/patternImages";
 import * as uploadedImage from "Components/SockItem/uploadedImages";
 import AddedToCartMessage from "Components/AddedToCartMessage";
-
+import { API_URL } from "config";
+import { isFulfilled } from "q";
+import Axios from "axios";
 const colorArr = [
   "#F0EDE5",
   "#EAE6DA",
@@ -74,24 +77,69 @@ const viewArr = ["front", "back", "side"];
 const typeArr = ["noShow", "ankle", "mid", "high"];
 
 class Custom extends React.Component {
-  constructor() {
-    super();
+  state = {
+    color: "none",
+    type: "noShow",
+    view: "front",
+    pattern: "",
+    price: 6000,
+    addToCartBtnClicked: false,
+    addToWishListBtnClicked: false,
+    imgArr: "",
+    X: 0,
+    Y: 0,
+    top: 0,
+    left: 0
+  };
 
-    this.state = {
-      color: "none",
-      type: 0,
-      view: "front",
-      pattern: "",
-      patternSize: "",
-      price: 6000,
-      uploaded: "",
-      priceChange: false,
-      patternChosen: false,
-      imageChosen: false,
-      addToCartBtnClicked: false,
-      addToWishListBtnClicked: false
+  imgUproad = e => {
+    e.persist();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.onloadend = () => {
+      this.setState({ ...this.state, imgArr: reader.result });
     };
-  }
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+    let formData = new FormData();
+    formData.append("image", file);
+    let headers = {
+      "content-type": "multipart/form-data"
+    };
+    Axios.post("http://10.58.3.112:8000/aws/upload", formData, {
+      headers
+    });
+  };
+
+  onImgBtnClick = (e, image) => {
+    this.setState({
+      ...this.state,
+      imgArr: image
+    });
+  };
+
+  onDragStart = e => {
+    e.persist();
+    this.pageX = e.pageX;
+    this.pageY = e.pageY;
+    console.log("onDragStart", e);
+  };
+
+  dragEnd = e => {
+    e.persist();
+
+    const { top, left } = this.state;
+    const gapX = e.pageX - this.pageX;
+    const gapY = e.pageY - this.pageY;
+
+    console.log("onDrdragEndag", e);
+    console.log("gap", gapX, gapY);
+    this.setState({
+      top: top + gapY,
+      left: left + gapX
+    });
+  };
 
   increasePrice = () => {
     this.setState({
@@ -249,7 +297,9 @@ class Custom extends React.Component {
       patternSize,
       uploaded,
       addToCartBtnClicked,
-      addToWishListBtnClicked
+      addToWishListBtnClicked,
+      top,
+      left
     } = this.state;
 
     return (
@@ -296,6 +346,20 @@ class Custom extends React.Component {
                 uploaded={uploaded - 1}
                 patternSize={patternSize}
               />
+              {this.state.imgArr && (
+                <div
+                  className="imgDragnDrop"
+                  style={{
+                    top,
+                    left,
+                    backgroundImage: `url(${this.state.imgArr})`
+                  }}
+                  alt={`${type} ${view}`}
+                  draggable={true}
+                  onDragStart={this.onDragStart}
+                  onDragEnd={this.dragEnd}
+                />
+              )}
             </div>
             <div className="patternSizeBar">
               <InputBox
@@ -307,7 +371,6 @@ class Custom extends React.Component {
                 style={{ width: 250 }}
               />
             </div>
-
             <div className="rightSideWrap">
               <div className="chooseWrap">
                 <div className="chooseColor">
@@ -350,12 +413,18 @@ class Custom extends React.Component {
                           style={{ backgroundImage: `url(${image})` }}
                           name="uploaded"
                           key={`uploaded-${idx}`}
-                          onClick={e => this.changeDesign(e, idx)}
+                          onClick={e => this.onImgBtnClick(e, image)}
                         />
                       );
                     })}
+                    <input
+                      type="file"
+                      className="customImgUpBtn"
+                      onChange={this.imgUproad}
+                    />
                   </div>
                 </div>
+
                 <div className="orderWrap">
                   <div
                     className={`priceEstimation ${

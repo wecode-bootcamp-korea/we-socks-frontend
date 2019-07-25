@@ -85,6 +85,8 @@
     margin-top: 4px;
     margin-left: 0;
     position: absolute;
+    border-radius: 5px;
+
     top: 3px;
     left: 0;
     width: 20px;
@@ -99,6 +101,8 @@
     margin-top: 4px;
     margin-left: 0;
     position: absolute;
+    border-radius: 5px;
+
     top: 3px;
     left: 0;
     width: 20px;
@@ -143,15 +147,19 @@
   }
 
   .guestLogin {
-    text-align: center;
+    display: flex;
     .guestLoginImg {
-      width: 15px;
+      width: 25px;
+      margin-left: 20px;
     }
   }
 
   .guestLoginText {
-    padding-bottom: 10px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    display: inline-block;
+    margin-top: 9px;
+    margin-left: 12px;
+    font-size: 13px;
+    font-weight: 500;
   }
 }
-
-// 로그인 인풋버튼 수정중

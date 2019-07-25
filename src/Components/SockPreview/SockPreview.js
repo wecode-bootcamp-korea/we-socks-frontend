@@ -179,8 +179,8 @@ class SockPreview extends React.Component {
           </div>
         </div>
         <div className="nameBox">
-          <p className="itemName">Nike React Presto By You</p>
-          <p className="tagName">Custom Men's Shoe</p>
+          <p className="itemName">React Presto By You</p>
+          <p className="tagName">Custom Socks</p>
           <p className="itemPrice">5,000 ₩</p>
         </div>
       </div>

@@ -151,14 +151,14 @@ class SockPreview extends React.Component {
           <span className="miniLabel">Customize</span>
 
           {/* 미리보기 상품 박스 */}
-          <div
-            className={
-              isHover ? "previewBox previewShow" : "previewBox previewHide"
-            }
-          >
-            <div className="previewSet">
-              {preview &&
-                preview.map((el, idx) => {
+          {preview.length > 0 && (
+            <div
+              className={
+                isHover ? "previewBox previewShow" : "previewBox previewHide"
+              }
+            >
+              <div className="previewSet">
+                {preview.map((el, idx) => {
                   return (
                     <div
                       key={el.id}
@@ -195,8 +195,9 @@ class SockPreview extends React.Component {
                     </div>
                   );
                 })}
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <div className="nameBox">
           <p className="itemName">React Presto By You</p>

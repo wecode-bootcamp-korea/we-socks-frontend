@@ -1,1 +1,1 @@
-export { default } from "./SockItem";
+export { default } from "./Sockitem";

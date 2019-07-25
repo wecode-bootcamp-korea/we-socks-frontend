@@ -33,45 +33,45 @@ class AddedToCartMessage extends React.Component {
     const { cartMessageArray } = this.state;
 
     return (
-      // showMessage && (
-      <div className="addedToCartMessage">
-        <div className="sectionContainer">
-          <span className="sockImageSmall">Socks</span>
-          <span className="sockCategoryAndTypeSmall">Type</span>
-          <span className="sockPriceSmall">Price</span>
-        </div>
-        <ul className="addedToCartInformation">
-          {cartMessageArray.map((el, idx) => (
-            <li className="addedToCartList">
-              <div className="addedToCartImage">
-                <SockItem
-                  key={`message-${idx}`}
-                  color={el.design.color}
-                  pattern={el.design.pattern}
-                  uploaded={el.design.logo}
-                  view="side"
-                  type={el.design.main_type - 1}
-                />
-              </div>
-              <div className="addedToCartCategoryAndType">{`${
-                categoryArr[el.design.category]
-              } ${typeArr[el.design.main_type]}`}</div>
-              <div className="addedToCartPrice">
-                {AddCommaToNumber(el.design.unit_price)}
-              </div>
-            </li>
-          ))}
-        </ul>
+      showMessage && (
+        <div className="addedToCartMessage">
+          <div className="sectionContainer">
+            <span className="sockImageSmall">Socks</span>
+            <span className="sockCategoryAndTypeSmall">Type</span>
+            <span className="sockPriceSmall">Price</span>
+          </div>
+          <ul className="addedToCartInformation">
+            {cartMessageArray.map((el, idx) => (
+              <li className="addedToCartList">
+                <div className="addedToCartImage">
+                  <SockItem
+                    key={`message-${idx}`}
+                    color={el.design.color}
+                    pattern={el.design.pattern}
+                    uploaded={el.design.logo}
+                    view="side"
+                    type={el.design.main_type - 1}
+                  />
+                </div>
+                <div className="addedToCartCategoryAndType">{`${
+                  categoryArr[el.design.category]
+                } ${typeArr[el.design.main_type]}`}</div>
+                <div className="addedToCartPrice">
+                  {AddCommaToNumber(el.design.unit_price)}
+                </div>
+              </li>
+            ))}
+          </ul>
 
-        <Link to="/shoppingcart">
-          <Button
-            className="showCartDetailBtn"
-            name="showCartDetailBtn"
-            text="SHOW CART DETAIL"
-          />
-        </Link>
-      </div>
-      // )
+          <Link to="/shoppingcart">
+            <Button
+              className="showCartDetailBtn"
+              name="showCartDetailBtn"
+              text="SHOW CART DETAIL"
+            />
+          </Link>
+        </div>
+      )
     );
   }
 }

@@ -25,13 +25,11 @@ class WishList extends React.Component {
       })
       .then(response => {
         if (response.status === 200) {
-          axios
-            .post(`${ADDRESS}/mypage/wishes`, { user_pk: 1 })
-            .then(response => {
-              this.setState({
-                wishListArr: response.data.my_wish_list
-              });
+          axios.post(`${ADDRESS}cart/wishes`, { user_pk: 1 }).then(response => {
+            this.setState({
+              wishListArr: response.data.my_wish_list
             });
+          });
         }
       });
   };
@@ -50,19 +48,17 @@ class WishList extends React.Component {
         this.setState({
           listChanged: !this.state.listChanged
         });
-        axios
-          .post(`${ADDRESS}/mypage/wishes`, { user_pk: 1 })
-          .then(response => {
-            this.setState({
-              wishListArr: response.data.my_wish_list
-            });
+        axios.post(`${ADDRESS}cart/wishes`, { user_pk: 1 }).then(response => {
+          this.setState({
+            wishListArr: response.data.my_wish_list
           });
+        });
       }
     });
   };
 
   componentDidMount = () => {
-    axios.post(`${ADDRESS}/mypage/wishes`, { user_pk: 1 }).then(response => {
+    axios.post(`${ADDRESS}cart/wishes`, { user_pk: 1 }).then(response => {
       this.setState({
         wishListArr: response.data.my_wish_list
       });

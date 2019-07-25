@@ -31,7 +31,6 @@ class Header extends React.Component {
     const { cartBtnClicked } = this.state;
     return (
       <>
-        <AddedToCartMessage showMessage={cartBtnClicked} />
         <header className="pageHeader">
           <div className="headerTop">
             <div className="myAccountWrap">
@@ -53,6 +52,7 @@ class Header extends React.Component {
                 />
               </Link>
             </div>
+            <AddedToCartMessage showMessage={cartBtnClicked} />
           </div>
           <div className="headerBottom">
             <Link to="/main" className="headerLink">

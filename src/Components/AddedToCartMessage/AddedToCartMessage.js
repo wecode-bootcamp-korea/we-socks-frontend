@@ -43,7 +43,6 @@ class AddedToCartMessage extends React.Component {
             {cartMessageArray.map((el, idx) => (
               <li className="addedToCartList">
                 <div className="addedToCartImage">
-                  {console.log(el.main_type)}
                   <SockItem
                     key={`message-${idx}`}
                     color={el.design.color}

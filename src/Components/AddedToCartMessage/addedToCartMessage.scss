@@ -3,8 +3,11 @@
 .addedToCartMessage {
   position: absolute;
   z-index: 1;
-  bottom: 10%;
-  right: 8%;
+  right: 190px;
+  top: 150px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
   background-color: $shoppingCartMessageBoxColor;
   font-weight: bold;
   color: $shoppingCartDarkFontColor;
@@ -81,9 +84,8 @@
     font-size: 20px;
     font-weight: bold;
     width: 80%;
-    margin-left: 35px;
-    margin-bottom: 10px;
-    padding: 10px 0;
+    height: 40px;
+    margin: 15px 0 15px 30px;
     background-color: $myPageSmallBtnColor;
     color: white;
   }

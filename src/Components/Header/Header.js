@@ -63,7 +63,7 @@ class Header extends React.Component {
               <AddedToCartMessage showMessage={cartBtnClicked} />
             </div>
           </div>
-          <Link to="/main">
+          <Link to="/itemlist">
             <div className="headerBottom">
               <div className="kids">
                 <Button text="KIDS" />

@@ -52,7 +52,7 @@ class OrderHistory extends React.Component {
                   <div className="orderExplanationWrap">
                     <div className="orderSummary">
                       <div className="statusAndDate">
-                        Delivered: Jun 5, 2019
+                        Delivered: Jul 5, 2019
                       </div>
                       <div className="productName">{el.label}</div>
                       <div className="categoryAndType">{`${el.category} ${el.main_type}`}</div>

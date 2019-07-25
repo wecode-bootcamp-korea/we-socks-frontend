@@ -3,13 +3,17 @@ import "./addressBook.scss";
 import Button from "Components/Button";
 import InputBox from "Components/InputBox";
 import Select from "Components/Select";
+import axios from "axios";
 
 class AddressBook extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      clickedBtn: undefined
+      clickedBtn: undefined,
+      addressTypeSelect: "",
+      recepientInput: "",
+      addressInput: ""
     };
   }
 
@@ -27,6 +31,17 @@ class AddressBook extends React.Component {
     });
   };
 
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  updateAddress = () => {
+    axios.post("http://localhost:8000");
+  };
+
+  handleAddressType;
   render() {
     return (
       <div
@@ -56,8 +71,6 @@ class AddressBook extends React.Component {
                 <div className="actualAddress">
                   서울시 강남구 테헤란로 427 <br></br>위워크타워
                 </div>
-                <div className="phoneNumber">010-1234-1234</div>
-                <div className="email">jkang14@gmail.com</div>
                 <div className="addressBtnWrap">
                   <Button
                     className="editBtn"
@@ -81,46 +94,34 @@ class AddressBook extends React.Component {
             }`}
           >
             <p>Add Address</p>
-            <p>
-              Address Type
-              <Select
-                className="addressTypeSelect"
-                name="addressTypeSelect"
-                makeSelection
-                ref_array={[
-                  "Choose Type",
-                  "Home",
-                  "Work",
-                  "Parents'",
-                  "Lovers'"
-                ]}
-              />
-            </p>
+            <p>Address Type</p>
+            <Select
+              className="addressTypeSelect"
+              name="addressTypeSelect"
+              makeSelection={e => this.handleChange(e)}
+              ref_array={["Choose Type", "Home", "Work", "Parents'", "Lovers'"]}
+            />
+            <p>Recepient</p>
+            <InputBox
+              type="text"
+              name="recepientInput"
+              className="recepientInput"
+              placeholder="Enter your phone number here..."
+              onChange={e => this.handleChange(e)}
+            />
             <p>Address</p>
             <InputBox
               type="text"
               name="addressInput"
               className="addressInput"
               placeholder="Enter your address here..."
-            />
-            <p>Phone Number</p>
-            <InputBox
-              type="text"
-              name="phoneNumberInput"
-              className="phoneNumberInput"
-              placeholder="Enter your phone number here..."
-            />
-            <p>Email</p>
-            <InputBox
-              type="text"
-              name="emailInput"
-              className="emailInput"
-              placeholder="Enter your email here..."
+              onChange={e => this.handleChange(e)}
             />
             <Button
               className="addCompleteBtn"
               name="addCompleteBtn"
               text="add complete"
+              onClick={this.updateAddress}
             />
           </div>
           <div
@@ -129,46 +130,35 @@ class AddressBook extends React.Component {
             }`}
           >
             <p>Edit Address</p>
-            <p>
-              Address Type
-              <Select
-                className="addressTypeSelect"
-                name="addressTypeSelect"
-                makeSelection
-                ref_array={[
-                  "Choose Type",
-                  "Home",
-                  "Work",
-                  "Parents'",
-                  "Lovers'"
-                ]}
-              />
-            </p>
+            <p>Address Type</p>
+            <Select
+              className="addressTypeSelect"
+              name="addressTypeSelect"
+              makeSelection={e => this.handleChange(e)}
+              ref_array={["Choose Type", "Home", "Work", "Parents'", "Lovers'"]}
+            />
+            <p>Recepient</p>
+            <InputBox
+              type="text"
+              name="recepientInput"
+              className="recepientInput"
+              placeholder="Enter your phone number here..."
+              onChange={e => this.handleChange(e)}
+            />
             <p>Address</p>
             <InputBox
               type="text"
               name="addressInput"
               className="addressInput"
               placeholder="Enter your address here..."
+              onChange={e => this.handleChange(e)}
             />
-            <p>Phone Number</p>
-            <InputBox
-              type="text"
-              name="phoneNumberInput"
-              className="phoneNumberInput"
-              placeholder="Enter your phone number here..."
-            />
-            <p>Email</p>
-            <InputBox
-              type="text"
-              name="emailInput"
-              className="emailInput"
-              placeholder="Enter your email here..."
-            />
+
             <Button
-              className="editCompleteBtn"
-              name="editCompleteBtn"
-              text="edit complete"
+              className="addCompleteBtn"
+              name="addCompleteBtn"
+              text="add complete"
+              onClick={this.updateAddress}
             />
           </div>
           <div

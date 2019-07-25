@@ -2,7 +2,8 @@
 
 .pageHeader {
   position: static;
-  border-bottom: 2px solid $headerBorderColor;
+  margin-bottom: 50px;
+
   .headerTop {
     display: flex;
     justify-content: space-evenly;
@@ -61,9 +62,16 @@
   justify-content: center;
   > div {
     padding: 10px 40px;
-    &:hover {
-      opacity: 0.6;
+
+    > span {
+      padding-bottom: 8px;
+      border-bottom: 6px solid black;
+      transition: 0.2s all;
       cursor: pointer;
+
+      &:hover {
+        border-bottom: 6px solid rgba(0, 0, 0, 0.3);
+      }
     }
   }
 }

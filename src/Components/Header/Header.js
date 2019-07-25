@@ -52,10 +52,18 @@ class Header extends React.Component {
             </div>
           </div>
           <div className="headerBottom">
-            <div className="kids">KIDS</div>
-            <div className="casual">CASUAL</div>
-            <div className="dressed">DRESSED</div>
-            <div className="athletic">ATHLETIC</div>
+            <div className="kids">
+              <span>KIDS</span>
+            </div>
+            <div className="casual">
+              <span>CASUAL</span>
+            </div>
+            <div className="dressed">
+              <span>DRESSED</span>
+            </div>
+            <div className="athletic">
+              <span>ATHLETIC</span>
+            </div>
           </div>
         </header>
       </>

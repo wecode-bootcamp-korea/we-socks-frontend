@@ -10,7 +10,6 @@ import * as patternImage from "Components/SockItem/patternImages";
 import * as uploadedImage from "Components/SockItem/uploadedImages";
 import AddedToCartMessage from "Components/AddedToCartMessage";
 import { API_URL } from "config";
-import { isFulfilled } from "q";
 import Axios from "axios";
 
 const colorArr = [
@@ -83,6 +82,7 @@ class Custom extends React.Component {
     type: 0,
     view: "front",
     pattern: "",
+    patternSize: "",
     price: 6000,
     uploaded: 0,
     addToCartBtnClicked: false,
@@ -368,14 +368,14 @@ class Custom extends React.Component {
               )}
             </div>
             <div className="patternSizeBar">
-              <InputBox
+              <input
                 type="range"
                 min="100"
                 max="300"
                 onChange={this.handleSize}
                 value={patternSize}
                 style={{ width: 250 }}
-              />
+              ></input>
             </div>
             <div className="rightSideWrap">
               <div className="chooseWrap">

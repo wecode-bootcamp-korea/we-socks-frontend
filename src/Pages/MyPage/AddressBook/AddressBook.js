@@ -13,13 +13,13 @@ class AddressBook extends React.Component {
     };
   }
 
-  componentDidMount() {
-    window.addEventListener("click", e => this.handleClick(e));
-  }
+  // componentDidMount() {
+  //   window.addEventListener("click", e => this.handleClick(e));
+  // }
 
-  componentWillUnmount() {
-    window.removeEventListener("click", e => this.handleClick(e));
-  }
+  // componentWillUnmount() {
+  //   window.removeEventListener("click", e => this.handleClick(e));
+  // }
 
   handleClick = e => {
     this.setState({

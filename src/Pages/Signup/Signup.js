@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-dupe-keys */
 import React, { Component } from "react";
+import Layout from "Components/Layout";
 import InputBox from "Components/InputBox";
 import Button from "Components/Button";
 import Select from "Components/Select";
@@ -43,8 +44,7 @@ class Signup extends Component {
   };
 
   handleOnClick = () => {
-    fetch("http://10.58.2.144:8000/account", {
-      //`${API_URL}user`
+    fetch(`${API_URL}user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -66,111 +66,116 @@ class Signup extends Component {
           });
           return;
         }
-        if (data.error_code !== "EMAIL_ALREADY_EXISTS") {
-          alert("로그인 페이지로 이동합니다. 가입하신 정보로 로그인 해주세요");
-          this.props.history.push({
-            pathname: "/login"
-          });
-        }
+        // if (data.error_code !== "EMAIL_ALREADY_EXISTS") {
+        //   alert("로그인 페이지로 이동합니다. 가입하신 정보로 로그인 해주세요");
+        //   this.props.history.push({
+        //     pathname: "/login"
+        //   });
+        // }
       });
   };
   render() {
     return (
-      <div className="signupContainer">
-        <div className="signupContents">
-          <header className="signupHeader">
-            <h1>Sign up</h1>
-          </header>
-          <div className="signupId">
-            <InputBox
-              type="email"
-              name="email"
-              placeholder="e-mail"
-              classname="signupIdInput"
-              handleChange={this.handleInput}
-            />
-            <p
-              className={
-                this.state.checkEmail.length < 2
-                  ? "showEmailText1"
-                  : "showEmailText2"
-              }
-            >
-              {this.state.checkEmail}
-            </p>
-          </div>
-          <div>
-            <InputBox
-              className="signupPwInput1"
-              placeholder="password"
-              type="password"
-              name="password"
-              handleChange={this.handleInput}
-            />
-          </div>
-          <div className="signupPw">
-            <InputBox
-              type="password"
-              placeholder="confirm password"
-              className="signupPwInput2"
-              name="rePassword"
-              handleChange={this.handleInput}
-            />
-            <p
-              className={`${
-                this.state.password !== this.state.rePassword
-                  ? "showPwText2"
-                  : "hiddenPwText"
-              }`}
-            >
-              입력하신 비밀번호가 일치하지 않습니다.
-            </p>
-          </div>
-          <div className="signupNick">
-            <InputBox
-              type="text"
-              placeholder="nickname"
-              name="nickname"
-              className="signupNickInput"
-              handleChange={this.handleInput}
-            />
-          </div>
-          <div className="signupBirth">
-            <div className="signupBirthInput">
-              <Select
-                className="signupYearInputSelect"
-                ref_array={yearArr}
-                makeSelection={this.handleInput}
+      <Layout>
+        <div className="signupContainer">
+          <div className="signupContents">
+            <header className="signupHeader">
+              <h1>Sign up</h1>
+            </header>
+            <div className="signupId">
+              <InputBox
+                type="email"
+                name="email"
+                placeholder="e-mail address"
+                classname="signupIdInput"
+                handleChange={this.handleInput}
               />
-              <Select
-                className="signupMonthInputSelect"
-                ref_array={monthArr}
-                makeSelection={this.handleInput}
-              />
-              <Select
-                className="signupDayInputSelect"
-                ref_array={dayArr}
-                makeSelection={this.handleInput}
-              />
+              <p
+                className={
+                  this.state.checkEmail.length < 2
+                    ? "showEmailText1"
+                    : "showEmailText2"
+                }
+              >
+                {this.state.checkEmail}
+              </p>
             </div>
-          </div>
-          <div className="signupPhoneNum">
-            <div className="signupPhoneNumInput">
+            <div className="signupPw">
+              <InputBox
+                classname="signupPwInput"
+                placeholder="Password"
+                type="password"
+                name="password"
+                handleChange={this.handleInput}
+              />
+              <p className="showPwText1">
+                영문+숫자+특수문자 8자리 이상으로 설정해주세요.
+              </p>
+            </div>
+            <div className="signupPw">
+              <InputBox
+                type="password"
+                placeholder="Confirm password"
+                classname="signupPwInput"
+                name="rePassword"
+                handleChange={this.handleInput}
+              />
+              <p
+                className={`${
+                  this.state.password !== this.state.rePassword
+                    ? "showPwText2"
+                    : "hiddenPwText"
+                }`}
+              >
+                입력하신 비밀번호가 일치하지 않습니다.
+              </p>
+            </div>
+            <div className="signupNick">
               <InputBox
                 type="text"
-                placeholder="phonenumber"
-                name="phoneNumber"
+                placeholder="Nickname"
+                name="nickname"
+                classname="signupNickInput"
                 handleChange={this.handleInput}
               />
             </div>
+            <div className="signupBirth">
+              <div className="signupBirthInput">
+                <Select
+                  className="signupYearInputSelect"
+                  ref_array={yearArr}
+                  makeSelection={this.handleInput}
+                />
+                <Select
+                  className="signupMonthInputSelect"
+                  ref_array={monthArr}
+                  makeSelection={this.handleInput}
+                />
+                <Select
+                  className="signupDayInputSelect"
+                  ref_array={dayArr}
+                  makeSelection={this.handleInput}
+                />
+              </div>
+            </div>
+            <div className="signupPhoneNum">
+              <div className="signupPhoneNumInput">
+                <InputBox
+                  type="text"
+                  placeholder="PhoneNumber"
+                  name="phoneNumber"
+                  handleChange={this.handleInput}
+                />
+              </div>
+            </div>
+            <Button
+              className="signupBtn"
+              text="Sign up"
+              onClick={this.handleOnClick}
+            />
           </div>
-          <Button
-            className="signupBtn"
-            text="Sign up"
-            onClick={this.handleOnClick}
-          />
         </div>
-      </div>
+      </Layout>
     );
   }
 }

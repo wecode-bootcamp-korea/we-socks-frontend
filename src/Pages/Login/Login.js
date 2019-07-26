@@ -75,7 +75,6 @@ class Login extends Component {
           alert("We Socks에 오신것을 환영합니다. 오늘도 좋은 하루 되세요");
           window.location.href = "/";
         } else if (data.error_code === "EMAIL_NOT_EXISTS") {
-
           this.setState({
             emailText: "존재하지 않는 이메일입니다."
           });
@@ -84,7 +83,6 @@ class Login extends Component {
           this.setState({
             pwText: "비밀번호 입력오류"
           });
-
         }
       });
   };
@@ -111,32 +109,33 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="loginContainer">
-        <div className="loginContents">
-          <div className="loginHeadText">
-            <h2>Sign in</h2>
-          </div>
-          <div className="loginInputArea">
-            <div className="loginIdinput">
-              <InputBox
-                type="text"
-                name="email"
-                classname="login_input"
-                placeholder="e-mail"
-                onChange={this.handleInput}
-              />
-              <p className="loginIdtext">{this.state.emailText}</p>
+      <Layout>
+        <div className="loginContainer">
+          <div className="loginContents">
+            <div className="loginHeadText">
+              <h2>Sign in</h2>
             </div>
-            <div className="loginPwinput">
-              <InputBox
-                type="password"
-                name="password"
-                classname="login_input"
-                placeholder="password"
-                onChange={this.handleInput}
-              />
-              <p className="loginPwtext">{this.state.pwText}</p>
-
+            <div className="loginInputArea">
+              <div className="loginIdinput">
+                <InputBox
+                  type="text"
+                  name="email"
+                  classname="login_input"
+                  placeholder="e-mail"
+                  onChange={this.handleInput}
+                />
+                <p className="loginIdtext">{this.state.emailText}</p>
+              </div>
+              <div className="loginPwinput">
+                <InputBox
+                  type="password"
+                  name="password"
+                  classname="login_input"
+                  placeholder="password"
+                  onChange={this.handleInput}
+                />
+                <p className="loginPwtext">{this.state.pwText}</p>
+              </div>
             </div>
             <div
               className="checkBoxContainer"
@@ -144,7 +143,7 @@ class Login extends Component {
             >
               <div id={this.state.checkBox}></div>
               <label id="loginCheckLabel" for="loginCheck">
-                email save
+                save e-mail
               </label>
             </div>
             <Button
@@ -152,30 +151,18 @@ class Login extends Component {
               text="sign in"
               onClick={this.LoginBtnOnClick}
             />
-            <a id="kakao-login-btn"></a>
-          </div>
-          <div
-            className="checkBoxContainer"
-            onClick={this.handleOnclickChecked}
-          >
-            <div id={this.state.checkBox}></div>
-            <label id="loginCheckLabel" for="loginCheck">
-              save e-mail
-            </label>
-          </div>
-          <Button
-            className="loginBtn"
-            text="sign in"
-            onClick={this.LoginBtnOnClick}
-          />
-          <div className="loginBtnBox">
-            <a id="kakao-login-btn"></a>
-            <div className="guestLogin" onClick={this.handleOnclickGuestLogin}>
-              <img
-                src="https://wesocks-design-management.s3.ap-northeast-2.amazonaws.com/free-delivery.png"
-                className="guestLoginImg"
-              />
-              <span className="guestLoginText">게스트 로그인</span>
+            <div className="loginBtnBox">
+              <a id="kakao-login-btn"></a>
+              <div
+                className="guestLogin"
+                onClick={this.handleOnclickGuestLogin}
+              >
+                <img
+                  src="https://wesocks-design-management.s3.ap-northeast-2.amazonaws.com/free-delivery.png"
+                  className="guestLoginImg"
+                />
+                <span className="guestLoginText">게스트 로그인</span>
+              </div>
             </div>
           </div>
         </div>

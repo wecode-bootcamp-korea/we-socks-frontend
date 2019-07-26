@@ -2,9 +2,10 @@ import React from "react";
 import axios from "axios";
 import Button from "Components/Button";
 import SockItem from "Components/SockItem";
-import AddCommaToNumber from "Components/AddCommaToNumber";
+import { SliceThenAddComma } from "Components/AddCommaToNumber/AddCommaToNumber";
 import "./addedToCartMessage.scss";
 import { Link } from "react-router-dom";
+import { API_URL } from "config";
 
 const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
 const typeArr = ["No-Show", "Ankle", "Mid", "High"];
@@ -19,13 +20,11 @@ class AddedToCartMessage extends React.Component {
   }
 
   componentDidMount = () => {
-    axios
-      .post("http://10.58.4.155:8000/mypage/cart", { user_pk: 1 })
-      .then(response => {
-        this.setState({
-          cartMessageArray: response.data.my_cart_list
-        });
+    axios.post(`${API_URL}cart/list`, { user_pk: 1 }).then(response => {
+      this.setState({
+        cartMessageArray: response.data.my_cart_list
       });
+    });
   };
 
   render() {
@@ -56,7 +55,7 @@ class AddedToCartMessage extends React.Component {
                   categoryArr[el.design.category]
                 } ${typeArr[el.design.main_type]}`}</div>
                 <div className="addedToCartPrice">
-                  {AddCommaToNumber(el.design.unit_price)}
+                  {SliceThenAddComma(el.design.unit_price)}
                 </div>
               </li>
             ))}

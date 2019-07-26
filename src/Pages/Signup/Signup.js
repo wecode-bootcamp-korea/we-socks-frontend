@@ -46,7 +46,6 @@ class Signup extends Component {
   };
 
   handleInput = e => {
-    console.log("작동중");
     this.setState({
       [e.target.name]: e.target.value.trim()
     });
@@ -67,6 +66,7 @@ class Signup extends Component {
     })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         if (data.error_code === "EMAIL_ALREADY_EXISTS") {
           this.setState({
             checkEmail: "이메일 중복"
@@ -78,7 +78,6 @@ class Signup extends Component {
           pathname: "/login"
         });
       });
-    console.log(this.state.year);
   };
   render() {
     return (

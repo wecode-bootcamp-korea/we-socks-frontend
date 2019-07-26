@@ -30,17 +30,18 @@
 .optionsWrap {
   margin-top: 60px;
   display: flex;
+  flex-wrap: wrap;
 
   .selectOptionsWrap {
     position: relative;
-    left: 5.4%;
+    left: 6.8%;
     width: 20%;
     text-align: right;
     font-size: 17px;
 
     > div {
       margin-bottom: 16px;
-      padding-right: 13%;
+      padding-right: 15px;
       border-right: 2px solid $myPageBodyColor;
 
       &:last-child {
@@ -85,7 +86,23 @@
       .optionsDetail {
         margin-top: 10%;
         position: relative;
-        right: 3%;
+        left: 13%;
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .myPageRoot {
+    .optionsWrap {
+      .selectOptionsWrap {
+        margin-left: 15px;
+        width: 200px;
+        display: flex;
+        flex-wrap: wrap;
+        > div {
+          border: none;
+        }
       }
     }
   }

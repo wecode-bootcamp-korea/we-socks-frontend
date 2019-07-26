@@ -58,11 +58,13 @@ class itemlist extends Component {
       type
     } = this.state;
 
+    let sockType = this.props.history.location.query;
+
     let defaultColor = "";
     let defaultPattern = "";
     let defaultPatternSize = "";
 
-    switch (type) {
+    switch (sockType) {
       case "KIDS":
         defaultColor = "#ffc0cb";
         defaultPattern = "9";

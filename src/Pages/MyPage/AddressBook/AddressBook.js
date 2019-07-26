@@ -5,6 +5,9 @@ import Button from "Components/Button";
 import InputBox from "Components/InputBox";
 import Select from "Components/Select";
 import axios from "axios";
+import { API_URL, TOKEN_KEY } from "config";
+
+const addressTypeArr = ["Home", "Work", "Parents'", "Lovers'"];
 
 class AddressBook extends React.Component {
   constructor(props) {
@@ -16,12 +19,6 @@ class AddressBook extends React.Component {
       recepientInput: "",
       addressInput: ""
     };
-  }
-
-  componentDidMount() {
-    axios.get("http://localhost:8000/address/1").then(response => {
-      console.log(response);
-    });
   }
 
   handleClick = e => {
@@ -37,6 +34,10 @@ class AddressBook extends React.Component {
   };
 
   updateAddress = () => {
+    const token = localStorage.getItem(TOKEN_KEY);
+    let headers = {
+      Authorization: token
+    };
     let body = {
       id: 1,
       address_type: 2,
@@ -44,15 +45,17 @@ class AddressBook extends React.Component {
       recepient: this.state.recepientInput
     };
 
-    axios
-      .post("http://localhost:8000/user/address/update", body)
-      .then(response => {
+    axios.post(
+      `${API_URL}user/update`,
+      body,
+      { headers }.then(response => {
         window.location.reload();
-      });
+      })
+    );
   };
 
-  handleAddressType;
   render() {
+    const { addressArr } = this.props;
     return (
       <div
         className={`addressBookDetail ${
@@ -74,29 +77,32 @@ class AddressBook extends React.Component {
               this.state.clickedBtn === undefined ? "showDetail" : "hidden"
             }`}
           >
-            <li>
-              <div className="addressWrap">
-                <div className="addressType">Home</div>
-                <div className="recepient">Jason Kang</div>
-                <div className="actualAddress">
-                  서울시 강남구 테헤란로 427 <br></br>위워크타워
+            {addressArr.map((address, idx) => (
+              <li>
+                {console.log(address.address_type_id)}
+                <div className="addressWrap">
+                  <div className="addressType">
+                    {addressTypeArr[address.address_type_id - 1]}
+                  </div>
+                  <div className="recepient">{address.recepient}</div>
+                  <div className="actualAddress">{address.address}</div>
+                  <div className="addressBtnWrap">
+                    <Button
+                      className="editBtn"
+                      name="editBtn"
+                      onClick={e => this.handleClick(e)}
+                      text="edit"
+                    />
+                    <Button
+                      className="removeBtn"
+                      name="removeBtn"
+                      onClick={e => this.handleClick(e)}
+                      text="remove"
+                    />
+                  </div>
                 </div>
-                <div className="addressBtnWrap">
-                  <Button
-                    className="editBtn"
-                    name="editBtn"
-                    onClick={e => this.handleClick(e)}
-                    text="edit"
-                  />
-                  <Button
-                    className="removeBtn"
-                    name="removeBtn"
-                    onClick={e => this.handleClick(e)}
-                    text="remove"
-                  />
-                </div>
-              </div>
-            </li>
+              </li>
+            ))}
           </ul>
           <div
             className={`addAddress ${

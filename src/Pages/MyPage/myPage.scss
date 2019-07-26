@@ -10,7 +10,8 @@
 
 .userInfo {
   position: relative;
-  left: 10%;
+  display: flex;
+  left: 16.5%;
   .userNickName {
     padding-top: 30px;
     font-weight: bold;
@@ -19,6 +20,17 @@
   .welcomeMessage {
     font-size: 13px;
     line-height: 35px;
+  }
+  .logoutBtn {
+    font-size: 20px;
+    position: relative;
+    top: 45px;
+    left: 35px;
+    color: $myPageHoverColor;
+    &:hover {
+      text-decoration: underline;
+      color: $shoppingCartDarkFontColor;
+    }
   }
 }
 

@@ -6,7 +6,6 @@ import InputBox from "Components/InputBox";
 import Button from "Components/Button";
 import Select from "Components/Select";
 import { API_URL, TOKEN_KEY } from "config";
-
 import "./Signup.scss";
 
 const yearArr = ["출생년도"];
@@ -14,13 +13,23 @@ const monthArr = ["월"];
 const dayArr = ["일"];
 
 for (let i = 1960; i < 2020; i++) {
-  yearArr.push(`${i + "년"}`);
+  yearArr.push(`${i}`);
 }
 for (let i = 1; i < 13; i++) {
-  monthArr.push(`${i + "월"}`);
+  if (i < 10) {
+    monthArr.push(`0${i}`);
+  }
+  if (i > 10) {
+    monthArr.push(`${i}`);
+  }
 }
 for (let i = 1; i < 32; i++) {
-  dayArr.push(`${i + "일"}`);
+  if (i < 10) {
+    dayArr.push(`0${i}`);
+  }
+  if (i > 10) {
+    dayArr.push(`${i}`);
+  }
 }
 
 class Signup extends Component {
@@ -46,15 +55,14 @@ class Signup extends Component {
   handleOnClick = () => {
     fetch(`${API_URL}user`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         nickname: this.state.nickname,
         email: this.state.email,
         password: this.state.password,
         phone_number: this.state.phoneNumber,
-        birthday: this.state.year + this.state.month + this.state.day
+        birthday:
+          this.state.year + "-" + this.state.month + "-" + this.state.day
       })
     })
       .then(res => res.json())
@@ -66,12 +74,11 @@ class Signup extends Component {
           });
           return;
         }
-        // if (data.error_code !== "EMAIL_ALREADY_EXISTS") {
-        //   alert("로그인 페이지로 이동합니다. 가입하신 정보로 로그인 해주세요");
-        //   this.props.history.push({
-        //     pathname: "/login"
-        //   });
-        // }
+
+        alert("회원가입을 축하드립니다!! 로그인 페이지로 이동합니다.");
+        this.props.history.push({
+          pathname: "/login"
+        });
       });
   };
   render() {
@@ -88,7 +95,7 @@ class Signup extends Component {
                 name="email"
                 placeholder="e-mail address"
                 classname="signupIdInput"
-                handleChange={this.handleInput}
+                onChange={this.handleInput}
               />
               <p
                 className={
@@ -106,7 +113,7 @@ class Signup extends Component {
                 placeholder="Password"
                 type="password"
                 name="password"
-                handleChange={this.handleInput}
+                onChange={this.handleInput}
               />
               <p className="showPwText1">
                 영문+숫자+특수문자 8자리 이상으로 설정해주세요.
@@ -118,7 +125,7 @@ class Signup extends Component {
                 placeholder="Confirm password"
                 classname="signupPwInput"
                 name="rePassword"
-                handleChange={this.handleInput}
+                onChange={this.handleInput}
               />
               <p
                 className={`${
@@ -133,10 +140,10 @@ class Signup extends Component {
             <div className="signupNick">
               <InputBox
                 type="text"
-                placeholder="Nickname"
-                name="nickname"
-                classname="signupNickInput"
-                handleChange={this.handleInput}
+                placeholder="phonenumber"
+                name="phoneNumber"
+                onChange={this.handleInput}
+
               />
             </div>
             <div className="signupBirth">

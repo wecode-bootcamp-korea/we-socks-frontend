@@ -81,11 +81,12 @@ $mediaPixel: 768px;
       position: absolute;
       top: 0;
       left: 0;
-      width: 200px;
-      height: 200px;
+      width: 100px;
+      height: 100px;
       background-repeat: no-repeat;
-      background-size: 150px;
+      background-size: contain;
       // border-radius: 50px;
+      // background-color: black;
     }
   }
 
@@ -260,9 +261,10 @@ $mediaPixel: 768px;
 
     > button {
       font-weight: bold;
-      font-size: 23px;
+      margin-top: 15px;
+      font-size: 18px;
       padding: 8px 18px;
-      width: 230px;
+      width: 275px;
 
       @media screen and (max-width: $mediaPixel) {
         font-size: 16px;
@@ -301,12 +303,17 @@ $mediaPixel: 768px;
 
 .imagePickerContainer {
   position: relative;
+  .uploadedImagePicker {
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
 }
 
 .customImgUpBtn {
   position: absolute;
-  top: 66px;
-  left: 8px;
+  top: 8px;
+  z-index: 1;
+  left: 230px;
   width: 40px;
   height: 40px;
   opacity: 0;

@@ -43,7 +43,8 @@ class Signup extends Component {
   };
 
   handleOnClick = () => {
-    fetch(`${API_URL}user`, {
+    fetch("http://10.58.2.144:8000/account", {
+      //`${API_URL}user`
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -84,7 +85,7 @@ class Signup extends Component {
             <InputBox
               type="email"
               name="email"
-              placeholder="e-mail address"
+              placeholder="e-mail"
               classname="signupIdInput"
               handleChange={this.handleInput}
             />
@@ -98,23 +99,20 @@ class Signup extends Component {
               {this.state.checkEmail}
             </p>
           </div>
-          <div className="signupPw">
+          <div>
             <InputBox
-              classname="signupPwInput"
-              placeholder="Password"
+              className="signupPwInput1"
+              placeholder="password"
               type="password"
               name="password"
               handleChange={this.handleInput}
             />
-            <p className="showPwText1">
-              영문+숫자+특수문자 8자리 이상으로 설정해주세요.
-            </p>
           </div>
           <div className="signupPw">
             <InputBox
               type="password"
-              placeholder="Confirm password"
-              classname="signupPwInput"
+              placeholder="confirm password"
+              className="signupPwInput2"
               name="rePassword"
               handleChange={this.handleInput}
             />
@@ -131,9 +129,9 @@ class Signup extends Component {
           <div className="signupNick">
             <InputBox
               type="text"
-              placeholder="Nickname"
+              placeholder="nickname"
               name="nickname"
-              classname="signupNickInput"
+              className="signupNickInput"
               handleChange={this.handleInput}
             />
           </div>
@@ -160,7 +158,7 @@ class Signup extends Component {
             <div className="signupPhoneNumInput">
               <InputBox
                 type="text"
-                placeholder="PhoneNumber"
+                placeholder="phonenumber"
                 name="phoneNumber"
                 handleChange={this.handleInput}
               />

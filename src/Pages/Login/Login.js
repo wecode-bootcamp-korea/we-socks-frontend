@@ -14,6 +14,31 @@ class Login extends Component {
     checkBox: "loginCheckNone"
   };
 
+  handleOnclickGuestLogin = () => {
+    fetch("http://10.58.2.144:8000/account/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: "admin12345@gmail.com",
+        password: "1q2w3e4r!@"
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.token) {
+          localStorage.setItem(TOKEN_KEY, data.token);
+          this.props.history.push({
+            pathname: "/"
+          });
+          alert("수고에 오신 것을 환영합니다.");
+        } else {
+          alert("아이디 및 패스워드를 확인해주세요");
+        }
+      });
+  };
   handleInput = e => {
     this.setState({
       [e.target.name]: e.target.value.trim()
@@ -113,7 +138,7 @@ class Login extends Component {
                 type="text"
                 name="email"
                 classname="login_input"
-                placeholder="e-mail address"
+                placeholder="e-mail"
                 handleChange={this.handleInput}
               />
               <p className="loginIdtext">{this.state.emailText}</p>
@@ -123,7 +148,7 @@ class Login extends Component {
                 type="password"
                 name="password"
                 classname="login_input"
-                placeholder="Password"
+                placeholder="password"
                 handleChange={this.handleInput}
               />
               <p className="loginPwtext">{this.state.pwText}</p>
@@ -135,7 +160,7 @@ class Login extends Component {
           >
             <div id={this.state.checkBox}></div>
             <label id="loginCheckLabel" for="loginCheck">
-              email save
+              save e-mail
             </label>
           </div>
           <Button
@@ -143,7 +168,16 @@ class Login extends Component {
             text="sign in"
             onClick={this.LoginBtnOnClick}
           />
-          <a id="kakao-login-btn"></a>
+          <div className="loginBtnBox">
+            <a id="kakao-login-btn"></a>
+            <div className="guestLogin" onClick={this.handleOnclickGuestLogin}>
+              <img
+                src="https://wesocks-design-management.s3.ap-northeast-2.amazonaws.com/free-delivery.png"
+                className="guestLoginImg"
+              />
+              <span className="guestLoginText">게스트 로그인</span>
+            </div>
+          </div>
         </div>
       </div>
     );

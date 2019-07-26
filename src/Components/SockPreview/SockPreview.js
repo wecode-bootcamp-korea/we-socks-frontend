@@ -90,6 +90,8 @@ class SockPreview extends React.Component {
     const { defaultType, defaultColor, defaultPattern, preview } = this.props;
     const { isHover, isPreview, hoverIdx } = this.state;
 
+    console.log(preview);
+
     return (
       <div className="itemWrap" onMouseLeave={() => this.handleHover(false)}>
         <div
@@ -131,8 +133,9 @@ class SockPreview extends React.Component {
               isHover && isPreview
                 ? {
                     backgroundImage: `url(${
-                      patternArr[preview[hoverIdx].pattern_id - 1]
-                    })`
+                      patternArr[preview[hoverIdx].pattern__pattern_type]
+                    })`,
+                    backgroundSize: `${preview.pattern__pattern_size}`
                   }
                 : { backgroundImage: `url(${patternArr[defaultPattern]})` }
             }
@@ -184,8 +187,9 @@ class SockPreview extends React.Component {
                         className="sockImage patternMasked"
                         style={{
                           backgroundImage: `url(${
-                            patternArr[el.pattern_id - 1]
-                          })`
+                            patternArr[el.pattern__pattern_type]
+                          })`,
+                          backgroundSize: `${preview.pattern__pattern_size}`
                         }}
                         src={
                           matching[`${typeArr[el.main_type_id - 1]} side`][1]

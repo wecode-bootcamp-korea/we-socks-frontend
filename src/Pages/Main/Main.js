@@ -28,7 +28,7 @@ const Main = () => {
             <Link
               key={idx}
               className="squareBox"
-              to="/itemlist"
+              to={{ pathname: "/itemlist", query: `${el.title}` }}
               style={{ textDecoration: "none" }}
             >
               <Square image_url={el.img} title={el.title} />

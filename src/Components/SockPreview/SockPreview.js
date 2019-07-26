@@ -90,8 +90,6 @@ class SockPreview extends React.Component {
     const { defaultType, defaultColor, defaultPattern, preview } = this.props;
     const { isHover, isPreview, hoverIdx } = this.state;
 
-    console.log(preview);
-
     return (
       <div className="itemWrap" onMouseLeave={() => this.handleHover(false)}>
         <div

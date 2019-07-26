@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React, { Component } from "react";
 import axios from "axios";
 import SockPreview from "Components/SockPreview";
@@ -6,7 +7,14 @@ import "./itemlist.scss";
 import { ADDRESS } from "Config/Config";
 
 class itemlist extends Component {
+  constructor(props) {
+    super(props);
+
+    this.type = props.history.location.query;
+  }
+
   state = {
+    type: "none",
     noShowPreviewArr: [],
     anklePreviewArr: [],
     midPreviewArr: [],
@@ -28,6 +36,7 @@ class itemlist extends Component {
     });
 
     this.setState({
+      type: this.props.location.query,
       noShowPreviewArr: noshow.data,
       anklePreviewArr: ankle.data,
       midPreviewArr: mid.data,
@@ -40,8 +49,26 @@ class itemlist extends Component {
       noShowPreviewArr,
       anklePreviewArr,
       midPreviewArr,
-      highPreviewArr
+      highPreviewArr,
+      type
     } = this.state;
+
+    let defaultColor = "";
+
+    switch (type) {
+      case "KIDS":
+        defaultColor = "#FFFF00";
+        break;
+      case "CASUAL":
+        defaultColor = "#8A2BE2";
+        break;
+      case "DRESSED":
+        defaultColor = "#778899";
+        break;
+      case "ATHLETIC":
+        defaultColor = "#F5F5DC";
+        break;
+    }
 
     return (
       <Layout>
@@ -52,27 +79,31 @@ class itemlist extends Component {
           <div className="list">
             <SockPreview
               defaultType="0"
-              defaultColor="none"
+              defaultColor={defaultColor}
               defaultPattern="0"
               preview={noShowPreviewArr}
+              type={type}
             />
             <SockPreview
               defaultType="1"
-              defaultColor="none"
+              defaultColor={defaultColor}
               defaultPattern="0"
               preview={anklePreviewArr}
+              type={type}
             />
             <SockPreview
               defaultType="2"
-              defaultColor="none"
+              defaultColor={defaultColor}
               defaultPattern="0"
               preview={midPreviewArr}
+              type={type}
             />
             <SockPreview
               defaultType="3"
-              defaultColor="none"
+              defaultColor={defaultColor}
               defaultPattern="0"
               preview={highPreviewArr}
+              type={type}
             />
           </div>
         </div>

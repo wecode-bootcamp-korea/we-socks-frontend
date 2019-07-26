@@ -9,7 +9,8 @@ class Header extends React.Component {
     super();
 
     this.state = {
-      cartBtnClicked: false
+      cartBtnClicked: false,
+      loginCheck: false
     };
   }
 
@@ -30,11 +31,15 @@ class Header extends React.Component {
 
   componentDidMount = () => {
     const token = localStorage.getItem(TOKEN_KEY);
-    console.log(token);
+    if (token !== null) {
+      this.setState({
+        loginCheck: !this.state.loginCheck
+      });
+    }
   };
 
   render() {
-    const { cartBtnClicked } = this.state;
+    const { cartBtnClicked, loginCheck } = this.state;
     return (
       <>
         <header className="pageHeader">
@@ -45,9 +50,16 @@ class Header extends React.Component {
             <div className="headerBtnWrap">
               <div className="myAccountWrap">
                 <div className="myAccountIcon"></div>
-                <Link to="/mypage">
-                  <Button className="myAccountBtn" text="My Account" />
-                </Link>
+                {loginCheck === false && (
+                  <Link to="/login">
+                    <Button className="loginBtn" text="Login" />
+                  </Link>
+                )}
+                {loginCheck && (
+                  <Link to="/mypage">
+                    <Button className="myAccountBtn" text="MY ACCOUNT" />
+                  </Link>
+                )}
               </div>
 
               <div className="cartWrap">
@@ -55,7 +67,7 @@ class Header extends React.Component {
                 <Link to="/shoppingcart">
                   <Button
                     className="cartBtn"
-                    text="Cart"
+                    text="CART"
                     onClick={this.handleCartBtnClicked}
                   />
                 </Link>

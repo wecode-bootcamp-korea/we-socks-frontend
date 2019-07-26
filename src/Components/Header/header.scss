@@ -44,6 +44,13 @@
         .myAccountBtn {
           font-size: 22px;
         }
+        .loginBtn {
+          font-size: 22px;
+          position: relative;
+          bottom: 18px;
+          color: $headerFontColor;
+          font-weight: normal;
+        }
       }
 
       .cartWrap {

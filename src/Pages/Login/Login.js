@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import InputBox from "Components/InputBox";
 import Button from "Components/Button";
+import Layout from "Components/Layout";
 import "./Login.scss";
 import { API_URL, TOKEN_KEY } from "config";
 
@@ -58,51 +59,41 @@ class Login extends Component {
   };
 
   LoginBtnOnClick = () => {
-    if (this.state.email.length === 0) {
-      this.setState({
-        emailText: "이메일을 입력하세요"
-      });
-    } else if (!this.state.password) {
-      this.setState({
-        pwText: "비밀번호를 입력하세요"
-      });
-    } else {
-      fetch(`${API_URL}user/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password
-        })
+    fetch(`${API_URL}user/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
       })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          if (data.access_token) {
-            localStorage.setItem(TOKEN_KEY, data.access_token);
-            window.location.href = "/";
-          }
-          if (data.error_code === "EMAIL_NOT_EXISTS") {
-            this.setState({
-              emailText: "존재하지 않는 이메일입니다."
-            });
-            return;
-          }
-          if (data.error_code === "INVALID_PASSWORD") {
-            this.setState({
-              pwText: "비밀번호 입력오류"
-            });
-            return;
-          } else {
-            alert("We Socks에 오신것을 환영합니다. 오늘도 좋은 하루 되세요");
-            this.props.history.push({
-              pathname: "/"
-            });
-          }
-        });
-    }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.access_token) {
+          localStorage.setItem(TOKEN_KEY, data.access_token);
+          window.location.href = "/";
+        }
+        if (data.error_code === "EMAIL_NOT_EXISTS") {
+          this.setState({
+            emailText: "존재하지 않는 이메일입니다."
+          });
+          return;
+        }
+        if (data.error_code === "INVALID_PASSWORD") {
+          this.setState({
+            pwText: "비밀번호 입력오류"
+          });
+          return;
+        } else {
+          alert("We Socks에 오신것을 환영합니다. 오늘도 좋은 하루 되세요");
+          this.props.history.push({
+            pathname: "/"
+          });
+        }
+      });
   };
   componentDidMount() {
     window.Kakao.Auth.createLoginButton({
@@ -127,32 +118,49 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="loginContainer">
-        <div className="loginContents">
-          <div className="loginHeadText">
-            <h2>Sign in</h2>
-          </div>
-          <div className="loginInputArea">
-            <div className="loginIdinput">
-              <InputBox
-                type="text"
-                name="email"
-                classname="login_input"
-                placeholder="e-mail"
-                handleChange={this.handleInput}
-              />
-              <p className="loginIdtext">{this.state.emailText}</p>
+      <Layout>
+        <div className="loginContainer">
+          <div className="loginContents">
+            <div className="loginHeadText">
+              <h2>Sign in</h2>
             </div>
-            <div className="loginPwinput">
-              <InputBox
-                type="password"
-                name="password"
-                classname="login_input"
-                placeholder="password"
-                handleChange={this.handleInput}
-              />
-              <p className="loginPwtext">{this.state.pwText}</p>
+            <div className="loginInputArea">
+              <div className="loginIdinput">
+                <InputBox
+                  type="text"
+                  name="email"
+                  classname="login_input"
+                  placeholder="e-mail address"
+                  handleChange={this.handleInput}
+                />
+                <p className="loginIdtext">{this.state.emailText}</p>
+              </div>
+              <div className="loginPwinput">
+                <InputBox
+                  type="password"
+                  name="password"
+                  classname="login_input"
+                  placeholder="Password"
+                  handleChange={this.handleInput}
+                />
+                <p className="loginPwtext">{this.state.pwText}</p>
+              </div>
             </div>
+            <div
+              className="checkBoxContainer"
+              onClick={this.handleOnclickChecked}
+            >
+              <div id={this.state.checkBox}></div>
+              <label id="loginCheckLabel" for="loginCheck">
+                email save
+              </label>
+            </div>
+            <Button
+              className="loginBtn"
+              text="sign in"
+              onClick={this.LoginBtnOnClick}
+            />
+            <a id="kakao-login-btn"></a>
           </div>
           <div
             className="checkBoxContainer"
@@ -179,7 +187,7 @@ class Login extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "Components/Button";
+import Layout from "Components/Layout";
 import "./orderDetail.scss";
 
 class OrderDetail extends React.Component {
@@ -9,7 +10,7 @@ class OrderDetail extends React.Component {
 
   render() {
     return (
-      <>
+      <Layout>
         <div className="orderDetailRoot">
           <p>Order Detail</p>
           <div className="leftBox">
@@ -86,7 +87,7 @@ class OrderDetail extends React.Component {
             </div>
           </div>
         </div>
-      </>
+      </Layout>
     );
   }
 }

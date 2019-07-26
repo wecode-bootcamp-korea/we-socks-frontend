@@ -31,6 +31,7 @@ class Header extends React.Component {
 
   componentDidMount = () => {
     const token = localStorage.getItem(TOKEN_KEY);
+    console.log("token here", token);
     if (token !== null) {
       this.setState({
         loginCheck: !this.state.loginCheck

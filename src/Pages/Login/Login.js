@@ -15,6 +15,31 @@ class Login extends Component {
     checkBox: "loginCheckNone"
   };
 
+  handleOnclickGuestLogin = () => {
+    fetch("http://10.58.2.144:8000/account/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: "admin12345@gmail.com",
+        password: "1q2w3e4r!@"
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.token) {
+          localStorage.setItem(TOKEN_KEY, data.token);
+          this.props.history.push({
+            pathname: "/"
+          });
+          alert("수고에 오신 것을 환영합니다.");
+        } else {
+          alert("아이디 및 패스워드를 확인해주세요");
+        }
+      });
+  };
   handleInput = e => {
     this.setState({
       [e.target.name]: e.target.value.trim()
@@ -146,6 +171,30 @@ class Login extends Component {
               onClick={this.LoginBtnOnClick}
             />
             <a id="kakao-login-btn"></a>
+          </div>
+          <div
+            className="checkBoxContainer"
+            onClick={this.handleOnclickChecked}
+          >
+            <div id={this.state.checkBox}></div>
+            <label id="loginCheckLabel" for="loginCheck">
+              save e-mail
+            </label>
+          </div>
+          <Button
+            className="loginBtn"
+            text="sign in"
+            onClick={this.LoginBtnOnClick}
+          />
+          <div className="loginBtnBox">
+            <a id="kakao-login-btn"></a>
+            <div className="guestLogin" onClick={this.handleOnclickGuestLogin}>
+              <img
+                src="https://wesocks-design-management.s3.ap-northeast-2.amazonaws.com/free-delivery.png"
+                className="guestLoginImg"
+              />
+              <span className="guestLoginText">게스트 로그인</span>
+            </div>
           </div>
         </div>
       </Layout>

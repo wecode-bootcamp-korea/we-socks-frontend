@@ -44,7 +44,8 @@ class Signup extends Component {
   };
 
   handleOnClick = () => {
-    fetch(`${API_URL}user`, {
+    fetch("http://10.58.2.144:8000/account", {
+      //`${API_URL}user`
       method: "POST",
       headers: {
         "Content-Type": "application/json"

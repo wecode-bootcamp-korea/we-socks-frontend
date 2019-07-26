@@ -6,15 +6,17 @@ $mediaPixel: 768px;
   margin: 80px auto;
 
   @media screen and (max-width: $mediaPixel) {
-    margin: 80px 0;
+    margin: 0 80px;
   }
 
   .chooseTypesWrap {
+    width: 100%;
     margin-bottom: 20px;
     font-size: 20px;
   }
 
   .chooseViewsWrap {
+    width: 100%;
     font-size: 20px;
   }
   .chooseTitle {
@@ -40,11 +42,16 @@ $mediaPixel: 768px;
   }
 
   .customCenter {
+    width: 70%;
     display: flex;
     position: relative;
 
+    .rightSideWrap {
+      width: 75%;
+    }
+
     @media screen and (max-width: $mediaPixel) {
-      width: 750px;
+      width: 400px;
     }
   }
 
@@ -205,6 +212,10 @@ $mediaPixel: 768px;
         opacity: 0.7;
       }
     }
+    // @media screen and (max-width: $mediaPixel) {
+    //   margin: 0px;
+    //   padding: 0px;
+    // }
   }
   .colorPickerContainer {
     display: flex;

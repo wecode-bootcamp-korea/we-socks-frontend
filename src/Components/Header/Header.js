@@ -1,6 +1,7 @@
 import React from "react";
 import "./header.scss";
 import Button from "Components/Button";
+import { setCookie, getCookie } from "Common/cookie";
 import { Link } from "react-router-dom";
 import { TOKEN_KEY } from "config";
 import AddedToCartMessage from "Components/AddedToCartMessage";
@@ -31,7 +32,7 @@ class Header extends React.Component {
 
   componentDidMount = () => {
     const token = localStorage.getItem(TOKEN_KEY);
-    console.log("token here", token);
+
     if (token !== null) {
       this.setState({
         loginCheck: !this.state.loginCheck
@@ -41,6 +42,9 @@ class Header extends React.Component {
 
   render() {
     const { cartBtnClicked, loginCheck } = this.state;
+
+    const cookie = getCookie("sockType").toLowerCase();
+
     return (
       <>
         <header className="pageHeader">
@@ -79,16 +83,28 @@ class Header extends React.Component {
           <Link to="/itemlist">
             <div className="headerBottom">
               <div className="kids">
-                <Button text="KIDS" />
+                <Button
+                  text="KIDS"
+                  className={cookie === "kids" ? "typeChange" : null}
+                />
               </div>
               <div className="casual">
-                <Button text="CASUAL" />
+                <Button
+                  text="CASUAL"
+                  className={cookie === "casual" ? "typeChange" : null}
+                />
               </div>
               <div className="dressed">
-                <Button text="DRESSED" />
+                <Button
+                  text="DRESSED"
+                  className={cookie === "dressed" ? "typeChange" : null}
+                />
               </div>
               <div className="athletic">
-                <Button text="ATHLETIC" />
+                <Button
+                  text="ATHLETIC"
+                  className={cookie === "athletic" ? "typeChange" : null}
+                />
               </div>
             </div>
           </Link>

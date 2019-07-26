@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-dupe-keys */
 import React, { Component } from "react";
+import Layout from "Components/Layout";
 import InputBox from "Components/InputBox";
 import Button from "Components/Button";
 import Select from "Components/Select";
@@ -73,6 +74,7 @@ class Signup extends Component {
           });
           return;
         }
+
         alert("회원가입을 축하드립니다!! 로그인 페이지로 이동합니다.");
         this.props.history.push({
           pathname: "/login"
@@ -81,104 +83,106 @@ class Signup extends Component {
   };
   render() {
     return (
-      <div className="signupContainer">
-        <div className="signupContents">
-          <header className="signupHeader">
-            <h1>Sign up</h1>
-          </header>
-          <div className="signupId">
-            <InputBox
-              type="email"
-              name="email"
-              placeholder="e-mail"
-              classname="signupIdInput"
-              onChange={this.handleInput}
-            />
-            <p
-              className={
-                this.state.checkEmail.length < 2
-                  ? "showEmailText1"
-                  : "showEmailText2"
-              }
-            >
-              {this.state.checkEmail}
-            </p>
-          </div>
-          <div>
-            <InputBox
-              className="signupPwInput1"
-              placeholder="password"
-              type="password"
-              name="password"
-              onChange={this.handleInput}
-            />
-          </div>
-          <div className="signupPw">
-            <InputBox
-              type="password"
-              placeholder="confirm password"
-              className="signupPwInput2"
-              name="rePassword"
-              onChange={this.handleInput}
-            />
-            <p
-              className={`${
-                this.state.password !== this.state.rePassword
-                  ? "showPwText2"
-                  : "hiddenPwText"
-              }`}
-            >
-              입력하신 비밀번호가 일치하지 않습니다.
-            </p>
-          </div>
-          <div className="signupNick">
-            <InputBox
-              type="text"
-              placeholder="nickname"
-              name="nickname"
-              className="signupNickInput"
-              onChange={this.handleInput}
-            />
-          </div>
-          <div className="signupBirth">
-            <div className="signupBirthInput">
-              <Select
-                className="signupYearInputSelect"
-                name="year"
-                ref_array={yearArr}
-                makeSelection={this.handleInput}
+      <Layout>
+        <div className="signupContainer">
+          <div className="signupContents">
+            <header className="signupHeader">
+              <h1>Sign up</h1>
+            </header>
+            <div className="signupId">
+              <InputBox
+                type="email"
+                name="email"
+                placeholder="e-mail address"
+                classname="signupIdInput"
+                onChange={this.handleInput}
               />
-              <Select
-                className="signupMonthInputSelect"
-                name="month"
-                ref_array={monthArr}
-                makeSelection={this.handleInput}
-              />
-              <Select
-                className="signupDayInputSelect"
-                name="day"
-                ref_array={dayArr}
-                makeSelection={this.handleInput}
-              />
+              <p
+                className={
+                  this.state.checkEmail.length < 2
+                    ? "showEmailText1"
+                    : "showEmailText2"
+                }
+              >
+                {this.state.checkEmail}
+              </p>
             </div>
-          </div>
-          <div className="signupPhoneNum">
-            <div className="signupPhoneNumInput">
+            <div className="signupPw">
+              <InputBox
+                classname="signupPwInput"
+                placeholder="Password"
+                type="password"
+                name="password"
+                onChange={this.handleInput}
+              />
+              <p className="showPwText1">
+                영문+숫자+특수문자 8자리 이상으로 설정해주세요.
+              </p>
+            </div>
+            <div className="signupPw">
+              <InputBox
+                type="password"
+                placeholder="Confirm password"
+                classname="signupPwInput"
+                name="rePassword"
+                onChange={this.handleInput}
+              />
+              <p
+                className={`${
+                  this.state.password !== this.state.rePassword
+                    ? "showPwText2"
+                    : "hiddenPwText"
+                }`}
+              >
+                입력하신 비밀번호가 일치하지 않습니다.
+              </p>
+            </div>
+            <div className="signupNick">
               <InputBox
                 type="text"
                 placeholder="phonenumber"
                 name="phoneNumber"
                 onChange={this.handleInput}
+
               />
             </div>
+            <div className="signupBirth">
+              <div className="signupBirthInput">
+                <Select
+                  className="signupYearInputSelect"
+                  ref_array={yearArr}
+                  makeSelection={this.handleInput}
+                />
+                <Select
+                  className="signupMonthInputSelect"
+                  ref_array={monthArr}
+                  makeSelection={this.handleInput}
+                />
+                <Select
+                  className="signupDayInputSelect"
+                  ref_array={dayArr}
+                  makeSelection={this.handleInput}
+                />
+              </div>
+            </div>
+            <div className="signupPhoneNum">
+              <div className="signupPhoneNumInput">
+                <InputBox
+                  type="text"
+                  placeholder="PhoneNumber"
+                  name="phoneNumber"
+                  handleChange={this.handleInput}
+                />
+              </div>
+            </div>
+            <Button
+              className="signupBtn"
+              text="Sign up"
+              onClick={this.handleOnClick}
+            />
           </div>
-          <Button
-            className="signupBtn"
-            text="Sign up"
-            onClick={this.handleOnClick}
-          />
         </div>
-      </div>
+      </Layout>
     );
   }
 }

@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import InputBox from "Components/InputBox";
 import Button from "Components/Button";
+import Layout from "Components/Layout";
 import "./Login.scss";
 import { API_URL, TOKEN_KEY } from "config";
 
@@ -74,6 +75,7 @@ class Login extends Component {
           alert("We Socks에 오신것을 환영합니다. 오늘도 좋은 하루 되세요");
           window.location.href = "/";
         } else if (data.error_code === "EMAIL_NOT_EXISTS") {
+
           this.setState({
             emailText: "존재하지 않는 이메일입니다."
           });
@@ -82,6 +84,7 @@ class Login extends Component {
           this.setState({
             pwText: "비밀번호 입력오류"
           });
+
         }
       });
   };
@@ -133,7 +136,23 @@ class Login extends Component {
                 onChange={this.handleInput}
               />
               <p className="loginPwtext">{this.state.pwText}</p>
+
             </div>
+            <div
+              className="checkBoxContainer"
+              onClick={this.handleOnclickChecked}
+            >
+              <div id={this.state.checkBox}></div>
+              <label id="loginCheckLabel" for="loginCheck">
+                email save
+              </label>
+            </div>
+            <Button
+              className="loginBtn"
+              text="sign in"
+              onClick={this.LoginBtnOnClick}
+            />
+            <a id="kakao-login-btn"></a>
           </div>
           <div
             className="checkBoxContainer"
@@ -160,7 +179,7 @@ class Login extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }

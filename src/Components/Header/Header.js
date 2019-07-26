@@ -2,13 +2,15 @@ import React from "react";
 import "./header.scss";
 import Button from "Components/Button";
 import { Link } from "react-router-dom";
+import { TOKEN_KEY } from "config";
 import AddedToCartMessage from "Components/AddedToCartMessage";
 class Header extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      cartBtnClicked: false
+      cartBtnClicked: false,
+      loginCheck: false
     };
   }
 
@@ -27,45 +29,69 @@ class Header extends React.Component {
     );
   };
 
+  componentDidMount = () => {
+    const token = localStorage.getItem(TOKEN_KEY);
+    console.log("token here", token);
+    if (token !== null) {
+      this.setState({
+        loginCheck: !this.state.loginCheck
+      });
+    }
+  };
+
   render() {
-    const { cartBtnClicked } = this.state;
+    const { cartBtnClicked, loginCheck } = this.state;
     return (
       <>
         <header className="pageHeader">
           <div className="headerTop">
-            <div className="myAccountWrap">
-              <div className="myAccountIcon"></div>
-              <Link to="/mypage">
-                <Button className="myAccountBtn" text="My Account" />
-              </Link>
-            </div>
-            <Link to="/" className="logo">
-              <span className="logoIcon"></span>
+            <Link to="/" className="logoWrap">
+              <div className="logoIcon"></div>
             </Link>
-            <div className="cartWrap">
-              <div className="cartIcon"></div>
-              <Button
-                className="cartBtn"
-                text="Cart"
-                onClick={this.handleCartBtnClicked}
-              />
+            <div className="headerBtnWrap">
+              <div className="myAccountWrap">
+                <div className="myAccountIcon"></div>
+                {loginCheck === false && (
+                  <Link to="/login">
+                    <Button className="loginBtn" text="Login" />
+                  </Link>
+                )}
+                {loginCheck && (
+                  <Link to="/mypage">
+                    <Button className="myAccountBtn" text="MY ACCOUNT" />
+                  </Link>
+                )}
+              </div>
+
+              <div className="cartWrap">
+                <div className="cartIcon"></div>
+                <Link to="/shoppingcart">
+                  <Button
+                    className="cartBtn"
+                    text="CART"
+                    onClick={this.handleCartBtnClicked}
+                  />
+                </Link>
+              </div>
+              <AddedToCartMessage showMessage={cartBtnClicked} />
             </div>
-            <AddedToCartMessage showMessage={cartBtnClicked} />
           </div>
-          <div className="headerBottom">
-            <div className="kids">
-              <span>KIDS</span>
+          <Link to="/itemlist">
+            <div className="headerBottom">
+              <div className="kids">
+                <Button text="KIDS" />
+              </div>
+              <div className="casual">
+                <Button text="CASUAL" />
+              </div>
+              <div className="dressed">
+                <Button text="DRESSED" />
+              </div>
+              <div className="athletic">
+                <Button text="ATHLETIC" />
+              </div>
             </div>
-            <div className="casual">
-              <span>CASUAL</span>
-            </div>
-            <div className="dressed">
-              <span>DRESSED</span>
-            </div>
-            <div className="athletic">
-              <span>ATHLETIC</span>
-            </div>
-          </div>
+          </Link>
         </header>
       </>
     );

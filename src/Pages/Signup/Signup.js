@@ -5,7 +5,6 @@ import InputBox from "Components/InputBox";
 import Button from "Components/Button";
 import Select from "Components/Select";
 import { API_URL, TOKEN_KEY } from "config";
-
 import "./Signup.scss";
 
 const yearArr = ["출생년도"];
@@ -13,13 +12,23 @@ const monthArr = ["월"];
 const dayArr = ["일"];
 
 for (let i = 1960; i < 2020; i++) {
-  yearArr.push(`${i + "년"}`);
+  yearArr.push(`${i}`);
 }
 for (let i = 1; i < 13; i++) {
-  monthArr.push(`${i + "월"}`);
+  if (i < 10) {
+    monthArr.push(`0${i}`);
+  }
+  if (i > 10) {
+    monthArr.push(`${i}`);
+  }
 }
 for (let i = 1; i < 32; i++) {
-  dayArr.push(`${i + "일"}`);
+  if (i < 10) {
+    dayArr.push(`0${i}`);
+  }
+  if (i > 10) {
+    dayArr.push(`${i}`);
+  }
 }
 
 class Signup extends Component {
@@ -37,42 +46,39 @@ class Signup extends Component {
   };
 
   handleInput = e => {
+    console.log("작동중");
     this.setState({
       [e.target.name]: e.target.value.trim()
     });
   };
 
   handleOnClick = () => {
-    fetch("http://10.58.2.144:8000/account", {
-      //`${API_URL}user`
+    fetch(`${API_URL}user`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         nickname: this.state.nickname,
         email: this.state.email,
         password: this.state.password,
         phone_number: this.state.phoneNumber,
-        birthday: this.state.year + this.state.month + this.state.day
+        birthday:
+          this.state.year + "-" + this.state.month + "-" + this.state.day
       })
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         if (data.error_code === "EMAIL_ALREADY_EXISTS") {
           this.setState({
             checkEmail: "이메일 중복"
           });
           return;
         }
-        if (data.error_code !== "EMAIL_ALREADY_EXISTS") {
-          alert("로그인 페이지로 이동합니다. 가입하신 정보로 로그인 해주세요");
-          this.props.history.push({
-            pathname: "/login"
-          });
-        }
+        alert("회원가입을 축하드립니다!! 로그인 페이지로 이동합니다.");
+        this.props.history.push({
+          pathname: "/login"
+        });
       });
+    console.log(this.state.year);
   };
   render() {
     return (
@@ -87,7 +93,7 @@ class Signup extends Component {
               name="email"
               placeholder="e-mail"
               classname="signupIdInput"
-              handleChange={this.handleInput}
+              onChange={this.handleInput}
             />
             <p
               className={
@@ -105,7 +111,7 @@ class Signup extends Component {
               placeholder="password"
               type="password"
               name="password"
-              handleChange={this.handleInput}
+              onChange={this.handleInput}
             />
           </div>
           <div className="signupPw">
@@ -114,7 +120,7 @@ class Signup extends Component {
               placeholder="confirm password"
               className="signupPwInput2"
               name="rePassword"
-              handleChange={this.handleInput}
+              onChange={this.handleInput}
             />
             <p
               className={`${
@@ -132,23 +138,26 @@ class Signup extends Component {
               placeholder="nickname"
               name="nickname"
               className="signupNickInput"
-              handleChange={this.handleInput}
+              onChange={this.handleInput}
             />
           </div>
           <div className="signupBirth">
             <div className="signupBirthInput">
               <Select
                 className="signupYearInputSelect"
+                name="year"
                 ref_array={yearArr}
                 makeSelection={this.handleInput}
               />
               <Select
                 className="signupMonthInputSelect"
+                name="month"
                 ref_array={monthArr}
                 makeSelection={this.handleInput}
               />
               <Select
                 className="signupDayInputSelect"
+                name="day"
                 ref_array={dayArr}
                 makeSelection={this.handleInput}
               />
@@ -160,7 +169,7 @@ class Signup extends Component {
                 type="text"
                 placeholder="phonenumber"
                 name="phoneNumber"
-                handleChange={this.handleInput}
+                onChange={this.handleInput}
               />
             </div>
           </div>

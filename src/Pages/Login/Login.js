@@ -15,27 +15,25 @@ class Login extends Component {
   };
 
   handleOnclickGuestLogin = () => {
-    fetch("http://10.58.2.144:8000/account/login", {
+    fetch(`${API_URL}user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email: "admin12345@gmail.com",
-        password: "1q2w3e4r!@"
+        email: "admin@gmail.com",
+        password: "1234"
       })
     })
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        if (data.token) {
-          localStorage.setItem(TOKEN_KEY, data.token);
+        if (data.access_token) {
+          localStorage.setItem(TOKEN_KEY, data.access_token);
           this.props.history.push({
             pathname: "/"
           });
           alert("수고에 오신 것을 환영합니다.");
-        } else {
-          alert("아이디 및 패스워드를 확인해주세요");
         }
       });
   };
@@ -58,51 +56,34 @@ class Login extends Component {
   };
 
   LoginBtnOnClick = () => {
-    if (this.state.email.length === 0) {
-      this.setState({
-        emailText: "이메일을 입력하세요"
-      });
-    } else if (!this.state.password) {
-      this.setState({
-        pwText: "비밀번호를 입력하세요"
-      });
-    } else {
-      fetch(`${API_URL}user/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password
-        })
+    fetch(`${API_URL}user/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
       })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          if (data.access_token) {
-            localStorage.setItem(TOKEN_KEY, data.access_token);
-            window.location.href = "/";
-          }
-          if (data.error_code === "EMAIL_NOT_EXISTS") {
-            this.setState({
-              emailText: "존재하지 않는 이메일입니다."
-            });
-            return;
-          }
-          if (data.error_code === "INVALID_PASSWORD") {
-            this.setState({
-              pwText: "비밀번호 입력오류"
-            });
-            return;
-          } else {
-            alert("We Socks에 오신것을 환영합니다. 오늘도 좋은 하루 되세요");
-            this.props.history.push({
-              pathname: "/"
-            });
-          }
-        });
-    }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.access_token) {
+          localStorage.setItem(TOKEN_KEY, data.access_token);
+          alert("We Socks에 오신것을 환영합니다. 오늘도 좋은 하루 되세요");
+          window.location.href = "/";
+        } else if (data.error_code === "EMAIL_NOT_EXISTS") {
+          this.setState({
+            emailText: "존재하지 않는 이메일입니다."
+          });
+          return;
+        } else if (data.error_code === "INVALID_PASSWORD") {
+          this.setState({
+            pwText: "비밀번호 입력오류"
+          });
+        }
+      });
   };
   componentDidMount() {
     window.Kakao.Auth.createLoginButton({
@@ -139,7 +120,7 @@ class Login extends Component {
                 name="email"
                 classname="login_input"
                 placeholder="e-mail"
-                handleChange={this.handleInput}
+                onChange={this.handleInput}
               />
               <p className="loginIdtext">{this.state.emailText}</p>
             </div>
@@ -149,7 +130,7 @@ class Login extends Component {
                 name="password"
                 classname="login_input"
                 placeholder="password"
-                handleChange={this.handleInput}
+                onChange={this.handleInput}
               />
               <p className="loginPwtext">{this.state.pwText}</p>
             </div>

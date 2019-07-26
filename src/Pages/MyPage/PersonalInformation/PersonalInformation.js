@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import InputBox from "Components/InputBox";
 import Button from "Components/Button";
+import { API_URL, TOKEN_KEY } from "config";
 import "./personalInformation.scss";
 
 class PersonalInformation extends React.Component {
@@ -16,12 +17,11 @@ class PersonalInformation extends React.Component {
   }
 
   handleClick = e => {
+    const token = localStorage.getItem(TOKEN_KEY);
     let body = {};
     let headers = {
-      Authorization:
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NDN9.ZqD0eEcH_WXZ11rKA6ww2kGd-4zdQNu_k57OU-y0G7A"
+      Authorization: token
     };
-
     if (e.target.name === "updateNickname") {
       body = {
         nickname: this.state.nickname
@@ -33,9 +33,10 @@ class PersonalInformation extends React.Component {
     }
 
     axios
-      .post("http://10.58.6.61:8000/user/update", body, { headers })
+      .post(`${API_URL}user/update`, body, { headers })
       .then(response => {
         alert("정보변경 성공");
+        window.location.reload();
       })
       .catch(error => {
         alert("실패");
@@ -49,7 +50,7 @@ class PersonalInformation extends React.Component {
   };
 
   render() {
-    const { className } = this.props;
+    const { className, userNickname } = this.props;
     return (
       <div
         className={` personalInformationDetail ${
@@ -66,7 +67,7 @@ class PersonalInformation extends React.Component {
             <InputBox
               className="nicknameInput"
               name="nickname"
-              placeholder="Enter New Nickname"
+              placeholder={userNickname}
               type="text"
               onChange={e => this.handleChange(e)}
             />

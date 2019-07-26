@@ -137,7 +137,6 @@
   .myAccountDetail {
     position: relative;
     right: 5%;
-
     .detailRoot {
       .progressBarContainer {
         margin: 2% 0;
@@ -149,6 +148,46 @@
         margin-top: 5%;
         display: flex;
         width: 87%;
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .myAccountDetail {
+    .detailRoot {
+      > p {
+        &:nth-child(2) {
+          text-align: center;
+          width: 233px;
+          font-size: 15px;
+        }
+      }
+      .progressBarContainer {
+        margin: 2% 0;
+        width: 80%;
+        text-align: center;
+      }
+
+      .creatorsClubDetail {
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+
+        .creatorsClubIntroduction {
+          width: 100%;
+          > p {
+            &:nth-child(2) {
+              font-size: 15px;
+            }
+          }
+        }
+
+        .clubImage {
+          margin-top: 10px;
+          width: 278px;
+          height: 280px;
+        }
       }
     }
   }

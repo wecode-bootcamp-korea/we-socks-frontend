@@ -43,8 +43,7 @@ class Signup extends Component {
   };
 
   handleOnClick = () => {
-    fetch("http://10.58.2.144:8000/account", {
-      //`${API_URL}user`
+    fetch(`${API_URL}user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -66,12 +65,12 @@ class Signup extends Component {
           });
           return;
         }
-        if (data.error_code !== "EMAIL_ALREADY_EXISTS") {
-          alert("로그인 페이지로 이동합니다. 가입하신 정보로 로그인 해주세요");
-          this.props.history.push({
-            pathname: "/login"
-          });
-        }
+        // if (data.error_code !== "EMAIL_ALREADY_EXISTS") {
+        //   alert("로그인 페이지로 이동합니다. 가입하신 정보로 로그인 해주세요");
+        //   this.props.history.push({
+        //     pathname: "/login"
+        //   });
+        // }
       });
   };
   render() {

@@ -3,7 +3,7 @@
 .addedToCartMessage {
   position: absolute;
   z-index: 1;
-  right: 190px;
+  right: 200px;
   top: 150px;
   width: 300px;
   display: flex;
@@ -39,9 +39,11 @@
       padding-right: 9px;
 
       .addedToCartImage {
-        padding-left: 35px;
+        position: relative;
+        left: 10%;
         .itemImageContainer {
           width: 80px;
+          height: 80px;
           .sockImage {
             width: 50px;
             height: 50px;
@@ -49,20 +51,20 @@
           }
           .imageMasked {
             position: absolute;
-            right: 235px;
+            left: 0;
             mix-blend-mode: multiply;
           }
 
           .patternMasked {
             position: absolute;
-            left: 35px;
+            left: 0;
             mix-blend-mode: multiply;
           }
 
           .uploadedImageMasked {
             position: absolute;
             mix-blend-mode: multiply;
-            left: 35px;
+            left: 0;
             background-size: 20%;
           }
         }
@@ -71,12 +73,16 @@
 
     .addedToCartCategoryAndType {
       font-size: 15px;
-      margin: 15px;
+      position: relative;
+      left: 10%;
+      top: 10px;
     }
 
     .addedToCartPrice {
       font-size: 15px;
-      margin: 15px;
+      position: relative;
+      left: 18%;
+      top: 10px;
     }
   }
 
@@ -85,7 +91,7 @@
     font-weight: bold;
     width: 80%;
     height: 40px;
-    margin: 15px 0 15px 30px;
+    margin: 0 0 15px 30px;
     background-color: $myPageSmallBtnColor;
     color: white;
   }

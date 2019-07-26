@@ -44,13 +44,11 @@ class Header extends React.Component {
             </Link>
             <div className="cartWrap">
               <div className="cartIcon"></div>
-              <Link to="/shoppingcart">
-                <Button
-                  className="cartBtn"
-                  text="Cart"
-                  onClick={this.handleCartBtnClicked}
-                />
-              </Link>
+              <Button
+                className="cartBtn"
+                text="Cart"
+                onClick={this.handleCartBtnClicked}
+              />
             </div>
             <AddedToCartMessage showMessage={cartBtnClicked} />
           </div>

@@ -12,50 +12,29 @@ const kidsImg = `${s3Url}/kids.jpg`;
 const dressedImg = `${s3Url}/dressed.jpg`;
 const athletic = `${s3Url}/athletic.jpg`;
 
+const ItemArr = [
+  { title: "KIDS", img: kidsImg },
+  { title: "CASUAL", img: casualImg },
+  { title: "DRESSED", img: dressedImg },
+  { title: "ATHLETIC", img: athletic }
+];
+
 const Main = () => {
   return (
     <Layout>
       <div className="mainItems">
-        <Link
-          className="squareBox"
-          to={{
-            pathname: "/itemlist",
-            query: { kind: "kids" }
-          }}
-          style={{ textDecoration: "none" }}
-        >
-          <Square image_url={kidsImg} title="KIDS" />
-        </Link>
-        <Link
-          className="squareBox"
-          to={{
-            pathname: "/itemlist",
-            query: { kind: "casual" }
-          }}
-          style={{ textDecoration: "none" }}
-        >
-          <Square image_url={casualImg} title="CASUAL" />
-        </Link>
-        <Link
-          className="squareBox"
-          to={{
-            pathname: "/itemlist",
-            query: { kind: "dressed" }
-          }}
-          style={{ textDecoration: "none" }}
-        >
-          <Square image_url={dressedImg} title="DRESSED" />
-        </Link>
-        <Link
-          className="squareBox"
-          to={{
-            pathname: "/itemlist",
-            query: { kind: "athletic" }
-          }}
-          style={{ textDecoration: "none" }}
-        >
-          <Square image_url={athletic} title="ATHLETIC" />
-        </Link>
+        {ItemArr.map((el, idx) => {
+          return (
+            <Link
+              key={idx}
+              className="squareBox"
+              to="/itemlist"
+              style={{ textDecoration: "none" }}
+            >
+              <Square image_url={el.img} title={el.title} />
+            </Link>
+          );
+        })}
       </div>
       <div className="mainFooter">
         <SquareTwo

@@ -3,8 +3,7 @@ import axios from "axios";
 import SockPreview from "Components/SockPreview";
 import Layout from "Components/Layout";
 import "./itemlist.scss";
-
-const API_URL = "http://10.58.5.28:8001";
+import { ADDRESS } from "Config/Config";
 
 class itemlist extends Component {
   state = {
@@ -15,16 +14,16 @@ class itemlist extends Component {
   };
 
   componentDidMount = async () => {
-    const noshow = await axios.post(`${API_URL}/main/most_wished_list`, {
+    const noshow = await axios.post(`${ADDRESS}product/most_wished`, {
       main_type: "1"
     });
-    const ankle = await axios.post(`${API_URL}/main/most_wished_list`, {
+    const ankle = await axios.post(`${ADDRESS}product/most_wished`, {
       main_type: "2"
     });
-    const mid = await axios.post(`${API_URL}/main/most_wished_list`, {
+    const mid = await axios.post(`${ADDRESS}product/most_wished`, {
       main_type: "3"
     });
-    const high = await axios.post(`${API_URL}/main/most_wished_list`, {
+    const high = await axios.post(`${ADDRESS}product/most_wished`, {
       main_type: "4"
     });
 

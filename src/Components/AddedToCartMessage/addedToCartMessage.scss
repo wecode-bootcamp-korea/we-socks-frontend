@@ -73,16 +73,20 @@
 
     .addedToCartCategoryAndType {
       font-size: 15px;
+      width: 70px;
       position: relative;
-      left: 10%;
-      top: 10px;
+      text-align: center;
+      left: 35px;
+      top: 3px;
     }
 
     .addedToCartPrice {
       font-size: 15px;
+      text-align: center;
       position: relative;
-      left: 18%;
+      left: 75px;
       top: 10px;
+      width: 50px;
     }
   }
 

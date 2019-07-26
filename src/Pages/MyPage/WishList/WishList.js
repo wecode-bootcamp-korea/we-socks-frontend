@@ -83,7 +83,7 @@ class WishList extends React.Component {
                 <div className="wishListImage">
                   <SockItem
                     key={`wishList-${idx}`}
-                    type={el.design.main_type - 1}
+                    type={el.design.main_type_id - 1}
                     view="side"
                     color={el.design.color}
                     pattern={el.design.pattern}
@@ -93,7 +93,7 @@ class WishList extends React.Component {
                   <div className="wishListSummary">
                     <div className="categoryAndType">{`${
                       categoryArr[el.design.category - 1]
-                    } ${typeArr[el.design.main_type - 1]}`}</div>
+                    } ${typeArr[el.design.main_type_id - 1]}`}</div>
                   </div>
                   <div className="whatToDo">
                     <div className="wishListBtnWrap">

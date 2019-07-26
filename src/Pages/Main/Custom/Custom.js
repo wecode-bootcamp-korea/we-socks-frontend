@@ -66,10 +66,9 @@ const patternArr = [
 
 const uploadedImageArr = [
   "",
-  uploadedImage.music,
-  uploadedImage.moon,
   uploadedImage.nike,
-  uploadedImage.mirror,
+  uploadedImage.apple,
+  uploadedImage.weCodeLogo,
   uploadedImage.plus
 ];
 

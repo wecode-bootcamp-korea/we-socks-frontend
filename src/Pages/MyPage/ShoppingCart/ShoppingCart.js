@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import Layout from "Components/Layout";
 import Button from "Components/Button";
+import Layout from "Components/Layout";
 import Select from "Components/Select";
 import SockItem from "Components/SockItem";
 import { API_URL } from "config";
@@ -10,9 +10,17 @@ import {
   SliceThenAddComma
 } from "Components/AddCommaToNumber/AddCommaToNumber";
 import "./shoppingCart.scss";
+import * as uploadedImage from "Components/SockItem/uploadedImages";
 
 const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
 const typeArr = ["No-Show", "Ankle", "Mid", "High"];
+const uploadedImageArr = [
+  "",
+  uploadedImage.nike,
+  uploadedImage.apple,
+  uploadedImage.weCodeLogo,
+  uploadedImage.plus
+];
 
 class ShoppingCart extends React.Component {
   constructor() {
@@ -34,7 +42,7 @@ class ShoppingCart extends React.Component {
       count: e.target.value
     };
 
-    axios.post(`${API_URL}product/change_count`, sockData).then(response => {
+    axios.post(`${API_URL}product/change_cart_req`, sockData).then(response => {
       if (response.status === 200) {
         axios.post(`${API_URL}cart/list`, { user_pk: 1 }).then(response => {
           this.setState({
@@ -69,7 +77,6 @@ class ShoppingCart extends React.Component {
 
   componentDidMount = () => {
     axios.post(`${API_URL}cart/list`, { user_pk: 1 }).then(response => {
-      console.log("response: ", response);
       this.setState({
         cartArr: response.data.my_cart_list,
         totalPrice: response.data.my_cart_total_price,
@@ -89,7 +96,6 @@ class ShoppingCart extends React.Component {
     } = this.state;
 
     const discountPrice = totalPrice * discountRate;
-    console.log(discountPrice);
     return (
       <Layout>
         <div className="shoppingCartRoot">
@@ -102,31 +108,48 @@ class ShoppingCart extends React.Component {
                     <div className="productImage">
                       <SockItem
                         key={`shoppingCart-${idx}`}
-                        type={el.design.main_type - 1}
+                        type={el.design.main_type_id - 1}
                         color={el.design.color}
-                        pattern={el.design.pattern}
+                        pattern={el.design.pattern__pattern_type}
+                        patternSize={el.design.pattern__pattern_size}
                         view="side"
+                      />
+                      <div
+                        className="imgDragnDrop"
+                        style={{
+                          width: "30px",
+                          height: "30px",
+                          top: el.design.logo__x_coordinate * 0.4,
+                          left: el.design.logo__x_coordinate * 0.4,
+                          backgroundImage: `url(${
+                            uploadedImageArr[el.design.logo__logo_type - 1]
+                          })`,
+                          backgroundSize: "contain",
+                          backgroundRepeat: "no-repeat"
+                        }}
                       />
                     </div>
                     <div className="productMiddleContainer">
-                      <div className="productCategoryAndType">{`${
-                        categoryArr[el.design.category]
-                      } ${typeArr[el.design.main_type - 1]}`}</div>
+                      <div className="productCategoryAndType">
+                        {`${categoryArr[el.design.category_id - 1]} ${
+                          typeArr[el.design.main_type_id - 1]
+                        }`}
+                      </div>
                       <div className="productPrice">
-                        가격: {AddCommaToNumber(el.total_price)}
+                        가격: {SliceThenAddComma(el.total_price)}
                       </div>
                       <div className="pointsPrediction">
-                        예상포인트: {AddCommaToNumber(el.reward_points)}
+                        예상포인트: {SliceThenAddComma(el.reward_points)}
                       </div>
                     </div>
                     <div className="productRightContainer">
                       <Select
                         className="count"
                         name="count"
-                        makeSelection={this.handleCount}
+                        makeSelection={e => this.handleCount(e, el.id)}
+                        value={el.count}
                         ref_array={[1, 2, 3, 4, 5]}
                       />
-
                       <Button
                         className="removeItemBtn"
                         name="removeItemBtn"
@@ -139,22 +162,19 @@ class ShoppingCart extends React.Component {
               </ul>
             </div>
             <div className="rightBox">
-              <div clasName="paymentInformation">
+              <div className="paymentInformation">
                 <Button
                   className="payBtn"
                   name="payBtn"
                   text="결제하기"
                   onClick={this.handlePayment}
                 />
-                <div className="countTotal">
-                  총 주문 상품: {AddCommaToNumber(totalCount)}개
-                </div>
-
+                <div className="countTotal">총 주문 상품: {totalCount}개</div>
                 <div className="priceWrap">
                   <div className="subtotalWrap">
                     <p>총 주문 가격</p>
                     <div className="subtotal">
-                      {AddCommaToNumber(totalPrice)}
+                      {SliceThenAddComma(totalPrice)}
                     </div>
                   </div>
                   <div className="discountWrap">
@@ -163,11 +183,21 @@ class ShoppingCart extends React.Component {
                       {AddCommaToNumber(discountPrice)}
                     </div>
                   </div>
-                </div>
-                <div className="pointsWrap">
-                  <p>예상포인트 </p>
-                  <div className="predictedPoints">
-                    {SliceThenAddComma(totalPoints)}
+                  <div className="shippingWrap">
+                    <p>배송비</p>
+                    <div className="shoppingFee">0</div>
+                  </div>
+                  <div className="priceTotalWrap">
+                    <p>총 결제금액</p>
+                    <div className="priceTotal">
+                      {AddCommaToNumber(totalPrice - discountPrice)}
+                    </div>
+                  </div>
+                  <div className="pointsWrap">
+                    <p>예상포인트 </p>
+                    <div className="predictedPoints">
+                      {SliceThenAddComma(totalPoints)}
+                    </div>
                   </div>
                 </div>
               </div>

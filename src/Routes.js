@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "Components/Layout";
 import Main from "./Pages/Main";
 import MyPage from "Pages/MyPage";
 import Itemlist from "./Pages/Itemlist";

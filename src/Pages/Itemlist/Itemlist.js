@@ -5,7 +5,7 @@ import { setCookie, getCookie } from "Common/cookie";
 import SockPreview from "Components/SockPreview";
 import Layout from "Components/Layout";
 import "./itemlist.scss";
-import { ADDRESS } from "Config";
+import { TOKEN_KEY, API_URL } from "config";
 
 class itemlist extends Component {
   constructor(props) {
@@ -23,16 +23,16 @@ class itemlist extends Component {
   };
 
   componentDidMount = async () => {
-    const noshow = await axios.post(`${ADDRESS}product/most_wished`, {
+    const noshow = await axios.post(`${API_URL}product/most_wished`, {
       main_type: "1"
     });
-    const ankle = await axios.post(`${ADDRESS}product/most_wished`, {
+    const ankle = await axios.post(`${API_URL}product/most_wished`, {
       main_type: "2"
     });
-    const mid = await axios.post(`${ADDRESS}product/most_wished`, {
+    const mid = await axios.post(`${API_URL}product/most_wished`, {
       main_type: "3"
     });
-    const high = await axios.post(`${ADDRESS}product/most_wished`, {
+    const high = await axios.post(`${API_URL}product/most_wished`, {
       main_type: "4"
     });
 

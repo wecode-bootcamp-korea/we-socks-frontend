@@ -3,7 +3,7 @@ import axios from "axios";
 import "./wishList.scss";
 import Button from "Components/Button";
 import SockItem from "Components/SockItem";
-import { ADDRESS } from "Config/Config";
+import { API_URL } from "config";
 
 const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
 const typeArr = ["No-Show", "Ankle", "Mid", "High"];
@@ -20,12 +20,12 @@ class WishList extends React.Component {
 
   removeFromWishList = item => {
     axios
-      .post(`${ADDRESS}product/cancel_wish_req`, {
+      .post(`${API_URL}product/cancel_wish_req`, {
         wished_id: item
       })
       .then(response => {
         if (response.status === 200) {
-          axios.post(`${ADDRESS}cart/wishes`, { user_pk: 1 }).then(response => {
+          axios.post(`${API_URL}cart/wishes`, { user_pk: 1 }).then(response => {
             this.setState({
               wishListArr: response.data.my_wish_list
             });
@@ -43,12 +43,12 @@ class WishList extends React.Component {
       count: 1
     };
 
-    axios.post(`${ADDRESS}product/add_cart_req`, body).then(response => {
+    axios.post(`${API_URL}product/add_cart_req`, body).then(response => {
       if (response.status === 200) {
         this.setState({
           listChanged: !this.state.listChanged
         });
-        axios.post(`${ADDRESS}cart/wishes`, { user_pk: 1 }).then(response => {
+        axios.post(`${API_URL}cart/wishes`, { user_pk: 1 }).then(response => {
           this.setState({
             wishListArr: response.data.my_wish_list
           });
@@ -58,22 +58,12 @@ class WishList extends React.Component {
   };
 
   componentDidMount = () => {
-    axios.post(`${ADDRESS}cart/wishes`, { user_pk: 1 }).then(response => {
+    axios.post(`${API_URL}cart/wishes`, { user_pk: 1 }).then(response => {
       this.setState({
         wishListArr: response.data.my_wish_list
       });
     });
   };
-
-  // componentWillUnmount = () => {
-  //   axios
-  //     .post("http://10.58.4.155:8000/mypage/wishes", { user_pk: 1 })
-  //     .then(response => {
-  //       this.setState({
-  //         wishListArr: response.data.my_wish_list
-  //       });
-  //     });
-  // };
 
   render() {
     const { className } = this.props;
@@ -87,7 +77,7 @@ class WishList extends React.Component {
       >
         <div className="wishListRoot detailRoot">
           <p>Wish List</p>
-          <ul className="wishList">
+          <ul className="wishListWrap">
             {wishListArr.map((el, idx) => (
               <li className="eachWishListItem">
                 <div className="wishListImage">

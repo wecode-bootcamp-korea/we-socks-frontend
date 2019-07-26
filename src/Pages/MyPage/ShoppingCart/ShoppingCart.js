@@ -4,7 +4,11 @@ import Layout from "Components/Layout";
 import Button from "Components/Button";
 import Select from "Components/Select";
 import SockItem from "Components/SockItem";
-import AddCommaToNumber from "Components/AddCommaToNumber";
+import { API_URL } from "config";
+import {
+  AddCommaToNumber,
+  SliceThenAddComma
+} from "Components/AddCommaToNumber/AddCommaToNumber";
 import "./shoppingCart.scss";
 
 const categoryArr = ["Kids", "Casual", "Dressed", "Athletic"];
@@ -24,39 +28,55 @@ class ShoppingCart extends React.Component {
     };
   }
 
+  handleCount = (e, item) => {
+    let sockData = {
+      cart_id: item,
+      count: e.target.value
+    };
+
+    axios.post(`${API_URL}product/change_count`, sockData).then(response => {
+      if (response.status === 200) {
+        axios.post(`${API_URL}cart/list`, { user_pk: 1 }).then(response => {
+          this.setState({
+            cartArr: response.data.my_cart_list,
+            totalPrice: response.data.my_cart_total_price,
+            totalCount: response.data.my_cart_total_count,
+            totalPoints: response.data.my_total_points
+          });
+        });
+      }
+    });
+  };
+
   removeItem = item => {
     axios
-      .post("http://10.58.2.189:8000/product/cancel_cart_req", {
+      .post(`${API_URL}product/cancel_cart_req`, {
         cart_id: item
       })
       .then(response => {
         if (response.status === 200) {
-          axios
-            .post("http://10.58.2.189:8000/cart/list", { user_pk: 1 })
-            .then(response => {
-              this.setState({
-                cartArr: response.data.my_cart_list,
-                totalPrice: response.data.my_cart_total_price,
-                totalCount: response.data.my_cart_total_count,
-                totalPoints: response.data.my_total_points
-              });
+          axios.post(`${API_URL}cart/list`, { user_pk: 1 }).then(response => {
+            this.setState({
+              cartArr: response.data.my_cart_list,
+              totalPrice: response.data.my_cart_total_price,
+              totalCount: response.data.my_cart_total_count,
+              totalPoints: response.data.my_total_points
             });
+          });
         }
       });
   };
 
   componentDidMount = () => {
-    axios
-      .post("http://10.58.2.189:8000/cart/list", { user_pk: 1 })
-      .then(response => {
-        console.log(response);
-        this.setState({
-          cartArr: response.data.my_cart_list,
-          totalPrice: response.data.my_cart_total_price,
-          totalCount: response.data.my_cart_total_count,
-          totalPoints: response.data.my_total_points
-        });
+    axios.post(`${API_URL}cart/list`, { user_pk: 1 }).then(response => {
+      console.log("response: ", response);
+      this.setState({
+        cartArr: response.data.my_cart_list,
+        totalPrice: response.data.my_cart_total_price,
+        totalCount: response.data.my_cart_total_count,
+        totalPoints: response.data.my_total_points
       });
+    });
   };
 
   render() {
@@ -69,6 +89,7 @@ class ShoppingCart extends React.Component {
     } = this.state;
 
     const discountPrice = totalPrice * discountRate;
+    console.log(discountPrice);
     return (
       <Layout>
         <div className="shoppingCartRoot">
@@ -142,21 +163,11 @@ class ShoppingCart extends React.Component {
                       {AddCommaToNumber(discountPrice)}
                     </div>
                   </div>
-                  <div className="shippingWrap">
-                    <p>배송비</p>
-                    <div className="shoppingFee">0</div>
-                  </div>
-                  <div className="priceTotalWrap">
-                    <p>총 결제금액</p>
-                    <div className="priceTotal">
-                      {AddCommaToNumber(totalPrice - discountPrice)}
-                    </div>
-                  </div>
-                  <div className="pointsWrap">
-                    <p>예상포인트</p>
-                    <div className="predictedPoints">
-                      {AddCommaToNumber(totalPoints)}
-                    </div>
+                </div>
+                <div className="pointsWrap">
+                  <p>예상포인트 </p>
+                  <div className="predictedPoints">
+                    {SliceThenAddComma(totalPoints)}
                   </div>
                 </div>
               </div>

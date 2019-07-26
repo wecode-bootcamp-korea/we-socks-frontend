@@ -14,10 +14,8 @@ class Layout extends React.Component {
     return (
       <div className="contentWrap">
         <Header />
-        <div id="chat-box">
-          <div id="plusfriend-chat-button"></div>
-          <div id="chat-button" />
-        </div>
+        <div id="plusfriend-chat-button"></div>
+        <div id="chat-button" />
         {this.props.children}
         <Footer />
       </div>

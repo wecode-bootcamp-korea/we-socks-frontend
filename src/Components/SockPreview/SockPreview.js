@@ -87,7 +87,13 @@ class SockPreview extends React.Component {
   };
 
   render() {
-    const { defaultType, defaultColor, defaultPattern, preview } = this.props;
+    const {
+      defaultType,
+      defaultColor,
+      defaultPattern,
+      defaultPatternSize,
+      preview
+    } = this.props;
     const { isHover, isPreview, hoverIdx } = this.state;
 
     return (
@@ -135,7 +141,10 @@ class SockPreview extends React.Component {
                     })`,
                     backgroundSize: `${preview.pattern__pattern_size}`
                   }
-                : { backgroundImage: `url(${patternArr[defaultPattern]})` }
+                : {
+                    backgroundImage: `url(${patternArr[defaultPattern]})`,
+                    backgroundSize: `${defaultPatternSize}px`
+                  }
             }
             src={
               isHover && isPreview

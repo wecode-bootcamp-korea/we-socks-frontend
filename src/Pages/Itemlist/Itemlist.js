@@ -1,6 +1,7 @@
 /* eslint-disable default-case */
 import React, { Component } from "react";
 import axios from "axios";
+import { setCookie, getCookie } from "Common/cookie";
 import SockPreview from "Components/SockPreview";
 import Layout from "Components/Layout";
 import "./itemlist.scss";
@@ -35,6 +36,10 @@ class itemlist extends Component {
       main_type: "4"
     });
 
+    if (this.props.location.query) {
+      setCookie("sockType", this.props.location.query, 1);
+    }
+
     this.setState({
       type: this.props.location.query,
       noShowPreviewArr: noshow.data,
@@ -54,19 +59,29 @@ class itemlist extends Component {
     } = this.state;
 
     let defaultColor = "";
+    let defaultPattern = "";
+    let defaultPatternSize = "";
 
     switch (type) {
       case "KIDS":
-        defaultColor = "#FFFF00";
+        defaultColor = "#ffc0cb";
+        defaultPattern = "9";
+        defaultPatternSize = "150";
         break;
       case "CASUAL":
         defaultColor = "#8A2BE2";
+        defaultPattern = "14";
+        defaultPatternSize = "150";
         break;
       case "DRESSED":
         defaultColor = "#778899";
+        defaultPattern = "11";
+        defaultPatternSize = "150";
         break;
       case "ATHLETIC":
         defaultColor = "#F5F5DC";
+        defaultPattern = "15";
+        defaultPatternSize = "150";
         break;
     }
 
@@ -80,28 +95,32 @@ class itemlist extends Component {
             <SockPreview
               defaultType="0"
               defaultColor={defaultColor}
-              defaultPattern="0"
+              defaultPattern={defaultPattern}
+              defaultPatternSize={defaultPatternSize}
               preview={noShowPreviewArr}
               type={type}
             />
             <SockPreview
               defaultType="1"
               defaultColor={defaultColor}
-              defaultPattern="0"
+              defaultPattern={defaultPattern}
+              defaultPatternSize={defaultPatternSize}
               preview={anklePreviewArr}
               type={type}
             />
             <SockPreview
               defaultType="2"
               defaultColor={defaultColor}
-              defaultPattern="0"
+              defaultPattern={defaultPattern}
+              defaultPatternSize={defaultPatternSize}
               preview={midPreviewArr}
               type={type}
             />
             <SockPreview
               defaultType="3"
               defaultColor={defaultColor}
-              defaultPattern="0"
+              defaultPattern={defaultPattern}
+              defaultPatternSize={defaultPatternSize}
               preview={highPreviewArr}
               type={type}
             />

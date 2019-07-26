@@ -11,7 +11,6 @@ import Span from "Components/Span";
 import * as patternImage from "Components/SockItem/patternImages";
 import * as uploadedImage from "Components/SockItem/uploadedImages";
 import AddedToCartMessage from "Components/AddedToCartMessage";
-import { API_URL } from "config";
 import Axios from "axios";
 
 const colorArr = [

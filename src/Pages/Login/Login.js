@@ -59,51 +59,41 @@ class Login extends Component {
   };
 
   LoginBtnOnClick = () => {
-    if (this.state.email.length === 0) {
-      this.setState({
-        emailText: "이메일을 입력하세요"
-      });
-    } else if (!this.state.password) {
-      this.setState({
-        pwText: "비밀번호를 입력하세요"
-      });
-    } else {
-      fetch(`${API_URL}user/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password
-        })
+    fetch(`${API_URL}user/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
       })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          if (data.access_token) {
-            localStorage.setItem(TOKEN_KEY, data.access_token);
-            window.location.href = "/";
-          }
-          if (data.error_code === "EMAIL_NOT_EXISTS") {
-            this.setState({
-              emailText: "존재하지 않는 이메일입니다."
-            });
-            return;
-          }
-          if (data.error_code === "INVALID_PASSWORD") {
-            this.setState({
-              pwText: "비밀번호 입력오류"
-            });
-            return;
-          } else {
-            alert("We Socks에 오신것을 환영합니다. 오늘도 좋은 하루 되세요");
-            this.props.history.push({
-              pathname: "/"
-            });
-          }
-        });
-    }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.access_token) {
+          localStorage.setItem(TOKEN_KEY, data.access_token);
+          window.location.href = "/";
+        }
+        if (data.error_code === "EMAIL_NOT_EXISTS") {
+          this.setState({
+            emailText: "존재하지 않는 이메일입니다."
+          });
+          return;
+        }
+        if (data.error_code === "INVALID_PASSWORD") {
+          this.setState({
+            pwText: "비밀번호 입력오류"
+          });
+          return;
+        } else {
+          alert("We Socks에 오신것을 환영합니다. 오늘도 좋은 하루 되세요");
+          this.props.history.push({
+            pathname: "/"
+          });
+        }
+      });
   };
   componentDidMount() {
     window.Kakao.Auth.createLoginButton({

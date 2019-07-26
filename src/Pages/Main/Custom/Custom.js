@@ -3,12 +3,14 @@ import React from "react";
 import "./custom.scss";
 import Button from "Components/Button";
 import SockItem from "Components/SockItem";
+import Layout from "Components/Layout";
+import InputBox from "Components/InputBox";
+import { API_URL } from "config";
 import axios from "axios";
 import Span from "Components/Span";
 import * as patternImage from "Components/SockItem/patternImages";
 import * as uploadedImage from "Components/SockItem/uploadedImages";
 import AddedToCartMessage from "Components/AddedToCartMessage";
-import { API_URL } from "config";
 import Axios from "axios";
 
 const colorArr = [
@@ -322,7 +324,7 @@ class Custom extends React.Component {
     } = this.state;
 
     return (
-      <>
+      <Layout>
         <AddedToCartMessage showMessage={addToCartBtnClicked} />
         <div className="customRoot">
           <div className="chooseTypesWrap">
@@ -475,7 +477,7 @@ class Custom extends React.Component {
             </div>
           )}
         </div>
-      </>
+      </Layout>
     );
   }
 }

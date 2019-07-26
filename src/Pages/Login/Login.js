@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import InputBox from "Components/InputBox";
 import Button from "Components/Button";
+import Layout from "Components/Layout";
 import "./Login.scss";
 import { API_URL, TOKEN_KEY } from "config";
 
@@ -127,32 +128,49 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="loginContainer">
-        <div className="loginContents">
-          <div className="loginHeadText">
-            <h2>Sign in</h2>
-          </div>
-          <div className="loginInputArea">
-            <div className="loginIdinput">
-              <InputBox
-                type="text"
-                name="email"
-                classname="login_input"
-                placeholder="e-mail"
-                handleChange={this.handleInput}
-              />
-              <p className="loginIdtext">{this.state.emailText}</p>
+      <Layout>
+        <div className="loginContainer">
+          <div className="loginContents">
+            <div className="loginHeadText">
+              <h2>Sign in</h2>
             </div>
-            <div className="loginPwinput">
-              <InputBox
-                type="password"
-                name="password"
-                classname="login_input"
-                placeholder="password"
-                handleChange={this.handleInput}
-              />
-              <p className="loginPwtext">{this.state.pwText}</p>
+            <div className="loginInputArea">
+              <div className="loginIdinput">
+                <InputBox
+                  type="text"
+                  name="email"
+                  classname="login_input"
+                  placeholder="e-mail address"
+                  handleChange={this.handleInput}
+                />
+                <p className="loginIdtext">{this.state.emailText}</p>
+              </div>
+              <div className="loginPwinput">
+                <InputBox
+                  type="password"
+                  name="password"
+                  classname="login_input"
+                  placeholder="Password"
+                  handleChange={this.handleInput}
+                />
+                <p className="loginPwtext">{this.state.pwText}</p>
+              </div>
             </div>
+            <div
+              className="checkBoxContainer"
+              onClick={this.handleOnclickChecked}
+            >
+              <div id={this.state.checkBox}></div>
+              <label id="loginCheckLabel" for="loginCheck">
+                email save
+              </label>
+            </div>
+            <Button
+              className="loginBtn"
+              text="sign in"
+              onClick={this.LoginBtnOnClick}
+            />
+            <a id="kakao-login-btn"></a>
           </div>
           <div
             className="checkBoxContainer"
@@ -179,7 +197,7 @@ class Login extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }

@@ -3,7 +3,7 @@ import axios from "axios";
 import Button from "Components/Button";
 import Select from "Components/Select";
 import SockItem from "Components/SockItem";
-import { API_URL, TOKEN_KEY } from "config";
+import { API_URL } from "config";
 import {
   AddCommaToNumber,
   SliceThenAddComma
@@ -76,7 +76,6 @@ class ShoppingCart extends React.Component {
 
   componentDidMount = () => {
     axios.post(`${API_URL}cart/list`, { user_pk: 1 }).then(response => {
-      console.log("response: ", response);
       this.setState({
         cartArr: response.data.my_cart_list,
         totalPrice: response.data.my_cart_total_price,

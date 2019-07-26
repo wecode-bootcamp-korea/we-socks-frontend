@@ -5,7 +5,7 @@ import { setCookie, getCookie } from "Common/cookie";
 import SockPreview from "Components/SockPreview";
 import Layout from "Components/Layout";
 import "./itemlist.scss";
-import { ADDRESS } from "Config/Config";
+import { ADDRESS } from "Config";
 
 class itemlist extends Component {
   constructor(props) {

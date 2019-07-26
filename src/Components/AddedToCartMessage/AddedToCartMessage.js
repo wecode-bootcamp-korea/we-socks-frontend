@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import Button from "Components/Button";
 import SockItem from "Components/SockItem";
-import { SliceThenAddComma } from "Components/AddCommaToNumber/AddCommaToNumber";
+import { AddCommaToNumber } from "Components/AddCommaToNumber/AddCommaToNumber";
 import "./addedToCartMessage.scss";
 import { Link } from "react-router-dom";
 import { API_URL } from "config";
@@ -43,19 +43,19 @@ class AddedToCartMessage extends React.Component {
               <li className="addedToCartList">
                 <div className="addedToCartImage">
                   <SockItem
-                    key={`message-${idx}`}
+                    key={`shoppingCart-${idx}`}
+                    type={el.design.main_type_id - 1}
                     color={el.design.color}
-                    pattern={el.design.pattern}
-                    uploaded={el.design.logo}
+                    pattern={el.design.pattern__pattern_type}
+                    patternSize={el.design.pattern__pattern_size}
                     view="side"
-                    type={el.design.main_type - 1}
                   />
                 </div>
                 <div className="addedToCartCategoryAndType">{`${
-                  categoryArr[el.design.category]
-                } ${typeArr[el.design.main_type]}`}</div>
+                  categoryArr[el.design.category_id]
+                } ${typeArr[el.design.main_type_id - 1]}`}</div>
                 <div className="addedToCartPrice">
-                  {SliceThenAddComma(el.design.unit_price)}
+                  {AddCommaToNumber(el.design.unit_price * el.count)}
                 </div>
               </li>
             ))}

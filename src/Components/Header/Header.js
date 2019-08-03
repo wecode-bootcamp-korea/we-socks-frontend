@@ -43,7 +43,7 @@ class Header extends React.Component {
   render() {
     const { cartBtnClicked, loginCheck } = this.state;
 
-    const cookie = getCookie("sockType").toLowerCase();
+    const cookie = getCookie("sockType");
 
     return (
       <>
@@ -70,11 +70,7 @@ class Header extends React.Component {
               <div className="cartWrap">
                 <div className="cartIcon"></div>
                 <Link to="/shoppingcart">
-                  <Button
-                    className="cartBtn"
-                    text="CART"
-                    onClick={this.handleCartBtnClicked}
-                  />
+                  <Button className="cartBtn" text="CART" onClick={this.handleCartBtnClicked} />
                 </Link>
               </div>
               <AddedToCartMessage showMessage={cartBtnClicked} />
@@ -83,28 +79,16 @@ class Header extends React.Component {
           <Link to="/itemlist">
             <div className="headerBottom">
               <div className="kids">
-                <Button
-                  text="KIDS"
-                  className={cookie === "kids" ? "typeChange" : null}
-                />
+                <Button text="KIDS" className={cookie === "kids" ? "typeChange" : null} />
               </div>
               <div className="casual">
-                <Button
-                  text="CASUAL"
-                  className={cookie === "casual" ? "typeChange" : null}
-                />
+                <Button text="CASUAL" className={cookie === "casual" ? "typeChange" : null} />
               </div>
               <div className="dressed">
-                <Button
-                  text="DRESSED"
-                  className={cookie === "dressed" ? "typeChange" : null}
-                />
+                <Button text="DRESSED" className={cookie === "dressed" ? "typeChange" : null} />
               </div>
               <div className="athletic">
-                <Button
-                  text="ATHLETIC"
-                  className={cookie === "athletic" ? "typeChange" : null}
-                />
+                <Button text="ATHLETIC" className={cookie === "athletic" ? "typeChange" : null} />
               </div>
             </div>
           </Link>

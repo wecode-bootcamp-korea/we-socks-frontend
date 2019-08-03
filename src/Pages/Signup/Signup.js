@@ -67,18 +67,18 @@ class Signup extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        if (data.status === 200) {
+          alert("회원가입을 축하드립니다!! 로그인 페이지로 이동합니다.");
+          this.props.history.push({
+            pathname: "/login"
+          });
+        }
+
         if (data.error_code === "EMAIL_ALREADY_EXISTS") {
           this.setState({
             checkEmail: "이메일 중복"
           });
-          return;
         }
-
-        alert("회원가입을 축하드립니다!! 로그인 페이지로 이동합니다.");
-        this.props.history.push({
-          pathname: "/login"
-        });
       });
   };
   render() {
@@ -93,7 +93,7 @@ class Signup extends Component {
               <InputBox
                 type="email"
                 name="email"
-                placeholder="e-mail address"
+                placeholder="e-mail"
                 classname="signupIdInput"
                 onChange={this.handleInput}
               />
@@ -110,14 +110,12 @@ class Signup extends Component {
             <div className="signupPw">
               <InputBox
                 classname="signupPwInput"
-                placeholder="Password"
+                placeholder="password"
                 type="password"
                 name="password"
                 onChange={this.handleInput}
               />
-              <p className="showPwText1">
-                영문+숫자+특수문자 8자리 이상으로 설정해주세요.
-              </p>
+              <p className="showPwText1"></p>
             </div>
             <div className="signupPw">
               <InputBox
@@ -140,26 +138,29 @@ class Signup extends Component {
             <div className="signupNick">
               <InputBox
                 type="text"
-                placeholder="phonenumber"
-                name="phoneNumber"
+                className="signupNickInput"
+                placeholder="nickname"
+                name="nickname"
                 onChange={this.handleInput}
-
               />
             </div>
             <div className="signupBirth">
               <div className="signupBirthInput">
                 <Select
                   className="signupYearInputSelect"
+                  name="year"
                   ref_array={yearArr}
                   makeSelection={this.handleInput}
                 />
                 <Select
                   className="signupMonthInputSelect"
+                  name="month"
                   ref_array={monthArr}
                   makeSelection={this.handleInput}
                 />
                 <Select
                   className="signupDayInputSelect"
+                  name="day"
                   ref_array={dayArr}
                   makeSelection={this.handleInput}
                 />
